@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  staff_numbers: 1
+  capital: 1
+
+two:
+  name: MyString
+  staff_numbers: 1
+  capital: 1
