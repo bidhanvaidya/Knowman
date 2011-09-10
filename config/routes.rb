@@ -1,4 +1,6 @@
 Knowman::Application.routes.draw do
+  resources :people
+
   resources :projects
 
   resources :companies
