@@ -11,12 +11,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110910043933) do
+ActiveRecord::Schema.define(:version => 20110910050628) do
 
   create_table "companies", :force => true do |t|
     t.string   "name"
     t.string   "company_type"
     t.string   "company_field"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "deployments", :force => true do |t|
+    t.integer  "project_id"
+    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
