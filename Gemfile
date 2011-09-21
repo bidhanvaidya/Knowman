@@ -9,10 +9,6 @@ gem 'therubyracer'
 
 gem 'pg'
 gem 'devise'
-<<<<<<< HEAD
-=======
-
->>>>>>> a4cbd96dcca95834b2e2abdf48257153cde137ce
 
 # Gems used only for assets and not required
 # in production environments by default.
