@@ -1,0 +1,3 @@
+<h2><%=link_to 'Research'%><br/><p></h2>
+<h2><%=link_to 'Competitors'%><br/><p></h2>
+<h2><%=link_to 'Investor'%></h2>
