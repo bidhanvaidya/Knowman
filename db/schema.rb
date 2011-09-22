@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110910060142) do
+ActiveRecord::Schema.define(:version => 20110922130930) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -42,6 +42,14 @@ ActiveRecord::Schema.define(:version => 20110910060142) do
     t.datetime "updated_at"
   end
 
+  create_table "folders", :force => true do |t|
+    t.integer  "research_id"
+    t.string   "title"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "people", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -56,8 +64,25 @@ ActiveRecord::Schema.define(:version => 20110910060142) do
     t.datetime "updated_at"
   end
 
+  create_table "topics", :force => true do |t|
+    t.string   "title"
+    t.integer  "user_id"
+    t.text     "content"
+    t.integer  "header_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "updates", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "topic_id"
+    t.string   "type_of_update"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "name"
+    t.string   "firstName"
     t.string   "email",                                 :default => "", :null => false
     t.string   "encrypted_password",     :limit => 128, :default => "", :null => false
     t.string   "confirmation_token"
@@ -73,6 +98,7 @@ ActiveRecord::Schema.define(:version => 20110910060142) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "lastName"
   end
 
 end

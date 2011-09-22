@@ -1,0 +1,35 @@
+<h2> <%= @folder.title %></h2>
+<% if @folder.topics.nil? %>
+nothnto diplay
+<% else%>
+<table border id =1>
+  <tr>
+    <th>Title</th>
+    <th>Owner</th>
+    <th>Created</th>
+    <th>Last Update</th>
+  </tr>
+
+
+
+<% @topics.each do |topic| %>
+  <tr>
+    <td><%= link_to topic.title, edit_folder_topic_path(topic.folder, topic) %></td>
+    <td><% unless topic.user.nil? %>
+			  <%= topic.user.firstName %> <%= topic.user.lastName %> 
+			  <% end %></td>
+		<td><%= topic.created_at%></td>
+		<td><% unless topic.updates.first.nil? %>
+				<%= topic.updates.first.created_at %> by <%= topic.updates.first.user.firstName %>
+				<% end %></td>
+		<td><%= link_to 'Delete', topic, :confirm => 'Are you sure?', :method => :delete %></td>
+		
+  </tr>
+<% end %>
+</table>
+
+
+<br />
+<%end%>
+<%= link_to 'New Topic', new_folder_topic_path %>	
+<%= link_to 'Back', folders_path %>

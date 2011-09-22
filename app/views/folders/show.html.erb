@@ -1,0 +1,8 @@
+<div id="edit">
+<%=@header.title%>
+</div>
+
+<%= link_to "add topic", new_header_topic_path(@header, :format => :js), :remote => true, :id => 'new_topic' %>
+<div id ="topic">
+<%= @header.topics%>
+<%= link_to 'New Topic', new_header_topic_path %>	

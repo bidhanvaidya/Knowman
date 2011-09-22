@@ -1,0 +1,23 @@
+<h1>Listing topics</h1>
+
+<table>
+  <tr>
+    <th colspan="12" class="pad" border = 1>Title</th>
+    <th colspan="4" class="pad">Owner</th>
+    <th colspan="7" class="pad">Created</th>
+    <th></th>
+  </tr>
+
+<% @topics.each do |topic| %>
+  <tr>
+    <td colspan="12" class="pad"><%= topic.title %></td>
+		<td colspan="4" class="pad"><%= topic.user.firstName %></td>	
+		<td colspan="7" class="pad"><%= topic.created_at %></td>	
+				
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'back', :back %>

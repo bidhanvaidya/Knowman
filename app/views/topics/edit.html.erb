@@ -1,0 +1,10 @@
+<h1><%= link_to @folder.title, folder_topics_path(@folder)%> >><%= @topic.title %></h1>
+<%= link_to "update history", folder_topic_updates_path(@folder,@topic) %>
+
+<div id = "edit">
+
+<%= render 'form_edit' %>
+</div>
+
+
+<%= link_to 'Back', folder_topics_path %>

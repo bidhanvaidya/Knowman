@@ -1,0 +1,81 @@
+<h1>New topic</h1>
+<% @topic.folder_id = @folder.id %>
+
+
+
+<%= form_for([@folder, @folder.topics.new], :html => { :multipart => true}) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<div class="field">
+	<%= f.label :title %><br />
+	<%= f.text_field :title %>
+	</div>
+
+	
+	<div class="field">
+
+
+		<script type="text/javascript">
+			tinyMCE.init({
+				mode: 'textareas',
+				theme: 'advanced',    
+     plugins : "autolink,lists,spellchecker,pagebreak,style,layer,table,save,advhr,advimage,advlink,emotions,iespell,inlinepopups,insertdatetime,preview,media,searchreplace,print,contextmenu,paste,directionality,fullscreen,noneditable,visualchars,nonbreaking,xhtmlxtras,template",
+      
+theme_advanced_buttons1 : "save,newdocument,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,styleselect,formatselect,fontselect,fontsizeselect",
+        theme_advanced_buttons2 : "cut,copy,paste,pastetext,pasteword,|,search,replace,|,bullist,numlist,|,outdent,indent,blockquote,|,undo,redo,|,link,unlink,anchor,image,cleanup,help,code,|,insertdate,inserttime,preview,|,forecolor,backcolor",
+        theme_advanced_buttons3 : "tablecontrols,|,hr,removeformat,visualaid,|,sub,sup,|,charmap,emotions,iespell,media,advhr,|,print,|,ltr,rtl,|,fullscreen",
+        theme_advanced_buttons4 : "insertlayer,moveforward,movebackward,absolute,|,styleprops,spellchecker,|,cite,abbr,acronym,del,ins,attribs,|,visualchars,nonbreaking,template,blockquote,pagebreak,|,insertfile,insertimage",
+        theme_advanced_toolbar_location : "top",
+        theme_advanced_toolbar_align : "left",
+        theme_advanced_statusbar_location : "bottom",
+        theme_advanced_resizing : false
+
+
+   
+
+
+
+			});
+		</script>
+		<%= f.text_area :content, :rows => 20, :cols => 120 %>
+		
+</div>
+<div class = "field">
+<% f.fields_for :attaches do |asset_fields| %>
+	 
+	<% if asset_fields.object.new_record? %>
+	<p>
+	<%= asset_fields.file_field :attach %>
+</p>
+ 
+<% end %>
+<% end %>
+ </div>
+<% f.fields_for :attaches do |asset_fields| %>
+<%unless asset_fields.object.new_record? %>
+ 
+<p>
+ 
+<%= link_to image_tag(asset_fields.object.asset.url(:thumb)), asset_fields.object.asset.url(:original) %>
+ 
+<%= asset_fields.check_box :_destroy %>
+	</p>
+	 
+	<% end %>
+	<% end %>
+
+	<div class="actions">
+		<%= f.submit %>
+	</div>
+<% end %>
+
+<%= link_to 'Back', :back %>

@@ -1,0 +1,28 @@
+<h1>Listing Folders</h1>
+
+
+<table>
+  <tr>
+    <th>Folders</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @folders.each do |folder| %>
+  <tr>
+    <td><%= link_to folder.title, folder_topics_path(folder) %></td>
+
+    
+      </tr>
+<% end %>
+</table>
+
+<br />
+
+<h3><%= link_to 'New document', new_folder_path %></h3>
+<br><p>
+<%= link_to 'logout', sign_out_path %> <span style="padding-left:20px"><%= link_to 'user history', userupdate_path %><span>
+<br>
+
+
