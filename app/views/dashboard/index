@@ -1,3 +1,4 @@
+
 <h2><%=link_to 'Research', folders_path %><br/><p></h2>
 <h2><%=link_to 'Competitors'%><br/><p></h2>
 <h2><%=link_to 'Investor'%></h2>

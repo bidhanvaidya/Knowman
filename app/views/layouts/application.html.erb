@@ -19,12 +19,13 @@
 				<div id="mainmenu"> 
         	<ul> 
             	<li class="active"><a href="">Index</a></li>
-                <li><a href="">Research</a></li> 
+                <li><%= link_to 'Research', folders_path %></li> 
                 <li><a href="">Competor</a></li> 
                 <li><a href="">Investor</a></li> 
                 <li><a href="">Dummy button</a></li> 
                 <li><a href="">Dummy button</a></li> 
                 <li><%= link_to 'Tests page for Cassie', companies_path %></li> 
+								 <li><%= link_to 'Log Out', sign_out_path%></li>
           </ul> 
         </div><!-- close div mainmenu -->
 				        <div class="inner"> 
@@ -36,50 +37,15 @@
 								<div id="mainlogo">	<%= image_tag("/images/Brainworth-logo.png", :class => "round", :height=>"65") %></div>
 				          <div class="slogan-small"> Smart. Creative. <span class="black">Out of Box.</span>
 									</div> 
+									<% if user_signed_in? %>
+									<%= "Welcome "%><%=link_to current_user.firstName+current_user.lastName, edit_user_registration_path%> 
+									<%end %>
 				        	<div class="clear">
 				        	</div> 
 				      </div> 
 
 				        <div id="content">   
 						<%= yield %>  
-					 				
-									<p>The following texts only added as dashboard currently have no contents, to be able to view the layout proporly, I've added a few dummy texts, delete later when we have more stuff</p>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-					 				<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-					 				<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-									<p>place to put contents in.   </p>
-									<span class="black">place to put contents in.</span>
-					 				<p>place to put contents in.   </p>
-
 									
 								</div><!-- close div content --> 
 
