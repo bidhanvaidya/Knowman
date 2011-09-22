@@ -2,13 +2,104 @@
 <html>
 <head>
   <title>Knowman</title>
-  <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
+  <%= stylesheet_link_tag 'custom' %>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
+	
+	<%= javascript_include_tag 'jquery','rails', 'highcharts', 'gray'%>
 </head>
 <body>
 
-<%= yield %>
+		<div id="inside"> 
+			<div id="sidebar"> 
+	  		<div id="social-icons">
+					add some stuff later (img or texts whatever)
+				</div><!-- close div social-icons -->
+	
+				<div id="mainmenu"> 
+        	<ul> 
+            	<li class="active"><a href="">Index</a></li>
+                <li><a href="">Research</a></li> 
+                <li><a href="">Competor</a></li> 
+                <li><a href="">Investor</a></li> 
+                <li><a href="">Dummy button</a></li> 
+                <li><a href="">Dummy button</a></li> 
+                <li><%= link_to 'Tests page for Cassie', companies_path %></li> 
+          </ul> 
+        </div><!-- close div mainmenu -->
+				        <div class="inner"> 
+				        </div> 
+			</div><!-- close div sidebar --> 
 
+				    <div id="main"> 
+				    	<div id="header"> 
+								<div id="mainlogo">	<%= image_tag("/images/Brainworth-logo.png", :class => "round", :height=>"65") %></div>
+				          <div class="slogan-small"> Smart. Creative. <span class="black">Out of Box.</span>
+									</div> 
+				        	<div class="clear">
+				        	</div> 
+				      </div> 
+
+				        <div id="content">   
+						<%= yield %>  
+					 				
+									<p>The following texts only added as dashboard currently have no contents, to be able to view the layout proporly, I've added a few dummy texts, delete later when we have more stuff</p>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+					 				<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+					 				<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+									<p>place to put contents in.   </p>
+									<span class="black">place to put contents in.</span>
+					 				<p>place to put contents in.   </p>
+
+									
+								</div><!-- close div content --> 
+
+				        <div class="clear">
+				        </div> 
+
+				        <div id="footer"> 
+				        	<div class="left">&copy; Copyright 2011</div> 
+				            <div class="right">Group E</a></div> 
+				       	  <div class="clear">
+				       	  </div> 
+				        </div> 
+
+				    </div><!-- close div main --> 
+				    <div class="clear"></div> 
+		</div><!-- close div inside -->  
+
+
+<!--	 yield    -->
+	
+	</section>
 </body>
 </html>
