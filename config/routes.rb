@@ -5,8 +5,6 @@ Knowman::Application.routes.draw do
 
 	resources :companies
 
-	devise_for :users
-
 	devise_for :users do
 		get "sign_out", :to => "devise/sessions#destroy"
 	end

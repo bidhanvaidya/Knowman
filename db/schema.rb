@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110922130930) do
+ActiveRecord::Schema.define(:version => 20110922144152) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -68,7 +68,7 @@ ActiveRecord::Schema.define(:version => 20110922130930) do
     t.string   "title"
     t.integer  "user_id"
     t.text     "content"
-    t.integer  "header_id"
+    t.integer  "folder_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

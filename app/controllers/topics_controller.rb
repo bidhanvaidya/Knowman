@@ -7,7 +7,7 @@ before_filter :load_folder
   # GET /topics.json
   def index
     @topics = @folder.topics
-    		@links = Link.find(1)
+    	
 @user = current_user
      
     respond_to do |format|
@@ -24,7 +24,7 @@ before_filter :load_folder
   # GET /topics/new.json
   def new
     @topic = @folder.topics.new
-    5.times { @topic.attaches.build }
+    
 
     respond_to do |format|
       format.html # new.html.erb
@@ -33,7 +33,7 @@ before_filter :load_folder
   end
 def new_link
 @topic = @folder.topic.find(params[:id])
-	@link = @topic.links.new
+	
  respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @topic }
@@ -43,7 +43,6 @@ end
   # GET /topics/1/edit
   def edit
     @topic = @folder.topics.find(params[:id])
-		@links = Link.all
 		
     
   end
@@ -105,7 +104,7 @@ end
   end
 def link_create
 	@topic = @folder.topics.find(params[:id])
-  @link = @topic.links.find(params[:id])
+  
 respond_to do |format|
   if @link.save
     flash[:notice] = 'Text Tab was successfully updated.'
