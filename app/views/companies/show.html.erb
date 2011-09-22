@@ -1,20 +1,99 @@
 <p id="notice"><%= notice %></p>
 
+<script type="text/javascript">
+	var chart;
+	$(document).ready(function() {
+		chart = new Highcharts.Chart({
+			chart: {
+				renderTo: 'empnum_chart',
+				defaultSeriesType: 'spline',
+				marginRight: 100,
+				marginBottom: 25
+			},
+			title: {
+				text: 'Company History',
+				x: -20 //center
+			},
+			subtitle: {
+				text: 'Source: Local Database',
+				x: -20
+			},
+			xAxis: {
+				type: "datetime"
+			},
+			yAxis: {
+				title: {
+					text: 'Number'
+				},
+				plotLines: [{
+					value: 0,
+					width: 1,
+					color: '#808080'
+				}]
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'top',
+				x: -10,
+				y: 100,
+				borderWidth: 0
+			},
+			tooltip: {
+				formatter: function() {
+		                return '<b>'+ this.series.name +'</b><br/>'+
+					Highcharts.dateFormat("%B, %Y",	this.x) +': '+'</b><br/>'+ 'value: ' + this.y;
+				}
+			},
+			series: [
+		
+				{
+				pointInterval: <%= 1.month * 1000 %>, 			
+				pointStart: <%= 20.month.ago.to_i * 1000 %>,	
+				name: 'Funds',
+				type: 'column',
+				data: [
+					<% @company.funds.each do |fund| %> 
+						[Date.UTC(<%=  fund.date_of_record.strftime("%Y,%m,%d") %>), <%= fund.money%>],
+				<% end %>
+				]				
+				}
+			]
+		});	
+	});
+</script>
+<div id="empnum_chart" style="width: 650px; height: 325px; margin: 0 auto"></div>
+
 <p>
   <b>Name:</b>
   <%= @company.name %>
 </p>
 
 <p>
-  <b>Type:</b>
+  <b>Company type:</b>
   <%= @company.company_type %>
 </p>
 
 <p>
-  <b>Field:</b>
+  <b>Company field:</b>
   <%= @company.company_field %>
 </p>
 
+
+<!-- Desplay fundings of a company -->
+<h2> Fund Details </h2><%= link_to 'Show Funds', company_funds_path(@company) %>
+<table>
+	<tr>
+    <th>Time</th>
+    <th>value</th>
+  </tr>
+	<% @company.funds.each do |fund| %>
+  <tr>
+    <td><%= fund.date_of_record%></td>
+    <td><%= fund.money %></td>
+  </tr>
+<%end%>
+</table>
 
 <%= link_to 'Edit', edit_company_path(@company) %> |
 <%= link_to 'Back', companies_path %>

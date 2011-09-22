@@ -1,0 +1,13 @@
+<h1>Funds#show</h1>
+
+<p>
+	<b>Fund details:</b>
+	$<%= @fund.money %> 
+	<br /><b>Date:</b>
+	
+	<%= @fund.date_of_record%>
+</p>
+
+<%= link_to 'Edit', edit_company_fund_path(@company, @fund) %> |
+<%= link_to 'Back', company_funds_path(@company) %>
+<p>Find me in app/views/funds/show.html.erb</p>

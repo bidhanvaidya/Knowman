@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  data_of_record: 2011-09-22 15:24:16
+  staff_number: 1
+  company: 
+
+two:
+  data_of_record: 2011-09-22 15:24:16
+  staff_number: 1
+  company: 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110922144152) do
+ActiveRecord::Schema.define(:version => 20110922222416) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -50,6 +50,16 @@ ActiveRecord::Schema.define(:version => 20110922144152) do
     t.datetime "updated_at"
   end
 
+  create_table "funds", :force => true do |t|
+    t.datetime "date_of_record"
+    t.integer  "money"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "funds", ["company_id"], :name => "index_funds_on_company_id"
+
   create_table "people", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -63,6 +73,16 @@ ActiveRecord::Schema.define(:version => 20110922144152) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "stlevels", :force => true do |t|
+    t.datetime "data_of_record"
+    t.integer  "staff_number"
+    t.integer  "company_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "stlevels", ["company_id"], :name => "index_stlevels_on_company_id"
 
   create_table "topics", :force => true do |t|
     t.string   "title"

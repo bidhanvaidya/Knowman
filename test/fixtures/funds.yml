@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  date_of_record: 2011-09-22 15:21:56
+  money: 1
+  company: 
+
+two:
+  date_of_record: 2011-09-22 15:21:56
+  money: 1
+  company: 

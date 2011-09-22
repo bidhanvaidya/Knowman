@@ -1,9 +1,14 @@
 Knowman::Application.routes.draw do
+
 	resources :people
 
 	resources :projects
 
-	resources :companies
+	resources :companies do
+	  resources :funds
+	  resources :stlevels
+	end
+	
 
 	devise_for :users do
 		get "sign_out", :to => "devise/sessions#destroy"

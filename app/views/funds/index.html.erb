@@ -1,0 +1,24 @@
+<h1>Funds#index</h1>
+
+<table>
+	<tr>
+		<th>Fund Details:</th>
+	</tr>
+	
+	<% for fund in @funds %>
+		<tr>
+			<td><%= fund.date_of_record %></td>
+			<td><%= fund.money %></td>
+			<td><%= link_to 'Show', company_fund_path(@company, fund) %></td>
+			<td><%= link_to 'Edit', edit_company_fund_path(@company, fund) %></td>
+			<td><%= link_to 'Destroy', company_fund_path(@company, fund), :confirm=> 'sure?', :method => :delete %></td>
+			</tr>
+			<% end %>
+			</table>
+<br />
+
+<%= link_to 'New Fund', new_company_fund_path(@company) %>
+<%= link_to 'Back to Company', @company %>
+
+
+<p>Find me in app/views/funds/index.html.erb</p>
