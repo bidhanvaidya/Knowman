@@ -10,7 +10,7 @@
 			<td><%= stlevel.date_of_record %></td>
 			<td><%= stlevel.staff_number %></td>
 			<td><%= link_to 'Edit', edit_company_stlevel_path(@company, stlevel) %></td>
-			<td><%= link_to 'Destroy', company_stlevel_path(@company, stlevel), :confirm=> 'sure?', :method => :delete %></td>
+			<td><%= button_to 'Destroy', company_stlevel_path(@company, stlevel), :confirm=> 'sure?', :method => :delete %></td>
 			</tr>
 			<% end %>
 			</table>
