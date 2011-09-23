@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110922222416) do
+ActiveRecord::Schema.define(:version => 20110923073615) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -75,7 +75,7 @@ ActiveRecord::Schema.define(:version => 20110922222416) do
   end
 
   create_table "stlevels", :force => true do |t|
-    t.datetime "data_of_record"
+    t.datetime "date_of_record"
     t.integer  "staff_number"
     t.integer  "company_id"
     t.datetime "created_at"

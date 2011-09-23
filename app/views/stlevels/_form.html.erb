@@ -1,0 +1,14 @@
+<%= form_for([@company, @stlevel]) do |f| %>
+
+  <div class="field">
+    <%= f.label :date_of_record %><br />
+    <%= f.text_field :date_of_record %>
+  </div>
+  <div class="field">
+    <%= f.label :staff_number %><br />
+    <%= f.text_field :staff_number %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -9,7 +9,6 @@
 		<tr>
 			<td><%= fund.date_of_record %></td>
 			<td><%= fund.money %></td>
-			<td><%= link_to 'Show', company_fund_path(@company, fund) %></td>
 			<td><%= link_to 'Edit', edit_company_fund_path(@company, fund) %></td>
 			<td><%= link_to 'Destroy', company_fund_path(@company, fund), :confirm=> 'sure?', :method => :delete %></td>
 			</tr>
@@ -17,7 +16,7 @@
 			</table>
 <br />
 
-<%= link_to 'New Fund', new_company_fund_path(@company) %>
+<%= link_to 'New Fund', new_company_fund_path(@company) %> |
 <%= link_to 'Back to Company', @company %>
 
 

@@ -45,19 +45,32 @@
 					Highcharts.dateFormat("%B, %Y",	this.x) +': '+'</b><br/>'+ 'value: ' + this.y;
 				}
 			},
-			series: [
+			series: [	
 		
 				{
 				pointInterval: <%= 1.month * 1000 %>, 			
 				pointStart: <%= 20.month.ago.to_i * 1000 %>,	
 				name: 'Funds',
-				type: 'column',
+				type: 'spline',
 				data: [
 					<% @company.funds.each do |fund| %> 
 						[Date.UTC(<%=  fund.date_of_record.strftime("%Y,%m,%d") %>), <%= fund.money%>],
-				<% end %>
+					<% end %>
 				]				
+				},
+				
+				{
+				pointInterval: <%= 1.month * 1000 %>, 			
+				pointStart: <%= 20.month.ago.to_i * 1000 %>,	
+				name: 'Stlevel',
+				type: 'spline',
+				data: [
+					<% @company.stlevels.each do |stlevel| %> 
+						[Date.UTC(<%=  stlevel.date_of_record.strftime("%Y,%m,%d") %>), <%= stlevel.staff_number %>],
+					<% end %>
+				]
 				}
+				
 			]
 		});	
 	});
@@ -78,9 +91,13 @@
   <b>Company field:</b>
   <%= @company.company_field %>
 </p>
+<%= link_to 'Edit Company', edit_company_path(@company) %> |
+<%= link_to 'Back to Companies list', companies_path %> |
+<%= link_to 'Show Funds Details', company_funds_path(@company) %> |
+<%= link_to 'Show stlevels Details', company_stlevels_path(@company) %>
 
 
-<!-- Desplay fundings of a company -->
+<!--
 <h2> Fund Details </h2><%= link_to 'Show Funds', company_funds_path(@company) %>
 <table>
 	<tr>
@@ -95,5 +112,19 @@
 <%end%>
 </table>
 
-<%= link_to 'Edit', edit_company_path(@company) %> |
-<%= link_to 'Back', companies_path %>
+
+<h2>Company Staff Numbers History</h2><%= link_to 'Show stlevels', company_stlevels_path(@company) %>
+<table>
+	<tr>
+    <th>Time</th>
+    <th>num</th>
+  </tr>
+	<% @company.stlevels.each do |stlevel| %>
+  <tr>
+    <td><%= stlevel.date_of_record.to_s(:long) %></td>
+    <td><%= stlevel.staff_number %></td>
+  </tr>
+<%end%>
+</table>
+-->
+

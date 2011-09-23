@@ -1,2 +1,14 @@
 <h1>Stlevels#show</h1>
+
+
+<p>
+	<b>Stlevel details:</b>
+	$<%= @stlevel.staff_number %> 
+	<br /><b>Date:</b>
+	
+	<%= @stlevel.date_of_record%>
+</p>
+
+<%= link_to 'Edit', edit_company_stlevel_path(@company, @stlevel) %> |
+<%= link_to 'Back', company_stlevels_path(@company) %>
 <p>Find me in app/views/stlevels/show.html.erb</p>
