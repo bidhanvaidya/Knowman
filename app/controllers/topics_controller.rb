@@ -92,7 +92,7 @@ end
 if @topic.user_id == current_user.id
     @topic.destroy
     respond_to do |format|
-      format.html { redirect_to :back }
+      format.html { redirect_to folder_topics_path }
       format.json { head :ok }
     end
 else
