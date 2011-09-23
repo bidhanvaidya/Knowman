@@ -97,34 +97,3 @@
 <%= link_to 'Show stlevels Details', company_stlevels_path(@company) %>
 
 
-<!--
-<h2> Fund Details </h2><%= link_to 'Show Funds', company_funds_path(@company) %>
-<table>
-	<tr>
-    <th>Time</th>
-    <th>value</th>
-  </tr>
-	<% @company.funds.each do |fund| %>
-  <tr>
-    <td><%= fund.date_of_record%></td>
-    <td><%= fund.money %></td>
-  </tr>
-<%end%>
-</table>
-
-
-<h2>Company Staff Numbers History</h2><%= link_to 'Show stlevels', company_stlevels_path(@company) %>
-<table>
-	<tr>
-    <th>Time</th>
-    <th>num</th>
-  </tr>
-	<% @company.stlevels.each do |stlevel| %>
-  <tr>
-    <td><%= stlevel.date_of_record.to_s(:long) %></td>
-    <td><%= stlevel.staff_number %></td>
-  </tr>
-<%end%>
-</table>
--->
-
