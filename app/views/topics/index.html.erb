@@ -22,8 +22,7 @@ nothnto diplay
 		<td><% unless topic.updates.first.nil? %>
 				<%= topic.updates.first.created_at %> by <%= topic.updates.first.user.firstName %>
 				<% end %></td>
-		<td><%= link_to 'Delete', topic, :confirm => 'Are you sure?', :method => :delete %></td>
-		
+			<td><%= button_to 'Delete',topic, :confirm => 'Are you sure?', :method => :delete %></td>
   </tr>
 <% end %>
 </table>
