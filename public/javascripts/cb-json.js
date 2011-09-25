@@ -81,7 +81,7 @@ $('#actions').show();
 });
 				  
 				  
-// json functionality
+/* ======= json functionality ========= */
 $(function(){
 
 

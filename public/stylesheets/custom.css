@@ -76,7 +76,7 @@ thead{font-weight:bold;}
 
 /* ===== wrapper ===== */
 
-#inside{width:910px; margin:0 auto; } 
+#inside{width:100%; margin:0 auto; } 
 
 
 /* ===== header & elememts ===== */
@@ -90,7 +90,7 @@ thead{font-weight:bold;}
 
 
 /* ===== main ===== */
-#main{ float:left; margin-left:0px; background:url(../images/dotb.png) left repeat-y; width:720px; }
+#main{ float:left; margin-left:0px; background:url(../images/dotb.png) left repeat-y; width:89%; }
 
 
 /* ===== content ===== */
@@ -99,7 +99,7 @@ thead{font-weight:bold;}
 
 
 /* ===== sidebar ===== */
-#sidebar{ float:left;height:100%; width:190px; text-align:right;  background:url(file:../images/bgpagex.png) #FFF;}
+#sidebar{ float:left;height:100%; width:10%; text-align:right;  background:url(file:../images/bgpagex.png) #FFF;}
 #sidebar .inner{ padding:20px;}
 
 

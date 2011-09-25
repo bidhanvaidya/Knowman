@@ -1,38 +1,24 @@
 <!DOCTYPE html>
-<%= javascript_include_tag :all %>
 <html>
 <head>
-  <title>Knowman</title>
-  <%= stylesheet_link_tag 'custom' %>
-
-	<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-	
-	<%= javascript_include_tag 'jquery','rails', 'highcharts', 'gray'%>
+<title>Knowman</title>
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+<%= javascript_include_tag :all %>
+<%= stylesheet_link_tag :all %>
 </head>
 <body>
 
 		<div id="inside"> 
-			<div id="sidebar"> 
-	  		<div id="social-icons">
-					add some stuff later (img or texts whatever)
-				</div><!-- close div social-icons -->
-	
-				<div id="mainmenu"> 
-        	<ul> 
-            	<li class="active"><a href="">Index</a></li>
-                <li><%= link_to 'Research', folders_path %></li> 
-                <li><a href="">Competor</a></li> 
-                <li><a href="">Investor</a></li> 
-                <li><a href="">Dummy button</a></li> 
-                <li><%= link_to 'Tests page for Cassie', companies_path %></li> 
-								 <li><%= link_to 'Log Out', sign_out_path%></li>
-          </ul> 
-        </div><!-- close div mainmenu -->
-				        <div class="inner"> 
-				        </div> 
-			</div><!-- close div sidebar --> 
 
 				    <div id="main"> 
+					<div id="mainmenu"> 
+					<span class="active"><a href="">Index</a></span>
+					<span><%= link_to 'Research', folders_path %></span> 
+					<span><a href="">Competor</a></span> 
+					<span><a href="">Investor</a></span> 
+					<span><%= link_to 'Tests page for Cassie', companies_path %></span> 
+					<span><%= link_to 'Log Out', sign_out_path%></span>
+			</div><!-- close div mainmenu -->
 				    	<div id="header"> 
 								<div id="mainlogo">	<%= image_tag("/images/Brainworth-logo.png", :class => "round", :height=>"65") %></div>
 				          <div class="slogan-small"> Smart. Creative. <span class="black">Out of Box.</span>
