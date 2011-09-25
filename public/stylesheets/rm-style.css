@@ -1,0 +1,65 @@
+
+* {font-size:11px;list-style:none;}
+.left {float:left;}
+.right {float:right;}
+.active {background-color:yellow;}
+
+#accordion > div > div {
+	height:300px;
+}
+#actions {
+	position:relative;
+	top:-657px;
+	left:7px;
+	display:none;
+}
+#actions > * {
+	margin:10px;
+}
+#choice-tabs {
+	height:100px;
+	width:99%;
+	border:none;
+	border-top:2px solid black;
+}
+#choice-list {
+	display:none;
+}
+#input, #actions {
+	border:2px solid black;
+	height:150px;
+	width:50%;
+}
+#user-panel, #view {
+    width:100%;
+    height:auto;
+    min-height:10%;
+    border:1px solid black;
+}
+#user-panel > * {
+	margin:.5em;
+}
+#user-panel {
+	height:25px;
+}
+#view {
+	min-height:500px;
+    background-color:grey;
+    z-index:1;
+    position:relative;
+}
+#prods, #rels, #offices, #funding {
+	height:auto;
+	max-height:250px;
+	width:300px;
+	border:1px solid black;
+	padding:10px;
+	overflow:scroll;
+	float:left;
+	margin:1em;
+}
+#top, #middle, #bottom {
+	height:200px
+	width:100%;
+	border:1px solid black;
+}
