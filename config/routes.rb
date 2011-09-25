@@ -1,5 +1,7 @@
 Knowman::Application.routes.draw do
 
+	resources :dashboard
+	  
 	resources :people
 
 	resources :projects
@@ -22,6 +24,6 @@ Knowman::Application.routes.draw do
 			end
 	end
 	match '/userupdate', :to => 'updates#userupdate'
-	root :to => 'dashboard#index'
+	root :to => 'companies#index'
 
 end
