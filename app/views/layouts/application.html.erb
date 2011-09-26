@@ -11,33 +11,24 @@
 		<div id="inside"> 
 
 				    <div id="main"> 
-					<div id="mainmenu"> 
-					<span class="active"><a href="">Index</a></span>
-					<span><%= link_to 'Research', folders_path %></span> 
-					<span><a href="">Competor</a></span> 
-					<span><a href="">Investor</a></span> 
-					<span><%= link_to 'Tests page for Cassie', companies_path %></span> 
-					<span><%= link_to 'Log Out', sign_out_path%></span>
-			</div><!-- close div mainmenu -->
-				    	<div id="header"> 
-								<div id="mainlogo">	<%= image_tag("/images/Brainworth-logo.png", :class => "round", :height=>"65") %></div>
-				          <div class="slogan-small"> Smart. Creative. <span class="black">Out of Box.</span>
-									</div> 
-									<% if user_signed_in? %>
-									<%= "Welcome "%><%=link_to current_user.firstName+current_user.lastName, edit_user_registration_path%> 
-									<%end %>
-				        	<div class="clear">
-				        	</div> 
-				      </div> 
+					
+				    <div id="header"> 
+					<div id="mainmenu">
+					<a href="/folders" alt="Research">R</a> |
+					<a href="/dashboard">D</a> |
+					<a href="">I</a> |
+					<a href="/companies">C</a> |
+					<a href="/sign_out" alt="sign out">L</a>
+					</div><!-- close div mainmenu -->
+					
+					<% if user_signed_in? %>
+					<%= "Welcome "%><%=link_to current_user.firstName+current_user.lastName, edit_user_registration_path%> 
+					<%end %>
+				    </div> 
 
 				        <div id="content">   
 						<%= yield %>  
-									
-								</div><!-- close div content --> 
-
-				        <div class="clear">
-				        </div> 
-
+						</div><!-- close div content --> 
 				        <div id="footer"> 
 				        	<div class="left">&copy; Copyright 2011</div> 
 				            <div class="right">Group E</a></div> 

@@ -6,7 +6,8 @@ $(function(){
   $('#accordion, #input-field-hider').hide();
   
   //interface styles
-  $('input.button').button();
+  $('.button').button();
+  $('#mainmenu > a').addClass('button');
   $('.input').addClass('ui-widget ui-corner-all');
 
   
