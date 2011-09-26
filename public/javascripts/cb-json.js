@@ -5,11 +5,11 @@ $(function(){
 
   $('#accordion, #input-field-hider').hide();
   
+  
   //interface styles
-  $('.button').button();
-  $('#mainmenu > a').addClass('button');
   $('.input').addClass('ui-widget ui-corner-all');
-
+  $('#mainmenu > a, #mainmenu-button-holder > button').addClass('button');
+  $('.button').button();
   
   //left and right floats
   $('#styled-choice-links').addClass('left');
@@ -42,6 +42,15 @@ $('a[class*="tabs-"]').click(function(e){
 	}
     $(this).addClass('active');
 
+});
+$('#mainmenu-button-holder > button').click(function(e){
+						
+   var href = $(this).attr('id');
+   var link = $('a[href="/'+href+'"]');
+   
+   link.click();										
+   console.log(href);
+   
 });
 var stop = false;
 
@@ -82,7 +91,7 @@ $('#actions').show();
 });
 				  
 				  
-/* ======= json functionality ========= */
+/* ======= json functionality ======= */
 $(function(){
 
 

@@ -80,7 +80,7 @@ thead{font-weight:bold;}
 
 
 /* ===== header & elememts ===== */
-#header{ height:125px; padding-left:40px;}
+#header{ height:10%; padding-left:40px;}
 #header h1{font-size:36px; margin:0px; padding:0px;}
 .slogan-small{ float:left; padding-top:0px; padding-top:54px;display:inline-block;}
 
@@ -90,7 +90,7 @@ thead{font-weight:bold;}
 
 
 /* ===== main ===== */
-#main{ float:left; margin-left:0px; background:url(../images/dotb.png) left repeat-y; width:89%; }
+#main{ float:left; margin-left:0px; background:url(../images/dotb.png) left repeat-y; width:100%; }
 
 
 /* ===== content ===== */

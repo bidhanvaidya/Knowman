@@ -1,8 +1,8 @@
-
-* {font-size:11px;list-style:none;}
-.left {float:left;}
-.right {float:right;}
+.left   {float:left;}
+.right  {float:right;}
+.hidden {display:none;}
 .active {background-color:yellow;}
+*       {font-size:11px;list-style:none;}
 
 #accordion > div > div {
 	height:300px;
@@ -41,6 +41,10 @@
 }
 #user-panel {
 	height:25px;
+}
+#mainmenu-button-holder {
+	margin-left:40%;
+	margin-top:2%;
 }
 #view {
 	min-height:500px;
