@@ -21,11 +21,8 @@
 			});
 
 	</script>
-
-
-
-
-
+Total progress
+<div id="total"></div>
 
 	<h2> <%= @folder.title %></h2>
 	<% if @folder.topics.nil? %>
@@ -42,10 +39,12 @@
 									<th>Last Update</th>
 									<th>Progress</th>
 									<th></th>
-
+<%a=0%>
 								</tr>
 							
 								<% @topics.each do |topic| %>
+									
+									<%	a=a+topic.progress%>
 										<tr>
 											<td><%= link_to topic.title, edit_folder_topic_path(topic.folder, topic) %></td>
 											<td>
@@ -93,6 +92,14 @@
 			</tr>
 	</table>
 	</br>
+<script>
+												$(function() {
+												$( "#total" ).progressbar({
+													value: <%=a/@folder.topics.count%>});
+												});</script>
+
+
+
 	<%end%>
 	<%= link_to 'New Topic', new_folder_topic_path, :remote =>true %>	
 	<%= link_to 'Back', folders_path %>
