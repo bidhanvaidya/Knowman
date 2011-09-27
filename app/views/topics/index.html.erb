@@ -19,7 +19,14 @@
 
 					$( "#effect" ).hide();
 			});
+
 	</script>
+
+
+
+
+
+
 	<h2> <%= @folder.title %></h2>
 	<% if @folder.topics.nil? %>
 		nothn to diplay
@@ -33,6 +40,7 @@
 									<th>Owner</th>
 									<th>Created</th>
 									<th>Last Update</th>
+									<th>Progress</th>
 									<th></th>
 
 								</tr>
@@ -50,7 +58,12 @@
 												<% unless topic.updates.first.nil? %>
 													<%= topic.updates.first.created_at %> by <%= topic.updates.first.user.firstName %>
 												<% end %>
-											</td>
+											</td><script>
+												$(function() {
+												$( "#<%=topic.title%>" ).progressbar({
+													value: <%=topic.progress%>});
+												});</script>
+											<td><div id="<%=topic.title%>"></div></td>
 											<td><%= button_to 'Delete',topic, :confirm => 'Are you sure?', :method => :delete %></td>
 										</tr>
 								<% end %>
