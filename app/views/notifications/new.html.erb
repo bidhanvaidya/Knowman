@@ -1,13 +1,15 @@
 <%= form_for([@folder, @folder.notifications.new], :remote => true ) do |f| %>
 
 	<div class="field", id ="date">
-	<%= f.label :Next_notification %><br />
+	<%= f.label :set_Next_notification %><br />
 	<%= f.text_field:next_notification %>
 	</div>
  
 	<div class="actions">
 		<%= f.submit 'Notify' %>
 	</div>
+
+calender not working for now!! write ur own date
 <script>
 $(function() {
     $( "#date" ).datepicker({

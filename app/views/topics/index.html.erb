@@ -58,17 +58,22 @@
 					</td>
 					<td align = "right">
 						<table >
-							<tr> You will be notified next at<br><%=@notifications.first.next_notification%>
-							<tr>
-								<a href="#" id="text" >SEE ALL</a>
-								<div id="effect" >
-									<p>
-										<% @notifications.each do |notification| %>
-											<%=notification.next_notification%></br>
-										<%end%>
-									</p>
-								</div>
-							</tr>
+							<tr> 
+									<% unless @notifications.empty? %> 
+											You will be notified next at</br>
+											<%=@notifications.first.next_notification%>
+											<a href="#" id="text" >SEE ALL</a>
+											<div id="effect" >
+												<p>
+													<% @notifications.each do |notification| %>
+														<%=notification.next_notification%></br>
+													<%end%>
+												</p>
+											</div>
+									<%else%>
+											No notifications
+									<%end%>
+							</tr>						
 							<tr><%= render(:file => 'notifications/new.html.erb') %></tr>
 						</table>
 					</td>
