@@ -34,7 +34,7 @@ class TopicsController < ApplicationController
 		@topic.user_id = @user.id
 		respond_to do |format|
 			if @topic.save
-				Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Created")
+				Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Created", :progress_status => @topic.progress)
 				format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully created.' }
 				format.json { render json: @topic, status: :created, location: @topic }
 			format.js
@@ -51,7 +51,7 @@ class TopicsController < ApplicationController
 
 		respond_to do |format|
 			if @topic.update_attributes(params[:topic])
-				Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Updated")        
+				Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Updated", :progress_status => @topic.progress)        
 				format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully updated.' }
 				format.json { head :ok }
 			else
