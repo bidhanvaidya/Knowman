@@ -1,34 +1,83 @@
-<h2> <%= @folder.title %></h2>
-<% if @folder.topics.nil? %>
-nothnto diplay
-<% else%>
-<table border id =1>
-  <tr>
-    <th>Title</th>
-    <th>Owner</th>
-    <th>Created</th>
-    <th>Last Update</th>
-  </tr>
+
+	<script>
+			$(function() {
+					// run the currently selected effect
+					function runEffect() 
+					{
+							var selectedEffect = "blind" // get effect type from 
+							var options = {};// most effect types need no options passed by default
+							$( "#effect" ).show( selectedEffect, options, 500, callback );// run the effect
+					};
+
+					function callback() {};//callback function nothing here
+
+					// set effect from select menu value
+					$( "#text" ).click(function() {
+							runEffect();
+							return false;
+					});
+
+					$( "#effect" ).hide();
+			});
+	</script>
+	<h2> <%= @folder.title %></h2>
+	<% if @folder.topics.nil? %>
+		nothn to diplay
+	<% else%>
+	<table >
+			<tr>
+					<td valign="top">
+						<table border id =1>
+								<tr>
+									<th>Title</th>
+									<th>Owner</th>
+									<th>Created</th>
+									<th>Last Update</th>
+									<th></th>
+
+								</tr>
+							
+								<% @topics.each do |topic| %>
+										<tr>
+											<td><%= link_to topic.title, edit_folder_topic_path(topic.folder, topic) %></td>
+											<td>
+													<% unless topic.user.nil? %>
+														<%= topic.user.firstName %> <%= topic.user.lastName %> 
+													<% end %>
+											</td>
+											<td><%= topic.created_at%></td>
+											<td>
+												<% unless topic.updates.first.nil? %>
+													<%= topic.updates.first.created_at %> by <%= topic.updates.first.user.firstName %>
+												<% end %>
+											</td>
+											<td><%= button_to 'Delete',topic, :confirm => 'Are you sure?', :method => :delete %></td>
+										</tr>
+								<% end %>
+						</table>
+					</td>
+					<td align = "right">
+						<table >
+							<tr> You will be notified next at<br><%=@notifications.first.next_notification%>
+							<tr>
+								<a href="#" id="text" >SEE ALL</a>
+								<div id="effect" >
+									<p>
+										<% @notifications.each do |notification| %>
+											<%=notification.next_notification%></br>
+										<%end%>
+									</p>
+								</div>
+							</tr>
+							<tr><%= render(:file => 'notifications/new.html.erb') %></tr>
+						</table>
+					</td>
+			</tr>
+	</table>
+	</br>
+	<%end%>
+	<%= link_to 'New Topic', new_folder_topic_path, :remote =>true %>	
+	<%= link_to 'Back', folders_path %>
 
 
 
-<% @topics.each do |topic| %>
-  <tr>
-    <td><%= link_to topic.title, edit_folder_topic_path(topic.folder, topic) %></td>
-    <td><% unless topic.user.nil? %>
-			  <%= topic.user.firstName %> <%= topic.user.lastName %> 
-			  <% end %></td>
-		<td><%= topic.created_at%></td>
-		<td><% unless topic.updates.first.nil? %>
-				<%= topic.updates.first.created_at %> by <%= topic.updates.first.user.firstName %>
-				<% end %></td>
-			<td><%= button_to 'Delete',topic, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
-
-
-<br />
-<%end%>
-<%= link_to 'New Topic', new_folder_topic_path %>	
-<%= link_to 'Back', folders_path %>

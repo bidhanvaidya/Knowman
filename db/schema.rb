@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110923073615) do
+ActiveRecord::Schema.define(:version => 20110926044801) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -59,6 +59,13 @@ ActiveRecord::Schema.define(:version => 20110923073615) do
   end
 
   add_index "funds", ["company_id"], :name => "index_funds_on_company_id"
+
+  create_table "notifications", :force => true do |t|
+    t.datetime "next_notification"
+    t.integer  "folder_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "people", :force => true do |t|
     t.string   "name"

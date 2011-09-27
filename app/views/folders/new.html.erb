@@ -16,6 +16,7 @@
 	<%= f.label :Folder_title %><br />
 	<%= f.text_field :title %>
 	</div>
+	
 
 	<div class="actions">
 		<%= f.submit "Create Folder and Topic" %>
@@ -23,6 +24,16 @@
 		
 		
 	</div>
+<script>       
+    $(function() {
+                  $("#dialog_postcode").dialog();
+
+});
+ </script>
+
+<div id="dialog_postcode" title="Postcode information">
+    
+</div>
 
 <% end %>
 

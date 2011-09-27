@@ -1,21 +1,26 @@
-<%= form_for([@folder, @folder.topics.find(@topic)], :remote => true) do |f| %>
-		<% if @topic.errors.any? %>
-			<div id="error_explanation">
-				<h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2><ul>
-				
-				<% @topic.errors.full_messages.each do |msg| %>
-					<li><%= msg %></li>
-				<% end %>
-				</ul>
-			</div>
-		<% end %>
-		<div class="field">
-			<%= f.label :title %><br />
-			<%= f.text_field :title %>
-		</div>
 
 
-		<div class="field">
+<%= form_for([@folder, @folder.topics.new], :remote => true ) do |f| %>
+  <% if @topic.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @topic.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<div class="field">
+	<%= f.label :title %><br />
+	<%= f.text_field :title %>
+	</div>
+
+	
+	<div class="field">
+
+	<div class="field">
 			<script type="text/javascript">
 				tinyMCE.init({
 				mode: 'textareas',
@@ -35,9 +40,14 @@
 				</script>
 			<%= f.text_area :content, :rows => 20, :cols => 120 %>
 
-		</div> 
 
-		<div class="actions">
+		
+</div>
+
+
+	 
+	<div class="actions">
 		<%= f.submit %>
-		</div>
+	</div>
 <% end %>
+

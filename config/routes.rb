@@ -18,6 +18,7 @@ Knowman::Application.routes.draw do
 
 	resources :topics  
 	resources :folders do
+			resources :notifications
 			resources :topics do 
 				get "all"
 			resources :updates

@@ -1,0 +1,7 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/Fixtures.html
+
+one:
+  next_notification: 2011-09-26 14:48:01
+
+two:
+  next_notification: 2011-09-26 14:48:01
