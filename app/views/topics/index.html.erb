@@ -24,7 +24,7 @@
 Total progress
 <div id="total"></div>
 
-	<h2> <%= @folder.title %></h2>
+	<h2> <%= @folder.title %></h2><%= link_to 'Add new', new_folder_topic_path, :remote =>true %>	
 	<% if @folder.topics.nil? %>
 		nothn to diplay
 	<% else%>
@@ -92,16 +92,21 @@ Total progress
 			</tr>
 	</table>
 	</br>
-<script>
+<script><% if @folder.topics.empty?%>
+				<%	total_topics = 1%>
+				<%	else%>
+				<%	total_topics = @folder.topics.count%>
+				<%end%>
 												$(function() {
 												$( "#total" ).progressbar({
-													value: <%=a/@folder.topics.count%>});
+																	
+													value: <%=a/total_topics%>});
 												});</script>
 
 
 
 	<%end%>
-	<%= link_to 'New Topic', new_folder_topic_path, :remote =>true %>	
+	
 	<%= link_to 'Back', folders_path %>
 
 

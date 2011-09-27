@@ -1,4 +1,4 @@
-<h1><%= link_to @folder.title, folder_topics_path(@folder)%> >><%= @topic.title %></h1>
+<h4><%= link_to @folder.title, folder_topics_path(@folder)%> >><%= link_to @topic.title %></h4>
 <%= link_to "update history", folder_topic_updates_path(@folder,@topic) %>
 
 <div id = "edit">
