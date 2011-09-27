@@ -1,10 +1,9 @@
-<h1>Folders</h1>
 
 
 <table>
   <tr>
-    <th>Folders</th>
-    <th></th>
+    <th align = "left"><h2>Folders</h2></th>
+    <th>Progress</th>
     <th></th>
     <th></th>
   </tr>
@@ -13,7 +12,35 @@
   <tr>
     <td><%= link_to folder.title, folder_topics_path(folder) %></td>
 
-    
+    			</td><script>
+												<% if folder.topics.empty?%>
+												<%	total_topics = 1%>
+												<%	else%>
+												<%	total_topics = folder.topics.count%>
+												<%end%>
+												$(function() {
+												$( "#<%=folder.created_at.hash%>" ).progressbar({
+													value: <%=folder.topics.collect(&:progress).sum/total_topics%>});
+														 var value = <%=folder.topics.collect(&:progress).sum/total_topics%>
+													if (value ==0){
+															$("#<%=folder.created_at.hash%>").css({ 'background': 'red' });
+															$("#<%=folder.created_at.hash%> > div").css({ 'background': 'lightblue' });}
+													else if (value <20){
+															$("#<%=folder.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=folder.created_at.hash%> > div").css({ 'background': 'red' });}
+													
+												  else if (value <50){
+															$("#<%=folder.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=folder.created_at.hash%> > div").css({ 'background': 'orange' });}
+													else if (value <70){
+															$("#<%=folder.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=folder.created_at.hash%> > div").css({ 'background': 'lightblue' });}
+													else{
+															$("#<%=folder.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=folder.created_at.hash%> > div").css({ 'background': 'brightgreen' });
+													}
+												});</script>
+											<td><div id="<%=folder.created_at.hash%>"></div></td>
       </tr>
 <% end %>
 </table>

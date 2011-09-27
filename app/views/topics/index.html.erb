@@ -39,12 +39,12 @@ Total progress
 									<th>Last Update</th>
 									<th>Progress</th>
 									<th></th>
-<%a=0%>
+
 								</tr>
 							
 								<% @topics.each do |topic| %>
 									
-									<%	a=a+topic.progress%>
+								
 										<tr>
 											<td><%= link_to topic.title, edit_folder_topic_path(topic.folder, topic) %></td>
 											<td>
@@ -59,10 +59,25 @@ Total progress
 												<% end %>
 											</td><script>
 												$(function() {
-												$( "#<%=topic.title%>" ).progressbar({
+												$( "#<%=topic.created_at.hash%>" ).progressbar({
 													value: <%=topic.progress%>});
+														 var value = <%=topic.progress%>
+													if (value <20){
+															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'red' });}
+													
+												  else if (value <50){
+															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'orange' });}
+													else if (value <70){
+															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'lightblue' });}
+													else{
+															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'lightgreen' });
+													}
 												});</script>
-											<td><div id="<%=topic.title%>"></div></td>
+											<td><div id="<%=topic.created_at.hash%>"></div></td>
 											<td><%= button_to 'Delete',topic, :confirm => 'Are you sure?', :method => :delete %></td>
 										</tr>
 								<% end %>
@@ -99,8 +114,22 @@ Total progress
 				<%end%>
 												$(function() {
 												$( "#total" ).progressbar({
-																	
-													value: <%=a/total_topics%>});
+																value: <%=@folder.topics.collect(&:progress).sum/total_topics%>});
+													 var value = <%=@folder.topics.collect(&:progress).sum/total_topics%>
+													if (value <20){
+															$("#total").css({ 'background': 'white' });
+															$("#total > div").css({ 'background': 'red' });}
+													
+												  else if (value <50){
+															$("#total").css({ 'background': 'white' });
+															$("#total > div").css({ 'background': 'orange' });}
+													else if (value <70){
+															$("#total").css({ 'background': 'white' });
+															$("#total > div").css({ 'background': 'lightblue' });}
+													else{
+															$("#total").css({ 'background': 'white' });
+															$("#total > div").css({ 'background': 'lightgreen' });
+													}
 												});</script>
 
 
