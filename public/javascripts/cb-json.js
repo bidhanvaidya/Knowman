@@ -8,7 +8,7 @@ $(function(){
   
   //interface styles
   $('.input').addClass('ui-widget ui-corner-all');
-  $('#mainmenu > a, #mainmenu-button-holder > button').addClass('button');
+  $('#mainmenu > a, #mainmenu-button-holder > *').addClass('button');
   $('.button').button();
   
   //left and right floats

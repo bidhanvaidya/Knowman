@@ -14,20 +14,11 @@
 					
 				    <div id="header"> 
 						<div id="mainmenu">
-							<span id="mainmenu-hidden" class="hidden">
-								<a href="/folders">R</a>
-								<a href="/dashboard">D</a>
-								<a href="/investors">I</a>
-								<a href="/companies">C</a>
-								<a href="/sign_out" alt="sign out">L</a>
+							<span id="mainmenu-button-holder" class="">
+								<a href="/folders" title="research">      R	</a>
+								<a href="/dashboard" title="information"> I	</a>
+								<a href="/companies" title="charts">      C	</a>
 							</span>
-							<div id="mainmenu-button-holder">
-								<button id="dashboard">	D</button>
-								<button id="research" >	R</button>
-								<button id="companies">	C</button>
-								<button id="investors">	I</button>
-								<button id="sign_out" >	U</button>
-							</div>
 						</div><!-- close div mainmenu -->
 					
 					<% if user_signed_in? %>

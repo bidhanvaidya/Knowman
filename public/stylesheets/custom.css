@@ -80,7 +80,7 @@ thead{font-weight:bold;}
 
 
 /* ===== header & elememts ===== */
-#header{ height:10%; padding-left:40px;}
+#header{ height:10%; padding-left:40px; position:fixed; z-index:1; width:100%; background:black;}
 #header h1{font-size:36px; margin:0px; padding:0px;}
 .slogan-small{ float:left; padding-top:0px; padding-top:54px;display:inline-block;}
 
@@ -94,7 +94,7 @@ thead{font-weight:bold;}
 
 
 /* ===== content ===== */
-#content{padding:40px; background:url(../images/dot.png) top repeat-x; }
+#content{padding:40px; background:url(../images/dot.png) top repeat-x; margin-top:5%; }
 #content img{}
 
 
@@ -119,12 +119,14 @@ thead{font-weight:bold;}
 
 
 /* ===== main menu ===== */
-#mainmenu{ font-size:14px; background:url(../images/dot.png) top repeat-x; letter-spacing:0px; }
+#mainmenu{ font-size:14px; background:url(../images/dot.png) top repeat-x; letter-spacing:0px; padding-top:2%; }
 #mainmenu ul li{list-style:none;  background:url(../images/dot.png) bottom repeat-x; padding:11px 20px 11px 20px;}
 #mainmenu ul li a{color:#b2b2b2; display:block;}
 #mainmenu ul li:hover{ background:#F5F5F5;}
 #mainmenu ul li.active{border-left:solid 1px #F90; background:url(../images/dot.png);}
 #mainmenu ul li.active a{font-weight:bold; color:#555;}
+
+#mainmenu-button-holder {margin-left:45%;}
 
 
 /* ===== span color ===== */
