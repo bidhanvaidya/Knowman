@@ -44,7 +44,7 @@
 }
 #view {
 	min-height:500px;
-    z-index:1;
+    /*z-index:1;*/
     position:relative;
 	border:none;
 }
