@@ -1,3 +1,4 @@
+<%= javascript_include_tag :ckeditor %>
 <%= form_for([@folder, @folder.topics.find(@topic)], :remote => true) do |f| %>
 		<% if @topic.errors.any? %>
 			<div id="error_explanation">
@@ -9,18 +10,13 @@
 				</ul>
 			</div>
 		<% end %>
-		<div class="field">
-			<%= f.label :title %><br />
-			<%= f.text_field :title %>
-		</div>
+
 
 
 		<div class="field">
 		
-<script src="http://js.nicedit.com/nicEdit-latest.js" type="text/javascript"></script>
-<script type="text/javascript">bkLib.onDomLoaded(nicEditors.allTextAreas);</script>
 
-			<%= f.text_area :content, :rows => 20, :cols => 120 %>
+			<%= f.cktext_area :content, :height => '500px', :width =>'100%' %>
 
 		</div> 
 <div id="progress">
@@ -28,7 +24,5 @@
 <%= f.text_field :progress %></div>
 </div>
 
-		<div class="actions">
-		<%= f.submit %>
-		</div>
+		
 <% end %>

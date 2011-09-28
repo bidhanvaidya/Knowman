@@ -1,10 +1,13 @@
-<h4><%= link_to @folder.title, folder_topics_path(@folder)%> >><%= link_to @topic.title %></h4>
-<%= link_to "update history", folder_topic_updates_path(@folder,@topic) %>
-
-<div id = "edit">
+<table border= 0>
+	<tr>
+		<td align = "right"><h3><%= @topic.title%></h3></td>
+		<td align= "left"><%= link_to "Updates", folder_topic_updates_path(@folder,@topic) %></td>
+		<td align ="left">Created By <%= @topic.user.firstName.slice(0) +"."+ @topic.user.lastName %></td>
+		<td align = "right">Updated by <%=@topic.updates.first.user.firstName%></td>
+	</tr>
+</table>
+<div id = "edit" >
 
 <%= render 'form_edit' %>
 </div>
 
-
-<%= link_to 'Back', folder_topics_path %>
