@@ -44,9 +44,9 @@
 }
 #view {
 	min-height:500px;
-    background-color:grey;
     z-index:1;
     position:relative;
+	border:none;
 }
 #prods, #rels, #offices, #funding {
 	height:auto;
