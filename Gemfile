@@ -6,7 +6,7 @@ gem 'therubyracer'
 gem 'ckeditor', '3.5.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
-
+gem 'will_paginate', '~> 3.0'
 gem 'pg'
 gem 'devise'
 gem 'tinymce-rails'

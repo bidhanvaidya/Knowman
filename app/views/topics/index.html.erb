@@ -42,6 +42,7 @@ Total progress
 
 								</tr>
 							
+								<%= will_paginate @topics %>
 								<% @topics.each do |topic| %>
 									
 								
@@ -78,7 +79,7 @@ Total progress
 													}
 												});</script>
 											<td><div id="<%=topic.created_at.hash%>"></div></td>
-											<td><%= button_to 'Delete',topic, :confirm => 'Are you sure?', :method => :delete %></td>
+											<td><%= button_to 'Delete',folder_topic_path(topic.folder,topic), :confirm => 'Are you sure?', :method => :delete %></td>
 										</tr>
 								<% end %>
 						</table>

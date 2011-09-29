@@ -9,6 +9,6 @@ end
 
 def userupdate
 @user=current_user
-@updates = current_user.updates.all
+@updates = current_user.updates.paginate(:page => params[:page], :per_page => 10)
 end
 end

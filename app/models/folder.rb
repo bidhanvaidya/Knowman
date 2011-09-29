@@ -1,12 +1,9 @@
 class Folder < ActiveRecord::Base
 has_many :topics
+
+accepts_nested_attributes_for :topics, :allow_destroy => true
 has_many :notifications
 
-def notification_attributes=(notification_attributes)
-  notification_attributes.each do |attributes|
-    notifications.build(attributes)
-  end
-end
 
 
 

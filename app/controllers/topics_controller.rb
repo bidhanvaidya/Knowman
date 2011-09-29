@@ -6,7 +6,8 @@ class TopicsController < ApplicationController
 	# GET /topics
 	# GET /topics.json
 	def index
-			@topics = @folder.topics
+			@topics = @folder.topics.paginate(:page => params[:page], :per_page => 10)
+
 			@notifications= @folder.notifications
 			@user = current_user
 

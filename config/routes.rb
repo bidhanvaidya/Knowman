@@ -15,8 +15,7 @@ Knowman::Application.routes.draw do
 	devise_for :users do
 		get "sign_out", :to => "devise/sessions#destroy"
 	end
-
-	resources :topics  
+  
 	resources :folders do
 			resources :notifications
 			resources :topics do 

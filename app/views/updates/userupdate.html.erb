@@ -9,6 +9,8 @@
   </tr>
 
 <% unless @updates.nil? %>
+
+<%= will_paginate @updates %>
 <% @updates.each do |update| %>
 <% unless update.topic.nil? %>  
 <tr>
