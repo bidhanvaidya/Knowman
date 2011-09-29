@@ -90,7 +90,6 @@ $('#actions').show();
 
 });
 				  
-				  
 /* ======= json functionality ======= */
 $(function(){
 
@@ -105,12 +104,12 @@ var u = "http://api.crunchbase.com/v/1/company/";
 
 $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 	   
-	   var rels	= [];
-	   var emps	= [];
-	   var prod	= [];
+	   var rels		= [];
+	   var emps		= [];
+	   var prod		= [];
 	   var monies	= [];
 	   var funding	= [];
-	   var offices = [];
+	   var offices	= [];
 	   
 	   
 	   //$('.view').empty();
