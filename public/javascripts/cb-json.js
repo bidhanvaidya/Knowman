@@ -121,8 +121,6 @@ var t = new Array();
     t = s.split(' ');
 var j = t.join('-');
 var u = "http://api.crunchbase.com/v/1/company/";
-				 
-				 console.log(this);
 
 $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 	   
@@ -141,6 +139,7 @@ $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 			  if ( key == "number_of_employees" ) {
 			  
 			  emps.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+			  emps.push('<input id="stlevel_staff_number" type="hidden" value="'+ value +'" name="stlevel[staff_number]">');
 			  
 			  }
 			  
@@ -217,8 +216,8 @@ $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 	   
 	   });
 $('#accordion').show();
-
-$.getScript()
+$(this).replaceWith('<input type="submit" value="submit" name="commit">');
+$('body').wrap('<form method="post" action="/companies/5/stlevels" />')
 
 });
 

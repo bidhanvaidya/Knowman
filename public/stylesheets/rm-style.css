@@ -56,19 +56,10 @@
 	top:95px;
 }
 #toolbar > div > * { margin:.25em; }
-#user-panel, #view {
+#view {
     width:100%;
     height:auto;
-    min-height:10%;
     border:1px solid black;
-}
-#user-panel > * {
-	margin:.5em;
-}
-#user-panel {
-	height:25px;
-}
-#view {
 	min-height:500px;
     /*z-index:1;*/
     position:relative;
