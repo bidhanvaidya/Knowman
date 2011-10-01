@@ -1,9 +1,23 @@
 $(document).ready(function(){
 
+$(function(){
+
+  var n = new Number(20);
+  
+  var clone = $('#accordion > div:first').clone();
+  
+  for (i=0;i<n;i++) {
+  
+	$(clone).appendTo('#accordion');
+  
+  }
+  
+});				  
+				  
 //style/display
 $(function(){
 
-  $('#accordion, #input-field-hider').hide();
+  //$('#accordion, #input-field-hider').hide();
   
   
   //interface styles
@@ -13,10 +27,11 @@ $(function(){
   $('#mainmenu-button-holder > *, #styled-choice-links > a').button({
 	icons: {primary:'ui-icon-locked'},text:false 
   }).removeClass('ui-corner-all');
+  //$('#__sub').addClass('hidden');
   
   //left and right floats
   $('#styled-choice-links').addClass('left');
-  $('#actions, #tabs-menu-wrapper, #user-panel > *').addClass('right');
+  $('#actions, #user-panel > *').addClass('right');
   
 });
 
@@ -202,6 +217,8 @@ $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 	   
 	   });
 $('#accordion').show();
+
+$.getScript()
 
 });
 

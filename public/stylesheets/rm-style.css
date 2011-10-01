@@ -10,9 +10,9 @@
 }
 #actions {
 	position:relative;
-	top:-507px;
-	left:7px;
-	display:none;
+	top:-127px;
+	left:3px;
+	border-left:1px solid black;
 }
 #actions > * {
 	margin:10px;
@@ -44,10 +44,10 @@
 	height:125px;
 }
 #input, #actions {
-	border:2px solid yellow;
-	height:75px;
-	width:auto;
+	height:125px;
+	width:50%;
 }
+#search { width:100%; }
 #toolbar { 
 	height:250px; 
 	width:5%;
@@ -72,6 +72,7 @@
 	min-height:500px;
     /*z-index:1;*/
     position:relative;
+	right:5%;
 	border:none;
 }
 #prods, #rels, #offices, #funding {
