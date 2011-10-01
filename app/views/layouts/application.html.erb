@@ -7,46 +7,33 @@
 <%= stylesheet_link_tag :all %>
 </head>
 <body>
-
-		<div id="inside"> 
-
-				    <div id="main"> 
-					
-				    <div id="header"> 
-						<div id="mainmenu">
-							<span id="mainmenu-hidden" class="hidden">
-								<a href="/folders">R</a>
-								<a href="/dashboard">D</a>
-								<a href="/investors">I</a>
-								<a href="/companies">C</a>
-								<a href="/sign_out" alt="sign out">L</a>
-							</span>
-							<div id="mainmenu-button-holder">
-								<button id="dashboard">	D</button>
-								<button id="research" >	R</button>
-								<button id="companies">	C</button>
-								<button id="investors">	I</button>
-								<button id="sign_out" >	U</button>
-							</div>
-						</div><!-- close div mainmenu -->
+	<div id="inside"> 
+		<div id="main"> 
+				<div id="header"> 
+					<div id="mainmenu">
+						<div id="mainmenu-button-holder" class="">
+							<a href="/folders" title="research">      R	</a>
+							<a href="/companies" title="charts">      C	</a>
+							<a href="/dashboard" title="information"> I	</a>
+						</div>
+					</div><!-- /#mainmenu -->
 					
 					<% if user_signed_in? %>
 					<%= "Welcome "%><%=link_to current_user.firstName+current_user.lastName, edit_user_registration_path%> 
 					<%end %>
-				    </div> 
-					
-					<div id="content">   
-					<%= yield %>  
-					</div><!-- close div content --> 
-				    <div id="footer"> 
-				    <div class="left">&copy; Copyright 2011</div> 
-				    <div class="right">Group E</div> 
-				    <div class="clear">
-				    </div> 
-				    </div> 
-				    </div><!-- close div main --> 
-				    <div class="clear"></div> 
-		</div><!-- close div inside -->  
-<!--	 yield    -->
+				</div><!-- /#header --> 
+				
+				<div id="content"><%= yield %></div><!-- /#content --> 
+				
+				<div id="footer"> 
+					<div class="left">&copy; Copyright 2011</div> 
+					<div class="right">Group E</div> 
+					<div class="clear"></div>
+				</div><!-- /#footer --> 
+				
+			</div><!-- /#main --> 
+			<div class="clear"></div> 
+			
+	</div><!-- /#inside -->
 </body>
 </html>
