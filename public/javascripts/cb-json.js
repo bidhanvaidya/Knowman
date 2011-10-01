@@ -8,8 +8,11 @@ $(function(){
   
   //interface styles
   $('.input').addClass('ui-widget ui-corner-all');
-  $('#mainmenu > a, #mainmenu-button-holder > *').addClass('button');
+  $('#mainmenu > a').addClass('button');
   $('.button').button();
+  $('#mainmenu-button-holder > *, #styled-choice-links > a').button({
+	icons: {primary:'ui-icon-locked'},text:false 
+  }).removeClass('ui-corner-all');
   
   //left and right floats
   $('#styled-choice-links').addClass('left');
@@ -23,21 +26,23 @@ $(function() {
 $('#choice-tabs').tabs();
 $('#choice-tabs').removeClass('ui-corner-all');
 
-$('a[class*="tabs-"]').click(function(e){
+  $('#toolbar > div > a > span').click(function(e){
 	
-	$('.active').removeClass('active');
+	$('.active').removeClass('active'); // for usability
 	
-	e.preventDefault();
-	var href = $(this).attr('class');
-	var link = $('a[href="#'+href+'"]');
+	e.preventDefault(); //prevent anchor behaviour
+	var h = $(this).parent('a[class^="tabs-"]').attr('class'); //parse list of anchor classes
+	var i = new Array(); //create empty array
+		i = h.split(' '); // populate array with list
+	var j = $('a[href="#'+ i[0] +'"]'); // find anchor with href which matches anchor user clicked on
 
-	link.click();
+	j.click(); // click corresponding anchor
 							 
-	var name = "name"; 
+	var name = "name"; //
 							 
-	if ( $('#'+href+'').is(':empty') ) {
+	if ( $('#'+ i[0] +'').is(':empty') ) {
 	
-		$('#input-field').clone().appendTo('#'+href+'');
+		$('#input-field').clone().appendTo('#'+ i[0] +'');
 							 
 	}
     $(this).addClass('active');
@@ -45,11 +50,11 @@ $('a[class*="tabs-"]').click(function(e){
 });
 $('#mainmenu-button-holder > button').click(function(e){
 						
-   var href = $(this).attr('id');
-   var link = $('a[href="/'+href+'"]');
+   var h = $(this).attr('id');
+   var l = $('a[href="/'+h+'"]');
    
-   link.click();										
-   console.log(href);
+   l.click();										
+   console.log(h);
    
 });
 var stop = false;
@@ -98,9 +103,11 @@ $('#__sub').live('click', function() {
 
 var s = $('#search').val().toLowerCase();
 var t = new Array();
-t = s.split(' ');
+    t = s.split(' ');
 var j = t.join('-');
 var u = "http://api.crunchbase.com/v/1/company/";
+				 
+				 console.log(this);
 
 $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 	   

@@ -4,12 +4,13 @@
 .active {background-color:yellow;}
 *       {font-size:11px;list-style:none;}
 
+#accordion {position:relative; top:160px; z-index:0;}
 #accordion > div > div {
 	height:300px;
 }
 #actions {
 	position:relative;
-	top:-657px;
+	top:-507px;
 	left:7px;
 	display:none;
 }
@@ -21,15 +22,40 @@
 	width:99%;
 	border:none;
 	border-top:2px solid black;
+	background:none;
 }
 #choice-list {
 	display:none;
 }
-#input, #actions {
-	border:2px solid black;
-	height:150px;
-	width:50%;
+#display {
+	height:100%;
+	width:90%;
+	float:right;
 }
+#dash {
+	position:fixed;
+	float:right;
+	left:75px;
+	top:80px;
+	clear:both;
+	z-index:1;
+	background:grey;
+	width:90%;
+	height:125px;
+}
+#input, #actions {
+	border:2px solid yellow;
+	height:75px;
+	width:auto;
+}
+#toolbar { 
+	height:250px; 
+	width:5%;
+	float:left;
+	position:fixed;
+	top:95px;
+}
+#toolbar > div > * { margin:.25em; }
 #user-panel, #view {
     width:100%;
     height:auto;
