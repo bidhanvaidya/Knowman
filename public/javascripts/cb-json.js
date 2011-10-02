@@ -24,7 +24,7 @@ $(function(){
   $('.input').addClass('ui-widget ui-corner-all');
   $('#mainmenu > a').addClass('button');
   $('.button').button();
-  $('#mainmenu-button-holder > *, #styled-choice-links > a').button({
+  $('#mainmenu-button-holder > *, #styled-choice-links > a, button').button({
 	icons: {primary:'ui-icon-locked'},text:false 
   }).removeClass('ui-corner-all');
   //$('#__sub').addClass('hidden');
@@ -38,8 +38,8 @@ $(function(){
 //interface functionality
 $(function() {
   
-$('#choice-tabs').tabs();
-$('#choice-tabs').removeClass('ui-corner-all');
+  $('#choice-tabs, #company-1').tabs();
+  $('#choice-tabs').removeClass('ui-corner-all');
 
   $('#toolbar > div > a > span').click(function(e){
 	
@@ -182,37 +182,40 @@ $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 			  });
 	   $('<ul/>', {
 		 
-		 'id': 'emps',
+		 'id': 'companies-emps',
 		 html: emps.join('')
 		 
 		 }).appendTo('#top');
 	   $('<ul/>', {
 		 
-		 'id': 'prods',
+		 'id': 'companies-prods',
 		 html: prod.join('')
 		 
 		 }).appendTo('#middle');
 	   $('<ul/>', {
 		 
-		 'id': 'rels',
+		 'id': 'companies-rels',
 		 html: rels.join('')
 		 
 		 }).appendTo('#middle');
 	   $('<ul/>', {
 		 
-		 'id': 'offices',
+		 'id': 'companies-offices',
 		 html: offices.join('')
 		 
 		 }).appendTo('#middle');
 	   $('<ul/>', {
 		 
-		 'id': 'funding',
+		 'id': 'companies-funding',
 		 html: funding.join('')
 		 
 		 }).appendTo('#bottom');
 	   
-	   //$('#info').attr('val', '' + items + '');
-	   //alert(n);
+	   
+		  //$('ul').prepend('<div class="companies-sub-menu" />');
+		  
+		  //$('#info').attr('val', '' + items + '');
+		  //alert(n);
 	   
 	   });
 $('#accordion').show();

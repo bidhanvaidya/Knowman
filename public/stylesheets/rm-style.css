@@ -1,3 +1,19 @@
+
+#accordion > div > h3 > button {
+
+	position:relative;
+	left:200px;
+	top:-20px;
+
+}
+#accordion > div > h3 {
+
+	height:33px;
+
+}
+
+
+
 .left   {float:left;}
 .right  {float:right;}
 .hidden {display:none;}
@@ -16,6 +32,11 @@
 }
 #actions > * {
 	margin:10px;
+}
+.companies-sub-menu {
+	height:25px;
+	width:100%;
+	border:1px solid black;
 }
 #choice-tabs {
 	height:100px;
@@ -66,7 +87,7 @@
 	right:5%;
 	border:none;
 }
-#prods, #rels, #offices, #funding {
+#companies-prods, #companies-rels, #companies-offices, #companies-funding {
 	height:auto;
 	max-height:250px;
 	width:300px;
