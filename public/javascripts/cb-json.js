@@ -24,13 +24,13 @@ $(function(){
   $('.input').addClass('ui-widget ui-corner-all');
   $('#mainmenu > a').addClass('button');
   $('.button').button();
-  $('#mainmenu-button-holder > *, #styled-choice-links > a, button').button({
+  $('#mainmenu-button-holder > *, #styled-choice-links > a, #accordion > div > h3 > button').button({
 	icons: {primary:'ui-icon-locked'},text:false 
   }).removeClass('ui-corner-all');
   //$('#__sub').addClass('hidden');
   
   //left and right floats
-  $('#styled-choice-links').addClass('left');
+  $('#styled-choice-links, #accordion > div > h3 > a').addClass('left');
   $('#actions, #user-panel > *').addClass('right');
   
 });
@@ -63,15 +63,22 @@ $(function() {
     $(this).addClass('active');
 
 });
-$('#mainmenu-button-holder > button').click(function(e){
+$('#mainmenu-button-holder > button').click(function(){
 						
    var h = $(this).attr('id');
-   var l = $('a[href="/'+h+'"]');
-   
-   l.click();										
-   console.log(h);
+   var i = $('a[href="/'+ h +'"]');
+	   i.click();
    
 });
+
+$('#accordion > div > h3 > button').click(function(){
+
+  var h = $(this).attr('rel');
+  var i = $('a[href="#'+ h +'"]');
+	  i.click();
+
+});
+
 var stop = false;
 
 $('#accordion h3').click(function(e) {
@@ -139,7 +146,7 @@ $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 			  if ( key == "number_of_employees" ) {
 			  
 			  emps.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-			  emps.push('<input id="stlevel_staff_number" type="hidden" value="'+ value +'" name="stlevel[staff_number]">');
+			  emps.push('<li><input id="stlevel_staff_number" type="hidden" value="'+ value +'" name="stlevel[staff_number]"></li>');
 			  
 			  }
 			  
@@ -185,31 +192,31 @@ $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 		 'id': 'companies-emps',
 		 html: emps.join('')
 		 
-		 }).appendTo('#top');
+		 }).appendTo('#staff');
 	   $('<ul/>', {
 		 
 		 'id': 'companies-prods',
 		 html: prod.join('')
 		 
-		 }).appendTo('#middle');
+		 }).appendTo('#products');
 	   $('<ul/>', {
 		 
 		 'id': 'companies-rels',
 		 html: rels.join('')
 		 
-		 }).appendTo('#middle');
+		 }).appendTo('#people');
 	   $('<ul/>', {
 		 
 		 'id': 'companies-offices',
 		 html: offices.join('')
 		 
-		 }).appendTo('#middle');
+		 }).appendTo('#location');
 	   $('<ul/>', {
 		 
 		 'id': 'companies-funding',
 		 html: funding.join('')
 		 
-		 }).appendTo('#bottom');
+		 }).appendTo('#funding');
 	   
 	   
 		  //$('ul').prepend('<div class="companies-sub-menu" />');

@@ -3,7 +3,7 @@
 
 	position:relative;
 	left:200px;
-	top:-20px;
+	top:3px;
 
 }
 #accordion > div > h3 {
@@ -20,10 +20,9 @@
 .active {background-color:yellow;}
 *       {font-size:11px;list-style:none;}
 
-#accordion {position:relative; top:160px; z-index:0;}
-#accordion > div > div {
-	height:300px;
-}
+#accordion {position:relative; top:120px; z-index:0;}
+#accordion > div > div { height:300px; }
+
 #actions {
 	position:relative;
 	top:-127px;
@@ -50,8 +49,8 @@
 }
 #display {
 	height:100%;
-	width:90%;
-	float:right;
+	width:100%;
+	z-index:0;
 }
 #dash {
 	position:fixed;
@@ -61,7 +60,7 @@
 	clear:both;
 	z-index:1;
 	background:grey;
-	width:90%;
+	width:92%;
 	height:125px;
 }
 #input, #actions {
@@ -69,22 +68,23 @@
 	width:50%;
 }
 #search { width:100%; }
+#screen-resolution-helper { height:500px; width:auto; }
+
 #toolbar { 
 	height:250px; 
 	width:5%;
 	float:left;
 	position:fixed;
 	top:95px;
+	z-index:1000;
 }
 #toolbar > div > * { margin:.25em; }
 #view {
     width:100%;
     height:auto;
     border:1px solid black;
-	min-height:500px;
-    /*z-index:1;*/
+	min-height:300px;
     position:relative;
-	right:5%;
 	border:none;
 }
 #companies-prods, #companies-rels, #companies-offices, #companies-funding {
@@ -98,7 +98,6 @@
 	margin:1em;
 }
 #top, #middle, #bottom {
-	height:200px
+	height:400px
 	width:100%;
-	border:1px solid black;
 }
