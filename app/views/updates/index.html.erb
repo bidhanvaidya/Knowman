@@ -1,5 +1,5 @@
 <table><tr><td align ="right"><b>Updates for <%= link_to @topic.title, edit_folder_topic_path(@topic.folder, @topic)  %> </td><td align = "right">
-Created By: <b><%= @topic.user.firstName + " " +@topic.user.lastName %></b> On <b><%=@topic.created_at %></td></tr></table>
+Created By: <b><%= @created_by.firstName + " " +@created_by.lastName %></b> On <b><%=@topic.get_created_at(@topic.id) %></td></tr></table>
 
 <table ><br>
   <tr align ="left" >
@@ -7,37 +7,68 @@ Created By: <b><%= @topic.user.firstName + " " +@topic.user.lastName %></b> On <
     <th>Updated By</th>
     <th>Time</th>
 		<th>Progress Change</th>
-    
+		<th></th>   
   </tr>
 
-
-<% @updates.each do |update| %>
+<% x= @topic%>
   <tr>
-		<td><%= update.user.firstName + " " + update.user.lastName %>
-		<td><%= update.created_at %></td>
-		<td><div id="<%=update.created_at.hash%>"></div></td>
+		<td><%= x.user.firstName + " " + x.user.lastName %>
+		<td><%= x.created_at %></td>
+		<td><div id="<%=x.created_at.hash%>"></div></td>
 <script>
 				$(function() {
-												$( "#<%=update.created_at.hash%>" ).progressbar({
-																value: <%=update.progress_status%>});
-													 var value = <%=update.progress_status%>
+												$( "#<%=x.created_at.hash%>" ).progressbar({
+																value: <%=x.progress%>});
+													 var value = <%=x.progress%>
 													if (value <20){
-															$("#<%=update.created_at.hash%>").css({ 'background': 'white' });
-															$("#<%=update.created_at.hash%> > div").css({ 'background': 'red' });}
+															$("#<%=x.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=x.created_at.hash%> > div").css({ 'background': 'red' });}
 													
 												  else if (value <50){
-															$("#<%=update.created_at.hash%>").css({ 'background': 'white' });
-															$("#<%=update.created_at.hash%> > div").css({ 'background': 'orange' });}
+															$("#<%=x.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=x.created_at.hash%> > div").css({ 'background': 'orange' });}
 													else if (value <70){
-															$("#<%=update.created_at.hash%>").css({ 'background': 'white' });
-															$("#<%=update.created_at.hash%> > div").css({ 'background': 'lightblue' });}
+															$("#<%=x.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=x.created_at.hash%> > div").css({ 'background': 'lightblue' });}
 													else{
-															$("#<%=update.created_at.hash%>").css({ 'background': 'white' });
-															$("#<%=update.created_at.hash%> > div").css({ 'background': 'lightgreen' });
+															$("#<%=x.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=x.created_at.hash%> > div").css({ 'background': 'lightgreen' });
 													}
 												});</script>
+<td><%= link_to 'review', edit_folder_topic_path(x.folder, x)%></td>
   </tr>
+<% until x.topic.topic_id.nil? do %>
+<%x=x.topic%>
+  <tr>
+		<td><%= x.user.firstName + " " + x.user.lastName %>
+		<td><%= x.created_at %></td>
+		<td><div id="<%=x.created_at.hash%>"></div></td>
+<script>
+				$(function() {
+												$( "#<%=x.created_at.hash%>" ).progressbar({
+																value: <%=x.progress%>});
+													 var value = <%=x.progress%>
+													if (value <20){
+															$("#<%=x.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=x.created_at.hash%> > div").css({ 'background': 'red' });}
+													
+												  else if (value <50){
+															$("#<%=x.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=x.created_at.hash%> > div").css({ 'background': 'orange' });}
+													else if (value <70){
+															$("#<%=x.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=x.created_at.hash%> > div").css({ 'background': 'lightblue' });}
+													else{
+															$("#<%=x.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=x.created_at.hash%> > div").css({ 'background': 'lightgreen' });
+													}
+												});</script>
+<td><%= link_to 'review', edit_folder_topic_path(x.folder, x)%></td>
+  </tr>
+
 <% end %>
+# until the oldest version is found
+			
 </table>
 
 

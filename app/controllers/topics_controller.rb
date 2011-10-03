@@ -6,11 +6,10 @@ class TopicsController < ApplicationController
 	# GET /topics
 	# GET /topics.json
 	def index
-			@topics = @folder.topics.paginate(:page => params[:page], :per_page => 10)
-
+			@topics = @folder.topics.paginate(:page => params[:page], :per_page => 10).find_all_by_version('latest')
 			@notifications= @folder.notifications
 			@user = current_user
-
+		
 			respond_to do |format|
 				format.html # index.html.erb
 				format.json { render json: @topics }
@@ -27,12 +26,14 @@ class TopicsController < ApplicationController
 
 	def edit
 		@topic = @folder.topics.find(params[:id])
+		@created_by=@topic.get_owner(@topic.id)
 	end
 
 	def create
 		@user =  current_user
 		@topic = @folder.topics.new(params[:topic])
-		@topic.user_id = @user.id
+		@topic.user = @user
+		@topic.version="latest"
 		respond_to do |format|
 			if @topic.save
 				Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Created", :progress_status => @topic.progress)
@@ -49,9 +50,15 @@ class TopicsController < ApplicationController
 
 	def update
 		@topic = @folder.topics.find(params[:id])
-
+		@newtopic=@folder.topics.create(params[:topic])
+		@newtopic.topic_id=@topic.id
+		@newtopic.user=current_user
+		@newtopic.version="latest"
+		@topic.version="old"
 		respond_to do |format|
-			if @topic.update_attributes(params[:topic])
+		
+			if @newtopic.update_attributes(params[:topic])
+					@topic.save
 				Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Updated", :progress_status => @topic.progress)        
 				format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully updated.' }
 				format.json { head :ok }

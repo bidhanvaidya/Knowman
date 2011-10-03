@@ -2,8 +2,11 @@
 	<tr>
 		<td align = "right"><h3><%= @topic.title%></h3></td>
 		<td align= "left"><%= link_to "Updates", folder_topic_updates_path(@folder,@topic) %></td>
-		<td align ="left">Created By <%= @topic.user.firstName.slice(0) +"."+ @topic.user.lastName %></td>
-		<td align = "right">Updated by <%=@topic.updates.first.user.firstName%></td>
+
+		<td align ="left">Created By 			
+											 <%= @created_by.firstName.slice(0) + " " +@created_by.lastName %>
+			</td>					
+		<td align = "right">Updated by <%=@topic.user.firstName%></td>
 	</tr>
 </table>
 <div id = "edit" >

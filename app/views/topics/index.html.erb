@@ -49,15 +49,16 @@ Total progress
 										<tr>
 											<td><%= link_to topic.title, edit_folder_topic_path(topic.folder, topic) %></td>
 											<td>
-													<% unless topic.user.nil? %>
-														<%= topic.user.firstName %> <%= topic.user.lastName %> 
-													<% end %>
+													
+														<% @created_by=topic.get_owner(topic.id) %>
+														<%= @created_by.firstName %> <%= @created_by.lastName %> 
+													
 											</td>
-											<td><%= topic.created_at%></td>
+											<td><%=topic.get_created_at(topic.id) %></td>
 											<td>
-												<% unless topic.updates.first.nil? %>
-													<%= topic.updates.first.created_at %> by <%= topic.updates.first.user.firstName %>
-												<% end %>
+											
+													<%= topic.created_at %> by <%= topic.user.firstName %>
+											
 											</td><script>
 												$(function() {
 												$( "#<%=topic.created_at.hash%>" ).progressbar({
@@ -84,8 +85,8 @@ Total progress
 								<% end %>
 						</table>
 					</td>
-					<td align = "right">
-						<table >
+					<td align = "right", valign = "top">
+						<table>
 							<tr> 
 									<% unless @notifications.empty? %> 
 											You will be notified next at</br>
@@ -108,15 +109,15 @@ Total progress
 			</tr>
 	</table>
 	</br>
-<script><% if @folder.topics.empty?%>
+<script><% if @topics.empty?%>
 				<%	total_topics = 1%>
 				<%	else%>
-				<%	total_topics = @folder.topics.count%>
+				<%	total_topics = @topics.count%>
 				<%end%>
 												$(function() {
 												$( "#total" ).progressbar({
-																value: <%=@folder.topics.collect(&:progress).sum/total_topics%>});
-													 var value = <%=@folder.topics.collect(&:progress).sum/total_topics%>
+																value: <%=@topics.collect(&:progress).sum/total_topics%>});
+													 var value = <%=@topics.collect(&:progress).sum/total_topics%>
 													if (value <20){
 															$("#total").css({ 'background': 'white' });
 															$("#total > div").css({ 'background': 'red' });}
