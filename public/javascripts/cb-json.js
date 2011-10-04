@@ -116,6 +116,7 @@ $('#actions').show();
 //$('#actions').hide();
 
 });
+$('#company-1 > div').append('<div class="chart-holder right" />');
 				  
 /* ======= json functionality ======= */
 $(function(){

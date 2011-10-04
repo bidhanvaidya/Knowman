@@ -32,6 +32,13 @@
 #actions > * {
 	margin:10px;
 }
+.chart-holder {
+	height:235px;
+	width:700px;
+	border:1px solid black;
+	position:relative;
+	top:20px;
+}
 .companies-sub-menu {
 	height:25px;
 	width:100%;
@@ -89,11 +96,12 @@
 }
 #companies-prods, #companies-rels, #companies-offices, #companies-funding {
 	height:auto;
-	max-height:250px;
+	max-height:235px;
 	width:300px;
 	border:1px solid black;
 	padding:10px;
-	overflow:scroll;
+	overflow:hidden;
+	overflow-y:scroll;
 	float:left;
 	margin:1em;
 }
