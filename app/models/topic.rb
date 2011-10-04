@@ -23,6 +23,14 @@ module Topics
 				x.created_at # passes created date
 				end
     end
+		def get_latest(id)
+			x= Topic.find_by_id(id)
+			while x.version == "old" do
+				x= Topic.find_by_topic_id(x.id)	
+			
+			end		
+	x.id
+end
   end
 class Topic < ActiveRecord::Base
 belongs_to :folder

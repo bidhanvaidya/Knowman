@@ -1,4 +1,4 @@
-<table border= 0>
+<table border= 0><%= @topic.get_latest(@topic.id)%><%= Topic.find(@topic.get_latest(@topic.id)).version%>
 	<tr>
 		<td align = "right"><h3><%= @topic.title%></h3></td>
 		<td align= "left"><%= link_to "Updates", folder_topic_updates_path(@folder,@topic) %></td>

@@ -49,24 +49,45 @@ class TopicsController < ApplicationController
 	end
 
 	def update
-		@topic = @folder.topics.find(params[:id])
-		@newtopic=@folder.topics.create(params[:topic])
-		@newtopic.topic_id=@topic.id
-		@newtopic.user=current_user
-		@newtopic.version="latest"
-		@topic.version="old"
-		respond_to do |format|
-		
-			if @newtopic.update_attributes(params[:topic])
-					@topic.save
-				Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Updated", :progress_status => @topic.progress)        
-				format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully updated.' }
-				format.json { head :ok }
-			else
-				format.html { render action: "edit" }
-				format.json { render json: @topic.errors, status: :unprocessable_entity }
-			end
-		end
+					@topic = @folder.topics.find(params[:id])
+					if @topic.version="old"
+						@newtopic=@folder.topics.create(params[:topic])
+						@newtopic.user=current_user
+						@newtopic.version="latest"
+					
+						@newtopic.topic_id=@topic.get_latest(@topic.id)
+						@new = Topic.find(@topic.get_latest(@topic.id))
+						@new.update_attributes(:version => "old")
+						respond_to do |format|
+							if @newtopic.update_attributes(params[:topic])
+									Update.create(:topic_id => @topic.get_latest(@topic.id), :user_id => current_user.id, :type_of_update => "Updated", :progress_status => @new.progress)        
+									format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully updated.' }
+									format.json { head :ok }
+							else
+									format.html { render action: "edit" }
+									format.json { render json: @topic.errors, status: :unprocessable_entity }
+							end
+						end
+					
+					else
+						@newtopic=@folder.topics.create(params[:topic])
+						@newtopic.topic_id=@topic.id
+						@newtopic.user=current_user
+						@newtopic.version="latest"
+						@topic.version="old"
+						respond_to do |format|
+							if @newtopic.update_attributes(params[:topic])
+									@topic.save
+									Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Updated", :progress_status => @topic.progress)        
+									format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully updated.' }
+									format.json { head :ok }
+							else
+									format.html { render action: "edit" }
+									format.json { render json: @topic.errors, status: :unprocessable_entity }
+							end
+						end
+					end
+	
 	end
 
 	def destroy
