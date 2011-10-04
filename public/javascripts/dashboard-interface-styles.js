@@ -9,8 +9,8 @@ $(function(){
   $('#mainmenu > a').addClass('button');
   $('.button').button();
   $('#mainmenu-button-holder > *, #styled-choice-links > a, #accordion > div > h3 > button').button({
-	icons: {primary:'ui-icon-locked'},text:false 
-  }).removeClass('ui-corner-all');
+																									icons: {primary:'ui-icon-locked'},text:false 
+																									}).removeClass('ui-corner-all');
   //$('#__sub').addClass('hidden');
   
   //left and right floats
