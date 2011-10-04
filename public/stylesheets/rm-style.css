@@ -23,6 +23,17 @@
 #accordion {position:relative; top:120px; z-index:0;}
 #accordion > div > div { height:300px; }
 
+.accordion-sub-menu {
+
+	height:25px;
+	width:320px;
+	border:1px solid black;
+	position:relative;
+	bottom:-240px;
+	left:35px;
+
+}
+
 #actions {
 	position:relative;
 	top:-127px;
@@ -96,7 +107,7 @@
 }
 #companies-prods, #companies-rels, #companies-offices, #companies-funding {
 	height:auto;
-	max-height:235px;
+	max-height:215px;
 	width:300px;
 	border:1px solid black;
 	padding:10px;
@@ -104,6 +115,9 @@
 	overflow-y:scroll;
 	float:left;
 	margin:1em;
+	position:relative;
+	top:-33px;
+	left:24px;
 }
 #top, #middle, #bottom {
 	height:400px

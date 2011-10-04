@@ -1,11 +1,6 @@
 $(document).ready(function(){
 
 				  
-				  
-
-
-
-				  
 /* ======= json functionality ======= */
 $(function(){
 

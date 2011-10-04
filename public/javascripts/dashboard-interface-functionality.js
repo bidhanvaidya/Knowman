@@ -44,6 +44,19 @@ $(function() {
 											
 											});
   
+  $('body').keypress(function(e){
+  
+	 var s = $('#__sub');
+	 
+	 if ( e.which == 13) {
+	 
+		e.preventDefault();
+		s.click();
+	 
+	 }
+	
+  });
+  
   var stop = false;
   
   $('#accordion h3').click(function(e) {
@@ -81,6 +94,8 @@ $('li > span').live('click', function(){
 							//$('#actions').hide();
 							
 							});
-$('#company-1 > div').append('<div class="chart-holder right" />');
+$('#company-1 > div').append('<div class="chart-holder right" /><div class="accordion-sub-menu" />');
 
+
+  
 });
