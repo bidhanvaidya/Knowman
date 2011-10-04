@@ -11,7 +11,7 @@ $(function() {
 									   $('.active').removeClass('active'); // for usability
 									   
 									   e.preventDefault(); //prevent anchor behaviour
-									   var h = $(this).parent('a[class^="tabs-"]').attr('class'); //parse list of anchor classes
+									   var h = $(this).parent('a[class^="tabs-"]').attr('class'); //parse list of anchor's classes
 									   var i = new Array(); //create empty array
 									   i = h.split(' '); // populate array with list
 									   var j = $('a[href="#'+ i[0] +'"]'); // find anchor with href which matches anchor user clicked on
