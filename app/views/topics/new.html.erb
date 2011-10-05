@@ -1,5 +1,5 @@
 <h1>New </h1>
-<% @topic.folder_id = @folder.id %>
+<%= link_to 'Exit', folder_topics_path(@folder) %>
 <div id = "new">
 
 <%= render 'form_new' %>

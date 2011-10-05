@@ -1,16 +1,61 @@
-<table border= 0><%= @topic.get_latest(@topic.id)%><%= Topic.find(@topic.get_latest(@topic.id)).version%>
+	<script>
+			$(function() {
+					// run the currently selected effect
+					function runEffect() 
+					{
+							var selectedEffect = "blind" // get effect type from 
+							var options = {};// most effect types need no options passed by default
+							$( "#effect" ).show( selectedEffect, options, 500, callback );// run the effect
+					};
+
+					function callback() {};//callback function nothing here
+
+					// set effect from select menu value
+					$( "#text" ).click(function() {
+							runEffect();
+							return false;
+					});
+
+					$( "#effect" ).hide();
+			});
+
+	</script>
+<table >
+
 	<tr>
+		<td align= "left"><%= link_to 'Exit', folder_topics_path(@folder) %></td>
 		<td align = "right"><h3><%= @topic.title%></h3></td>
 		<td align= "left"><%= link_to "Updates", folder_topic_updates_path(@folder,@topic) %></td>
-
-		<td align ="left">Created By 			
-											 <%= @created_by.firstName.slice(0) + " " +@created_by.lastName %>
-			</td>					
+		<td align ="left">Created By  <%= @created_by.firstName.slice(0) + " " +@created_by.lastName %>		</td>					
 		<td align = "right">Updated by <%=@topic.user.firstName%></td>
+		<td align = "right"><a href="#" id="text" >SEE history</a></td>
+
+				
+</tr>
+</table>
+<table >
+	<tr>
+			<td  align = "center">
+					<div id = "edit" >
+					<%= render 'form_edit' %>
+					</div>
+			</td>
+			<td width = 20% valign = "top">
+			
+			<div id= "effect">
+				<% x= @topic%>
+				<table>
+				<% until x.topic_id.nil? do %>
+
+					<tr><td>
+					<td><%= link_to x.created_at, edit_folder_topic_path(x.folder, x) %> by<br>
+					<%= x.user.firstName + " " + x.user.lastName %></td>
+					</tr>
+				<%x=x.topic%>
+				<% end%>
+			</table>
+			</div>
+			
+		</td>
 	</tr>
 </table>
-<div id = "edit" >
-
-<%= render 'form_edit' %>
-</div>
-

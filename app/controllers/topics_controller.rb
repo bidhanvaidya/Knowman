@@ -27,6 +27,7 @@ class TopicsController < ApplicationController
 	def edit
 		@topic = @folder.topics.find(params[:id])
 		@created_by=@topic.get_owner(@topic.id)
+
 	end
 
 	def create
@@ -37,7 +38,7 @@ class TopicsController < ApplicationController
 		respond_to do |format|
 			if @topic.save
 				Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Created", :progress_status => @topic.progress)
-				format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully created.' }
+				format.html { redirect_to edit_folder_topic_path(@topic.folder,@topic), notice: 'Topic was successfully created.' }
 				format.json { render json: @topic, status: :created, location: @topic }
 			format.js
 			else
@@ -61,7 +62,7 @@ class TopicsController < ApplicationController
 						respond_to do |format|
 							if @newtopic.update_attributes(params[:topic])
 									Update.create(:topic_id => @topic.get_latest(@topic.id), :user_id => current_user.id, :type_of_update => "Updated", :progress_status => @new.progress)        
-									format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully updated.' }
+									format.html { redirect_to edit_folder_topic_path(@newtopic.folder, @newtopic), notice: 'Topic was successfully updated.' }
 									format.json { head :ok }
 							else
 									format.html { render action: "edit" }
@@ -93,8 +94,14 @@ class TopicsController < ApplicationController
 	def destroy
 
 		@topic = Topic.find(params[:id])
-		if @topic.user_id == current_user.id
+		if @topic.user_id == current_user.id #only owners are allowed to delete the document
+			until @topic.topic_id.nil? do
+			@latest_topic=@topic
+			@topic=@topic.topic
+			@latest_topic.destroy
+			end
 			@topic.destroy
+			
 			respond_to do |format|
 				format.html { redirect_to :back }
 				format.json { head :ok }
