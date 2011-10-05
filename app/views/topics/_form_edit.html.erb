@@ -1,3 +1,6 @@
+<table >
+<tr>
+<td align= "right">
 <%= javascript_include_tag :ckeditor %>
 <%= form_for([@folder, @folder.topics.find(@topic)], :remote => true) do |f| %>
 		<% if @topic.errors.any? %>
@@ -19,13 +22,23 @@
 		<div class="field">
 		
 
-			<%= f.cktext_area :content, :height => '500px'%>
+			<%= f.cktext_area :content, :height => '900px', :width => '900', :theme => 'office2003'%>
 
 		</div> 
+</td>
+<td valign = "top" align = "right">
+<table>
+<tr>
 <div id="progress">
-<%= f.label :progress %>
-<%= f.text_field :progress %></div>
+<b><%= f.label :progress %></b><br>
+<%= f.text_field :progress, :size => 5%></div>
 </div>
-
+<tr>
+<tr><br>
+</tr>
+</table>
+</td>
+</tr>
+</table>
 		
 <% end %>

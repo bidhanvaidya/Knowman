@@ -1,5 +1,5 @@
 <%= javascript_include_tag :ckeditor %>
-
+<table>
 <%= form_for([@folder, @folder.topics.new], :remote => true ) do |f| %>
   <% if @topic.errors.any? %>
     <div id="error_explanation">
@@ -11,29 +11,32 @@
       <% end %>
       </ul>
     </div>
-  <% end %>
+  <% end %><tr ><th align="center"><table><tr><th>
 	<div class="field">
 	<%= f.label :title %><br />
 	<%= f.text_field :title %>
-	</div>
+	</div></th><th align = left valign=bottom> <%=f.submit 'Save'%></th></tr></table></th></tr>
 
-	
+	<tr>
+<td align = "center">
 	<div class="field">
 
 	<div class="field" >
-			<%= f.cktext_area :content, :height => "400px", %>
+			<%= f.cktext_area :content, :height => "900px", :width => '900', %>
 
 
 		
 </div>
+</td>
 
+<td valign ="top" align = "left">
 
 <div id="progress">
-<%= f.label :progress %>
+<%= f.label :progress %><br>
 <%= f.text_field :progress %></div>
 </div>
-	<div class="actions">
-		<%= f.submit %>
-	</div>
-<% end %>
 
+<% end %>
+</td>
+</tr>
+</table>
