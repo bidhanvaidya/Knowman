@@ -9,4 +9,4 @@
 	require_tree .
 	require tinymce-jquery
 
-$('body').hide();
+//$('body').hide();
