@@ -1,5 +1,7 @@
 <!doctype html>
-<head></head>
+<head>
+<%= javascript_include_tag "application" %>
+</head>
 <body>
 
 <div id="screen-resolution-helper">
@@ -15,6 +17,7 @@
 </div><!-- /#toolbar -->
 <div id="dash">
 	<div id="input">
+		<input name="search" value="" id="search" type="text" />
 		<div id="choice-tabs">
 			<ul id="choice-list">
 				<li><a href="#tabs-ppl"></a></li>
@@ -68,10 +71,7 @@
 
 <span id="hidden-interface-elements" class="hidden">
 	<input type="hidden" id="info" name="info" />
-	<div id="input-field">
-		<input name="search" value="" id="search" type="text" />
-		<input class="button" type="button" id="__sub" value="search" />
-	<div><!-- /#input-field -->
+	<input class="button" type="button" id="__sub" value="search" />
 </span>
 
 </div><!-- /#screen-resolution-helper -->

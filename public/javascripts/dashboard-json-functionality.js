@@ -35,42 +35,62 @@ $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 			  }
 			  
 			  });
-	   $.each(data.funding_rounds, function(i, obj) {
-			  
-			  $.each(obj, function(key, value) {
-					 
-					 funding.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-					 
-					 });
-			  
-			  });
+		  $.each(data.funding_rounds, function(i, obj) {
+			 $.each(obj, function(key, value) {
+				if ( key == "investments" ) {
+					$.each(value, function(k, v) {
+						//console.log(k, v);
+						   $.each(v, function(l, w) {
+						   
+								  
+								  /*if ( l == "person" ) {
+								  
+								  $.each(w, function(m, x) {
+								  
+										 
+										 console.log(m, x);
+									funding.push('<li id="' + m + '"><b>' + m + ':</b><span>' + x + '</span></li>');	 
+										 
+								  });
+								  
+								  }
+								  else {*/
+								  
+								  funding.push('<li id="' + l + '"><b>' + l + ':</b><span>' + w + '</span></li>');
+								  
+								  //}
+								  
+							});
+						   
+					});
+				}
+				else {
+					funding.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+				}
+			});
+		});
 	   $.each(data.offices, function(i, obj) {
-			  
-			  $.each(obj, function(key, value) {
-					 
-					 offices.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-					 
-					 });
-			  
-			  });
+		  $.each(obj, function(key, value) {
+       	     offices.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+		  });
+	   });
 	   $.each(data.relationships, function(i, obj) {
-			  
-			  $.each(obj, function(key, value) {
-					 
-					 rels.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-					 
-					 });
-			  
-			  });
+		  $.each(obj, function(key, value) {
+			 if ( key == "person" ) {
+				$.each(value, function(key, value) {
+					rels.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+				});
+			 }
+			 else {
+				rels.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+			 }
+		 });
+	   });
 	   $.each(data.products, function(i, obj) {
-			  
-			  $.each(obj, function(key, value) {
-					 
-					 prod.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-					 
-					 });
-			  
-			  });
+		  $.each(obj, function(key, value) {
+			 prod.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+		  });
+	   });
 	   $('<ul/>', {
 		 
 		 'id': 'companies-emps',
