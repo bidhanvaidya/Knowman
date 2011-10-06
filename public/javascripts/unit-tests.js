@@ -1,13 +1,18 @@
 $(function(){
   
-  var n = new Number(20);
-  
-  var clone = $('#accordion > div:first').clone();
+  var n = new Number(55);
+  var s = $('#accordion > div:first > h3 > a:first').text();
+  var t = new Array();
+	  t = s.split(' ');
+  var c = t[0];
   
   for (i=0;i<n;i++) {
+  
+  var clone = $('#accordion > div:first').clone();
   
   $(clone).appendTo('#accordion');
   
   }
+  console.log(n);
   
 });

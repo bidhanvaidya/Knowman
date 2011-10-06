@@ -20,7 +20,7 @@
 .active {background-color:yellow;}
 *       {font-size:11px;list-style:none;}
 
-#accordion {position:relative; top:120px; z-index:0;}
+#accordion {position:relative; top:130px; z-index:0;}
 #accordion > div > div { height:300px; }
 
 .accordion-sub-menu {
@@ -74,27 +74,27 @@
 	position:fixed;
 	float:right;
 	left:75px;
-	top:80px;
 	clear:both;
-	z-index:1;
-	background:grey;
+	z-index:2;
+	background:white;
 	width:92%;
 	height:125px;
+	border:1px solid black;
 }
 #input, #actions {
 	height:125px;
 	width:50%;
 }
 #search { width:100%; }
-#screen-resolution-helper { height:500px; width:auto; }
+#screen-resolution-helper { height:500px; width:auto; position:relative; top:10px; }
 
 #toolbar { 
-	height:250px; 
+	height:125px; 
 	width:5%;
 	float:left;
 	position:fixed;
-	top:95px;
-	z-index:1000;
+	z-index:1;
+	background-color:white;
 }
 #toolbar > div > * { margin:.25em; }
 #view {
