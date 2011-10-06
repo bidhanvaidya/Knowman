@@ -15,4 +15,7 @@ $(function(){
   }
   console.log(n);
   
+  $('h1, h2').css({"margin-top":"25px"});
+  
+  
 });

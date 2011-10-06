@@ -7,6 +7,9 @@ $(function(){
 
 $('#__sub').live('click', function() {
 
+	 $('#company-1').show();
+
+				 
 var s = $('#search').val().toLowerCase();
 var t = new Array();
     t = s.split(' ');

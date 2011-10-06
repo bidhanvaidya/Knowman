@@ -49,6 +49,8 @@
 	border:1px solid black;
 	position:relative;
 	top:20px;
+	background-image:url('../images/chart.png');
+	background-repeat:no-repeat;
 }
 .companies-sub-menu {
 	height:25px;

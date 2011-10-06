@@ -3,6 +3,18 @@ $(function(){
 //interface functionality
 $(function() {
   
+  $('#actions > *').hide();
+  
+  $('.accordion-sub-menu').live('click', function() {
+  
+								var src = $(this).parent().attr('id');
+								
+								$('#actions').children().hide();
+								$('#actions').children('.'+src+'').show();
+								
+  });
+  
+  
   $('#choice-tabs, #company-1').tabs();
   $('#choice-tabs').removeClass('ui-corner-all');
   
