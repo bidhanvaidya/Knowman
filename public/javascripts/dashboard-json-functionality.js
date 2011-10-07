@@ -112,12 +112,31 @@ $(function(){
 			var overview		= [];
 			//var homepage_url	= [];
 		
-				$.each(data.relationships, function(key, val) {
-					   console.log(key, val);
-					relationships.push('<li id="' + key + '">' + val + '</li>');
+				$.each(data.relationships, function(i, obj) {
+					$.each(obj, function(key, value) {
+					   if ( key == "firm" ) {
+							$.each(value, function(k, v) {
+								  relationships.push('<li id="' + k + '">' + v + '</li>'); 
+							});
+					   }
+					   else {
+						   relationships.push('<li class="' + key + '">' + value + '</li>');
+					   }
+					});
 				});
-				$.each(data.investments, function(key, val) {
-					investments.push('<li id="' + key + '">' + val + '</li>');
+				$.each(data.investments, function(i, obj) {
+					$.each(obj, function(key, value) {
+					   $.each(value, function(k, v) {
+						  if ( k == "company" ) {
+							  $.each(v, function(l, w) {
+								investments.push('<li id="' + l + '">' + w + '</li>'); 	 
+							  });
+						  }
+						  else {
+							  investments.push('<li id="' + k + '">' + v + '</li>'); 
+						  }
+						});
+					});
 				});
 				$.each(data.first_name, function(key, val) {
 				    var n = new Array();
