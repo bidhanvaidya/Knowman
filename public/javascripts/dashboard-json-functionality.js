@@ -8,9 +8,7 @@ $(function(){
 
 	$('#__sub').live('click', function() {
 
-	$('#company-1').show();				 
-	staff_first_empty = $('#staff:first').is(':empty');
-	console.log(staff_first_empty);
+	$('#company-1').show();
 
 					 
 	var s = $('#search').val().toLowerCase();
@@ -98,24 +96,57 @@ $(function(){
 	});
 
 	$(':[rel="people_sub"]').live('click', function(){
-		
+	
 	var s = $('#search').val().toLowerCase();
 	var t = new Array();
-	t = s.split(' ');
+		t = s.split(' ');
 	var j = t.join('-');
 	var u = "http://api.crunchbase.com/v/1/person/";
 								  
 		$.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 		
-			var items = [];
+  			var first_name		= [];
+			var last_name		= [];
+			var investments		= [];
+			var relationships	= [];
+			var overview		= [];
+			//var homepage_url	= [];
 		
-				$.each(data, function(key, val) {
-					items.push('<li id="' + key + '">' + val + '</li>');
+				$.each(data.relationships, function(key, val) {
+					relationships.push('<li id="' + key + '">' + val + '</li>');
 				});
-		
-				$('<ul/>', { 'class': 'my-new-list', html: items.join('') }).appendTo('body');
-		});
-		
+				$.each(data.investments, function(key, val) {
+					investments.push('<li id="' + key + '">' + val + '</li>');
+				});
+				$.each(data.first_name, function(key, val) {
+				    var n = new Array();
+				        n.push(val);
+					var o = n.join('');
+					    first_name.push(o);
+				});
+				$.each(data.last_name, function(key, val) {
+					var p = new Array();
+					    p.push(val);
+					var q = p.join('');
+					    last_name.push(q);
+				});
+				//$.each(data.homepage_url, function(key, val) {
+				//	homepage_url.push('<li id="' + key + '">' + val + '</li>');
+				//});
+				$.each(data.overview, function(key, val) {
+					var r = new Array();
+					    r.push(val);
+					var s = r.join('');
+					    overview.push(s);
+				});
+
+			$('<p class="people-name">'+first_name.join('')+' '+last_name.join('')+'</p>').appendTo('#funding').prepend('<h3>Overview</h3>');
+			$('<p class="people-overview">'+ overview.join('') +'</p>').appendTo('#funding');
+			//$('<ul />', { 'class': 'people-homepage_url', html: homepage_url.join('') }).appendTo('#funding');
+			$('<ul />', { 'class': 'people-investments', html: investments.join('')	 }).appendTo('#people').prepend('<h3>Investments</h3>');
+			$('<ul />', { 'class': 'people-relationships', html: relationships.join('') }).appendTo('#staff').prepend('<h3>Relationships</h3>');
+	     });
+	$('#company-1').show();
 	});
 
 });

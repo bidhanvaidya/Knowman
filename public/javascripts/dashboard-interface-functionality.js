@@ -48,7 +48,7 @@ $(function() {
 											  
 											  });
   
-  $('#accordion > div > h3 > button').click(function(){
+  $('.accordion > div > h3 > button').click(function(){
 											
 											var h = $(this).attr('rel');
 											var i = $('a[href="#'+ h +'"]');
@@ -71,7 +71,7 @@ $(function() {
   
   var stop = false;
   
-  $('#accordion h3').click(function(e) {
+  $('.accordion h3').click(function(e) {
 						   
 						   if ( stop ) {
 						   e.stopImmediatePropagation();
@@ -81,7 +81,7 @@ $(function() {
 						   
 						   });
   
-  $('#accordion').accordion({
+  $('.accordion').accordion({
 							header: "> div > h3"
 							}).sortable({
 										axis: "y",
