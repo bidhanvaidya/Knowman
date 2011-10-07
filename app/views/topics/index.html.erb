@@ -21,6 +21,30 @@
 			});
 
 	</script>
+<script><% if @topics.empty?%>
+				<%	total_topics = 1%>
+				<%	else%>
+				<%	total_topics = @topics.count%>
+				<%end%>
+												$(function() {
+												$( "#total" ).progressbar({
+																value: <%=@topics.collect(&:progress).sum/total_topics%>});
+													 var value = <%=@topics.collect(&:progress).sum/total_topics%>
+													if (value <20){
+															$("#total").css({ 'background': 'white' });
+															$("#total > div").css({ 'background': 'red' });}
+													
+												  else if (value <50){
+															$("#total").css({ 'background': 'white' });
+															$("#total > div").css({ 'background': 'orange' });}
+													else if (value <70){
+															$("#total").css({ 'background': 'white' });
+															$("#total > div").css({ 'background': 'lightblue' });}
+													else{
+															$("#total").css({ 'background': 'white' });
+															$("#total > div").css({ 'background': 'lightgreen' });
+													}
+												});</script>
 Total progress
 <div id="total"></div>
 
@@ -31,7 +55,7 @@ Total progress
 	<table >
 			<tr>
 					<td valign="top">
-						<table border id =1>
+						<table >
 								<tr>
 									<th>Title</th>
 									<th>Owner</th>
@@ -109,30 +133,7 @@ Total progress
 			</tr>
 	</table>
 	</br>
-<script><% if @topics.empty?%>
-				<%	total_topics = 1%>
-				<%	else%>
-				<%	total_topics = @topics.count%>
-				<%end%>
-												$(function() {
-												$( "#total" ).progressbar({
-																value: <%=@topics.collect(&:progress).sum/total_topics%>});
-													 var value = <%=@topics.collect(&:progress).sum/total_topics%>
-													if (value <20){
-															$("#total").css({ 'background': 'white' });
-															$("#total > div").css({ 'background': 'red' });}
-													
-												  else if (value <50){
-															$("#total").css({ 'background': 'white' });
-															$("#total > div").css({ 'background': 'orange' });}
-													else if (value <70){
-															$("#total").css({ 'background': 'white' });
-															$("#total > div").css({ 'background': 'lightblue' });}
-													else{
-															$("#total").css({ 'background': 'white' });
-															$("#total > div").css({ 'background': 'lightgreen' });
-													}
-												});</script>
+
 
 
 
