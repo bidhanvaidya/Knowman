@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111001145710) do
+ActiveRecord::Schema.define(:version => 20111007051941) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -81,7 +81,7 @@ ActiveRecord::Schema.define(:version => 20111001145710) do
     t.datetime "updated_at"
   end
 
-  create_table "stlevels", :force => true do |t|
+  create_table "staff_levels", :force => true do |t|
     t.datetime "date_of_record"
     t.integer  "staff_number"
     t.integer  "company_id"
@@ -89,7 +89,7 @@ ActiveRecord::Schema.define(:version => 20111001145710) do
     t.datetime "updated_at"
   end
 
-  add_index "stlevels", ["company_id"], :name => "index_stlevels_on_company_id"
+  add_index "staff_levels", ["company_id"], :name => "index_stlevels_on_company_id"
 
   create_table "topics", :force => true do |t|
     t.string   "title"
