@@ -20,7 +20,6 @@ class FoldersController < ApplicationController
 
 	def new
 		@folder = Folder.new
-		@notification = Notification.new
 
 		respond_to do |format|
 			format.html # new.html.erb
