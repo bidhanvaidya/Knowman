@@ -83,15 +83,15 @@ $(function(){
 					 prod.push('<li><input class="hidden-element-products" type="hidden" value="'+ value +'" name="'+key+'['+key+']"></li>');
 				  });
 			   });
-			   $('<ul/>', { 'id': 'companies-emps',    html: emps.join('')	  }).appendTo('#staff').prepend('<h3>Staff Levels</h3>');
-			   $('<ul/>', { 'id': 'companies-prods',   html: prod.join('')	  }).appendTo('#products').prepend('<h3>Products</h3>');
-			   $('<ul/>', { 'id': 'companies-rels',    html: rels.join('')	  }).appendTo('#people').prepend('<h3>Important People</h3>');
-			   $('<ul/>', { 'id': 'companies-offices', html: offices.join('') }).appendTo('#location').prepend('<h3>Office Locations</h3>');
-			   $('<ul/>', { 'id': 'companies-funding', html: funding.join('') }).appendTo('#funding').prepend('<h3>Funding Information</h3>');
+			   $('<ul/>', { 'class': 'companies-emps',    html: emps.join('')	  }).appendTo('#staff').prepend('<h3>Staff Levels</h3>');
+			   $('<ul/>', { 'class': 'companies-prods',   html: prod.join('')	  }).appendTo('#products').prepend('<h3>Products</h3>');
+			   $('<ul/>', { 'class': 'companies-rels',    html: rels.join('')	  }).appendTo('#people').prepend('<h3>Important People</h3>');
+			   $('<ul/>', { 'class': 'companies-offices', html: offices.join('') }).appendTo('#location').prepend('<h3>Office Locations</h3>');
+			   $('<ul/>', { 'class': 'companies-funding', html: funding.join('') }).appendTo('#funding').prepend('<h3>Funding Information</h3>');
 		   });
 					 
 	$('body').append('<input type="submit" value="submit" name="commit">');
-	$('body').wrap('<form method="post" action="companies/new" />')
+	$('body').wrap('<form method="post" action="companies/new" />');
 
 	});
 
@@ -113,6 +113,7 @@ $(function(){
 			//var homepage_url	= [];
 		
 				$.each(data.relationships, function(key, val) {
+					   console.log(key, val);
 					relationships.push('<li id="' + key + '">' + val + '</li>');
 				});
 				$.each(data.investments, function(key, val) {
@@ -140,11 +141,11 @@ $(function(){
 					    overview.push(s);
 				});
 
-			$('<p class="people-name">'+first_name.join('')+' '+last_name.join('')+'</p>').appendTo('#funding').prepend('<h3>Overview</h3>');
-			$('<p class="people-overview">'+ overview.join('') +'</p>').appendTo('#funding');
+			var test = $('<h2 class="people-name">'+first_name.join('')+' '+last_name.join('')+'</h2>');
+			$('<div class="people-overview">'+ overview.join('') +'</div>').appendTo('#staff').prepend(test);
 			//$('<ul />', { 'class': 'people-homepage_url', html: homepage_url.join('') }).appendTo('#funding');
 			$('<ul />', { 'class': 'people-investments', html: investments.join('')	 }).appendTo('#people').prepend('<h3>Investments</h3>');
-			$('<ul />', { 'class': 'people-relationships', html: relationships.join('') }).appendTo('#staff').prepend('<h3>Relationships</h3>');
+			$('<ul />', { 'class': 'people-relationships', html: relationships.join('') }).appendTo('#funding').prepend('<h3>Relationships</h3>');
 	     });
 	$('#company-1').show();
 	});

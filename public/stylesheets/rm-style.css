@@ -107,7 +107,8 @@
     position:relative;
 	border:none;
 }
-#companies-prods, #companies-rels, #companies-offices, #companies-funding {
+.companies-prods, .companies-rels, .companies-offices, .companies-funding,
+.people-relationships, .people-investments, .people-overview {
 	height:auto;
 	max-height:215px;
 	width:300px;
