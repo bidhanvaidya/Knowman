@@ -1,6 +1,6 @@
 $(function(){
   
-  var n = new Number(55);
+  var n = new Number(1);
   var s = $('#accordion > div:first > h3 > a:first').text();
   var t = new Array();
 	  t = s.split(' ');
