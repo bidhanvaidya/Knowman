@@ -7,7 +7,10 @@ $(function(){
 
 $('#__sub').live('click', function() {
 
-	 $('#company-1').show();
+$('#company-1').show();
+				 
+				 staff_first_empty = $('#staff:first').is(':empty');
+				 console.log(staff_first_empty);
 
 				 
 var s = $('#search').val().toLowerCase();
@@ -82,15 +85,15 @@ $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 			 prod.push('<li><input class="hidden-element-products" type="hidden" value="'+ value +'" name="'+key+'['+key+']"></li>');
 		  });
 	   });
-	   $('<ul/>', { 'id': 'companies-emps',    html: emps.join('')	  }).appendTo('#staff');
-	   $('<ul/>', { 'id': 'companies-prods',   html: prod.join('')	  }).appendTo('#products');
-	   $('<ul/>', { 'id': 'companies-rels',    html: rels.join('')	  }).appendTo('#people');
-	   $('<ul/>', { 'id': 'companies-offices', html: offices.join('') }).appendTo('#location');
-	   $('<ul/>', { 'id': 'companies-funding', html: funding.join('') }).appendTo('#funding');
+	   $('<ul/>', { 'id': 'companies-emps',    html: emps.join('')	  }).appendTo('#staff').prepend('<h3>Staff Levels</h3>');
+	   $('<ul/>', { 'id': 'companies-prods',   html: prod.join('')	  }).appendTo('#products').prepend('<h3>Products</h3>');
+	   $('<ul/>', { 'id': 'companies-rels',    html: rels.join('')	  }).appendTo('#people').prepend('<h3>Important People</h3>');
+	   $('<ul/>', { 'id': 'companies-offices', html: offices.join('') }).appendTo('#location').prepend('<h3>Office Locations</h3>');
+	   $('<ul/>', { 'id': 'companies-funding', html: funding.join('') }).appendTo('#funding').prepend('<h3>Funding Information</h3>');
 	   
 });
-//$('body').append('<input type="submit" value="submit" name="commit">');
-$('body').wrap('<form method="post" action="/companies/6/stlevels" />')
+$('body').append('<input type="submit" value="submit" name="commit">');
+$('body').wrap('<form method="post" action="companies/new" />')
 
 });
 
