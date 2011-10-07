@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007061504) do
+ActiveRecord::Schema.define(:version => 20111007065356) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -58,6 +58,21 @@ ActiveRecord::Schema.define(:version => 20111007061504) do
     t.integer  "folder_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "offices", :force => true do |t|
+    t.text     "description"
+    t.text     "address1"
+    t.text     "address2"
+    t.integer  "zip_code"
+    t.string   "city"
+    t.string   "state_code"
+    t.string   "country_code"
+    t.decimal  "latitude"
+    t.decimal  "longitude"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "owner"
   end
 
   create_table "person", :force => true do |t|

@@ -1,12 +1,13 @@
 class DashboardController < ApplicationController
 
 	def new
-		
-		@company_record = company.new
+		@company = company.new
 
-		respond_to index.html.erb
-		format.json  { render :json => @company_record }
-	
+		respond_to do |f|
+		
+			f.json { render json: @folder }
+		
+		end
 	end
 
 end
