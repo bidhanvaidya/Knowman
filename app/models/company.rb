@@ -1,4 +1,5 @@
 class Company < ActiveRecord::Base
+
   has_many :funds, :dependent=> :destroy
   has_many :stlevels, :dependent => :destroy
   has_many :employments
