@@ -4,7 +4,6 @@
 </head>
 <body>
 <div id="screen-resolution-helper">
-
 <!--#######################	TOP	###########################-->
 
 <div id="toolbar">
@@ -12,6 +11,7 @@
 		<a href="#" class="tabs-ppl" title="People">People</a><br />
 		<a href="#" class="tabs-cmp" title="Companies">Companies</a><br />
 		<a href="#" class="tabs-org" title="Organisations">Organisations</a>
+		<input class="button" type="button" rel="people_sub" id="people_sub" value="t" />
 	</div><!--/#styled-choice-links -->
 </div><!-- /#toolbar -->
 <div id="dash">
@@ -32,24 +32,34 @@
 	</div><!--/#input -->
 	<div id="actions">
 		<span class="staff">
+		<p>Staff Based Context Menu</p>
 		<span>New Staff level</span>
+		<select></select>
 		<input type="text" />
 		</span>
 		<span class="people">
+		<p>Person Based Context Menu</p>
 		<span>New Person</span>
+		<select></select>
 		<input type="text" />
 		</span>
 		<span class="funding">
+		<p>Funding Based Context Menu</p>
 		<span>New Funding Information</span>
 		<input type="text" />
+		<select></select>
 		</span>
 		<span class="location">
+		<p>Location Based Context Menu</p>
 		<span>New Location</span>
 		<input type="text" />
+		<select></select>
 		</span>
 		<span class="products">
+		<p>Product Based Context Menu</p>
 		<span>New Product</span>
 		<input type="text" />
+		<select></select>
 		</span>
 	</div><!--/#actions -->
 </div><!--/#dash -->
@@ -91,7 +101,8 @@
 
 <span id="hidden-interface-elements" class="hidden">
 	<input type="hidden" id="info" name="info" />
-	<input class="button" type="button" id="__sub" value="search" />
+	<input class="button" type="button" id="__sub" value="" />
+	
 </span>
 
 </div><!-- /#screen-resolution-helper -->
