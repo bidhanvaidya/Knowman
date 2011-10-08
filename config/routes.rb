@@ -4,11 +4,11 @@ Knowman::Application.routes.draw do
 	  
 	resources :people
 
-	resources :projects
+	resources :products
 
 	resources :companies do
-	  resources :funds
-	  resources :stlevels
+	  resources :funding_rounds
+	  resources :staff_levels
 	end
 	
 
