@@ -82,15 +82,6 @@
   <%= @company.name %>
 </p>
 
-<p>
-  <b>Company type:</b>
-  <%= @company.company_type %>
-</p>
-
-<p>
-  <b>Company field:</b>
-  <%= @company.company_field %>
-</p>
 <%= link_to 'Edit Company', edit_company_path(@company) %> |
 <%= link_to 'Back to Companies list', companies_path %> |
 <%= link_to 'Show funding_rounds Details', company_funding_rounds_path(@company) %> |

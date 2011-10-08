@@ -3,14 +3,13 @@
 /* ======= json functionality ======= */
 
 
-$(function(){
+$(document).ready(function(){
 
 
 	$('#__sub').live('click', function() {
 
 	$('#company-1').show();
 
-					 
 	var s = $('#search').val().toLowerCase();
 	var t = new Array();
 		t = s.split(' ');
@@ -19,18 +18,34 @@ $(function(){
 
 		   $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 		   
-		   var rels		= [];
-		   var emps		= [];
-		   var prod		= [];
-		   var monies	= [];
-		   var funding	= [];
-		   var offices	= [];
+		   var rel	= [];
+		   var emp	= [];
+		   var prd	= [];
+		   var fnd	= [];
+		   var off	= [];
+		   
+ 		   var company						= [];
+		   var offices						= ['{ offices:'						+ data.offices				+ '}'];
+		   var products						= ['{ products:'					+ data.products				+ '}'];
+		   var staff_levels					= [     /* staff_levels is populated with an if clause below */		 ];
+		   var funding_rounds				= ['{ funding_rounds:'				+ data.funding_rounds		+ '}'];
+		   var people_employment_statuses	= ['{ people_employment_statuses:'	+ data.relationships		+ '}'];
 		   
 			   $.each(data, function(key, value) {
-				   if ( key == "number_of_employees" ) {
-					 emps.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-					 emps.push('<li><input class="hidden-element-emps" type="hidden" value="'+ value +'" name="stlevel[staff_number]"></li>');
+				   
+				   if ( key == "name" ) {
+					 emp.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+					 
+					 var name = jQuery.parseJSON(' company:{ "'+ key +'":{"'+ value +'"} ');
+					 company.push(name);
+					 
 				   }
+				   if ( key == "number_of_employees" ) {
+					 emp.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+					 staff_levels.push('{ staff_levels: {'+ key +': "'+ value +'"} }');
+					 
+				   }
+				   
 			   });
 			   $.each(data.funding_rounds, function(i, obj) {
 				 $.each(obj, function(key, value) {
@@ -45,53 +60,73 @@ $(function(){
 							  });
 							  }
 							  else {*/
-								  funding.push('<li id="' + l + '"><b>' + l + ':</b><span>' + w + '</span></li>');
-								  funding.push('<li><input class="hidden-element-funding" type="hidden" value="'+ w +'" name="'+k+'['+v+']"></li>');
+								fnd.push('<li class="' + l + '"><b>' + l + ':</b><span>' + w + '</span></li>');
+								//funding_rounds.push();
 							  //}
 							});
 						});
 					}
 					else {
-						funding.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-						funding.push('<li><input class="hidden-element-funding" type="hidden" value="'+ value +'" name="'+key+'['+key+']"></li>');
+						fnd.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
 					}
 				 });
 			   });
 			   $.each(data.offices, function(i, obj) {
 				  $.each(obj, function(key, value) {
-					 offices.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-					 offices.push('<li><input class="hidden-element-offices" type="hidden" value="'+ value +'" name="'+key+'['+key+']"></li>');
+					 off.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+					 //offices.push('{'+ key +': "'+ value +'"}');
 				  });
 			   });
 			   $.each(data.relationships, function(i, obj) {
 				  $.each(obj, function(key, value) {
 					 if ( key == "person" ) {
 						$.each(value, function(key, value) {
-							rels.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-							rels.push('<li><input class="hidden-element-rels" type="hidden" value="'+ value +'" name="'+key+'['+key+']"></li>');
+							rel.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+							//people_employment_statuses.push('{ relationships1:{'+ key +': "'+ value +'"} }');
 						});
 					 }
 					 else {
-						rels.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-						rels.push('<li><input class="hidden-element-rels" type="hidden" value="'+ value +'" name="'+key+'['+key+']"></li>');
+						rel.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+						//people_employment_statuses.push('{ relationships2: {'+ key +': "'+ value +'"} }');
 					 }
 				 });
 			   });
 			   $.each(data.products, function(i, obj) {
 				  $.each(obj, function(key, value) {
-					 prod.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-					 prod.push('<li><input class="hidden-element-products" type="hidden" value="'+ value +'" name="'+key+'['+key+']"></li>');
+					 prd.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
+					 //products.push('{ products: {'+ key +': "'+ value +'"} }');
 				  });
 			   });
-			   $('<ul/>', { 'class': 'companies-emps',    html: emps.join('')	  }).appendTo('#staff').prepend('<h3>Staff Levels</h3>');
-			   $('<ul/>', { 'class': 'companies-prods',   html: prod.join('')	  }).appendTo('#products').prepend('<h3>Products</h3>');
-			   $('<ul/>', { 'class': 'companies-rels',    html: rels.join('')	  }).appendTo('#people').prepend('<h3>Important People</h3>');
-			   $('<ul/>', { 'class': 'companies-offices', html: offices.join('') }).appendTo('#location').prepend('<h3>Office Locations</h3>');
-			   $('<ul/>', { 'class': 'companies-funding', html: funding.join('') }).appendTo('#funding').prepend('<h3>Funding Information</h3>');
+			   $('<ul/>', { 'class': 'companies-emp',     html: emp.join('')	  }).appendTo('#staff')		.prepend('<h3>Staff Levels</h3>');
+			   $('<ul/>', { 'class': 'companies-prd',	  html: prd.join('')	  }).appendTo('#products')	.prepend('<h3>Products</h3>');
+			   $('<ul/>', { 'class': 'companies-rel',     html: rel.join('')	  }).appendTo('#people')	.prepend('<h3>Important People</h3>');
+			   $('<ul/>', { 'class': 'companies-off',	  html: off.join('')	  }).appendTo('#location')	.prepend('<h3>Office Locations</h3>');
+			   $('<ul/>', { 'class': 'companies-fnd',	  html: fnd.join('')	  }).appendTo('#funding')	.prepend('<h3>Funding Information</h3>');
+
+			console.log(company);
+			console.log(offices);
+			//console.log(products);
+			//console.log(staff_levels);
+			//console.log(funding_rounds);
+			//console.log(people_employment_statuses);
+			
+				$(':[rel="test"]').live('click', function() {
+		
+					/*var test =	{ company: {	name: "Facebook",
+												company_type: "big",
+												company_field: "the webosphere" }
+								}*/
+										
+							
+					$.post('/companies', company, function(data) {
+							
+						console.log(company);	   
+								   
+					});
+					
+				});
+
 		   });
-					 
-	$('body').append('<input type="submit" value="submit" name="commit">');
-	$('body').wrap('<form method="post" action="companies/new" />');
 
 	});
 
@@ -160,37 +195,12 @@ $(function(){
 					    overview.push(s);
 				});
 
-			var test = $('<h2 class="people-name">'+first_name.join('')+' '+last_name.join('')+'</h2>');
-			$('<div class="people-overview">'+ overview.join('') +'</div>').appendTo('#staff').prepend(test);
+			var name = $('<h2 class="people-name">'+first_name.join('')+' '+last_name.join('')+'</h2>');
+			$('<div class="people-overview">'+ overview.join('') +'</div>').appendTo('#staff').prepend(name);
 			//$('<ul />', { 'class': 'people-homepage_url', html: homepage_url.join('') }).appendTo('#funding');
 			$('<ul />', { 'class': 'people-investments', html: investments.join('')	 }).appendTo('#people').prepend('<h3>Investments</h3>');
 			$('<ul />', { 'class': 'people-relationships', html: relationships.join('') }).appendTo('#funding').prepend('<h3>Relationships</h3>');
 	     });
 	$('#company-1').show();
 	});
-  
-  $(function(){
-  
-	
-	$(':[rel="test"]').live('click', function() {
-	
-							
-							var test = {company: {	name: "Facebook",
-										company_type: "big",
-										company_field: "the internet"
-							}}
-										
-							
-		$.post('/companies', test, function(data) {
-							
-			   console.log(test);	   
-								   
-		});
-							
-							
-	});
-	
-	
-  });
-
 });

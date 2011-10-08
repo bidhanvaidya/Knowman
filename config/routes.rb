@@ -24,6 +24,6 @@ Knowman::Application.routes.draw do
 			end
 	end
 	match '/userupdate', :to => 'updates#userupdate'
-	root :to => 'folders#index'
+	root :to => 'dashboard#index'
 
 end
