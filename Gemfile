@@ -40,4 +40,8 @@ group :development do
   gem "rails-erd"  # erd diagram gem
 end
 
+group :development, :test do
+gem "railroady" # Gem for class diagrams
+end
+
 
