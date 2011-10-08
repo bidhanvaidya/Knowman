@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
 
-	def new
+	def create
 		@company = company.new
 
 		respond_to do |f|
