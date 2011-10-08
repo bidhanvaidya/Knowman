@@ -1,14 +1,14 @@
-<h1>Stlevels#show</h1>
+<h1>staff_levels#show</h1>
 
 
 <p>
-	<b>Stlevel details:</b>
-	$<%= @stlevel.staff_number %> 
+	<b>staff_level details:</b>
+	$<%= @staff_level.staff_number %> 
 	<br /><b>Date:</b>
-	
-	<%= @stlevel.date_of_record%>
+
+	<%= @staff_level.date_of_record%>
 </p>
 
-<%= link_to 'Edit', edit_company_stlevel_path(@company, @stlevel) %> |
-<%= link_to 'Back', company_stlevels_path(@company) %>
-<p>Find me in app/views/stlevels/show.html.erb</p>
+<%= link_to 'Edit', edit_company_staff_level_path(@company, @staff_level) %> |
+<%= link_to 'Back', company_staff_levels_path(@company) %>
+<p>Find me in app/views/staff_levels/show.html.erb</p>

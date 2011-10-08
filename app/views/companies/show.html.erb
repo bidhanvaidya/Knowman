@@ -50,11 +50,11 @@
 				{
 				pointInterval: <%= 1.month * 1000 %>, 			
 				pointStart: <%= 20.month.ago.to_i * 1000 %>,	
-				name: 'Funds',
+				name: 'funding_rounds',
 				type: 'spline',
 				data: [
-					<% @company.funds.each do |fund| %> 
-						[Date.UTC(<%=  fund.date_of_record.strftime("%Y,%m,%d") %>), <%= fund.money%>],
+					<% @company.funding_rounds.each do |funding_round| %> 
+						[Date.UTC(<%=  funding_round.date_of_record.strftime("%Y,%m,%d") %>), <%= funding_round.money%>],
 					<% end %>
 				]				
 				},
@@ -62,11 +62,11 @@
 				{
 				pointInterval: <%= 1.month * 1000 %>, 			
 				pointStart: <%= 20.month.ago.to_i * 1000 %>,	
-				name: 'Stlevel',
+				name: 'staff_level',
 				type: 'spline',
 				data: [
-					<% @company.stlevels.each do |stlevel| %> 
-						[Date.UTC(<%=  stlevel.date_of_record.strftime("%Y,%m,%d") %>), <%= stlevel.staff_number %>],
+					<% @company.staff_levels.each do |staff_level| %> 
+						[Date.UTC(<%=  staff_level.date_of_record.strftime("%Y,%m,%d") %>), <%= staff_level.staff_number %>],
 					<% end %>
 				]
 				}
@@ -93,7 +93,7 @@
 </p>
 <%= link_to 'Edit Company', edit_company_path(@company) %> |
 <%= link_to 'Back to Companies list', companies_path %> |
-<%= link_to 'Show Funds Details', company_funds_path(@company) %> |
-<%= link_to 'Show stlevels Details', company_stlevels_path(@company) %>
+<%= link_to 'Show funding_rounds Details', company_funding_rounds_path(@company) %> |
+<%= link_to 'Show staff_levels Details', company_staff_levels_path(@company) %>
 
 

@@ -1,68 +1,68 @@
-class FundsController < ApplicationController
-    # GET /companiew/1/funds
+class FundingRoundsController < ApplicationController
+    # GET /companiew/1/funding_rounds
     def index
       @company = Company.find(params[:company_id])
 
        # Access all items for that order
-       @funds = @company.funds
+       @funding_rounds = @company.funding_rounds
      end
 
-     # GET /companiew/1/funds/2
+     # GET /companiew/1/funding_rounds/2
      def show
        @company = Company.find(params[:company_id])
 
-       @fund = @company.funds.find(params[:id])
+       @funding_round = @company.funding_rounds.find(params[:id])
      end
 
-     # GET /companiew/1/funds/new
+     # GET /companiew/1/funding_rounds/new
      def new
        @company = Company.find(params[:company_id])
 
 
        # Associate an fund object with company 1
-       @fund = @company.funds.build
+       @funding_round = @company.funding_rounds.build
      end
 
-     # POST /companies/1/funds
+     # POST /companies/1/funding_rounds
      def create
        @company = Company.find(params[:company_id])
 
-       @fund = @company.funds.build(params[:fund])
-       if @fund.save
+       @funding_round = @company.funding_rounds.build(params[:funding_round])
+       if @funding_round.save
          # Save the fund successfully
-         redirect_to company_fund_url(@company, @fund)
+         redirect_to company_funding_round_url(@company, @funding_round)
        else
          render :action => "new"
        end
      end
 
-     # GET /companiew/1/funds/2/edit
+     # GET /companiew/1/funding_rounds/2/edit
      def edit
        @company = Company.find(params[:company_id])
 
-       @fund = @company.funds.find(params[:id])
+       @funding_round = @company.funding_rounds.find(params[:id])
      end
 
-     # PUT /companies/1/funds/2
+     # PUT /companies/1/funding_rounds/2
      def update
        @company = Company.find(params[:company_id])
-       @fund = Fund.find(params[:id])
-       if @fund.update_attributes(params[:fund])
+       @funding_round = FundingRound.find(params[:id])
+       if @funding_round.update_attributes(params[:funding_round])
          # Save the item successfully
-         redirect_to company_fund_url(@company, @fund)
+         redirect_to company_fund_url(@company, @funding_round)
        else
          render :action => "edit"
        end
      end
 
-     # DELETE /companies/1/funds/2
+     # DELETE /companies/1/funding_rounds/2
      def destroy
        @company = Company.find(params[:company_id])
-       @fund = Fund.find(params[:id])
-       @fund.destroy
+       @funding_round = FundingRound.find(params[:id])
+       @funding_round.destroy
 
        respond_to do |format|
-         format.html { redirect_to company_funds_path(@company) }
+         format.html { redirect_to company_funding_rounds_path(@company) }
          format.xml  { head :ok }
        end
      end

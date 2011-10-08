@@ -1,4 +1,4 @@
-class Stlevel < ActiveRecord::Base
+class StaffLevel < ActiveRecord::Base
   belongs_to :company
 
     
