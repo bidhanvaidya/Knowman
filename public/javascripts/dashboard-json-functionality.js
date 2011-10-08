@@ -168,5 +168,29 @@ $(function(){
 	     });
 	$('#company-1').show();
 	});
+  
+  $(function(){
+  
+	
+	$(':[rel="test"]').live('click', function() {
+	
+							
+							var test = {company: {	name: "Facebook",
+										company_type: "big",
+										company_field: "the internet"
+							}}
+										
+							
+		$.post('/companies', test, function(data) {
+							
+			   console.log(test);	   
+								   
+		});
+							
+							
+	});
+	
+	
+  });
 
 });

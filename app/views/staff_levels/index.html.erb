@@ -1,21 +1,21 @@
-<h1>Stlevels#index</h1>
+<h1>staff_levels#index</h1>
 
 <table>
 	<tr>
-		<th>stlevel Details:</th>
+		<th>staff_level Details:</th>
 	</tr>
 	
-	<% for stlevel in @stlevels %>
+	<% for staff_level in @staff_levels %>
 		<tr>
-			<td><%= stlevel.date_of_record %></td>
-			<td><%= stlevel.staff_number %></td>
-			<td><%= link_to 'Edit', edit_company_stlevel_path(@company, stlevel) %></td>
-			<td><%= button_to 'Destroy', company_stlevel_path(@company, stlevel), :confirm=> 'sure?', :method => :delete %></td>
+			<td><%= staff_level.date_of_record %></td>
+			<td><%= staff_level.staff_number %></td>
+			<td><%= link_to 'Edit', edit_company_staff_level_path(@company, staff_level) %></td>
+			<td><%= button_to 'Destroy', company_staff_level_path(@company, staff_level), :confirm=> 'sure?', :method => :delete %></td>
 			</tr>
 			<% end %>
 			</table>
 <br />
 
-<%= link_to 'New stlevel', new_company_stlevel_path(@company) %> |
+<%= link_to 'New staff_level', new_company_staff_level_path(@company) %> |
 <%= link_to 'Back to Company', @company %>
-<p>Find me in app/views/stlevels/index.html.erb</p>
+<p>Find me in app/views/staff_levels/index.html.erb</p>

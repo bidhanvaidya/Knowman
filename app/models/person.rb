@@ -1,10 +1,5 @@
 class Person < ActiveRecord::Base
-
-  has_many :employments
-  has_many :companies, :through => :employments
-  
-  has_many :assignments
-  has_many :projects, :through => :assignments
-  
-
+  has_many :people_employment_statuses
+  has_many :companies, :through => :people_employment_statuses
+  has_many :products, :through => :assignments
 end

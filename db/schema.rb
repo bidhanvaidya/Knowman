@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111008021123) do
+ActiveRecord::Schema.define(:version => 20111008031826) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -29,10 +29,10 @@ ActiveRecord::Schema.define(:version => 20111008021123) do
   end
 
   create_table "deployments", :force => true do |t|
-    t.integer  "project_id"
-    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "companies_id"
+    t.integer  "products_id"
   end
 
   create_table "folders", :force => true do |t|
