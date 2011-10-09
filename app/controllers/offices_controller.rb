@@ -1,5 +1,13 @@
 class OfficesController < ApplicationController
-	
+	def index
+		@offices = Office.all
+
+		respond_to do |format|
+		  #format.html # index.html.erb
+		  format.json { render json: @offices }
+		end
+			
+	end
 	# POST /offices
 	def create
 		@office = Office.new(params[:offices])

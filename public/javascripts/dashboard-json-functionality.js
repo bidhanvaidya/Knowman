@@ -113,15 +113,13 @@ $(document).ready(function(){
 			   console.log(company);
 			   console.log(staff_levels);
 			   console.log(offices);
+			   console.log(test);
 			
 				$(':[rel="test"]').live('click', function() {
 					
+					var n = offices.length;
+					
 					$.post('/companies', company, function(data) {
-							
-						console.log(data);
-						
-					});
-					$.post('/offices', offices, function(data) {
 							
 						console.log(data);
 						
@@ -131,6 +129,15 @@ $(document).ready(function(){
 						console.log(data);
 						
 					});
+					for ( i=0; i<n; i++ ) {
+					
+						$.post('/offices', offices, function(data) {
+								
+							console.log(data);
+							
+						});
+					
+					}
 					/*$.get('/companies', function(data){
 					
 						//console.log(data.id)
