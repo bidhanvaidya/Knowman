@@ -2,10 +2,10 @@ class CompaniesController < ApplicationController
   # GET /companies
   # GET /companies.json
   def index
-    @companies = Company.all
+    @companies = Company.last
 
     respond_to do |format|
-      format.html # index.html.erb
+      #format.html # index.html.erb
       format.json { render json: @companies }
     end
   end
@@ -39,19 +39,30 @@ class CompaniesController < ApplicationController
 
   # POST /companies
   # POST /companies.json
+  #format.html { redirect_to @company, notice: 'Company was successfully created.' } (MOVED FROM FIRST IF CLAUSE)
   def create
-    @company = Company.new(params[:company])
+    
+	@company = Company.new(params[:company])
 
     respond_to do |format|
-      if @company.save
-        format.html { redirect_to @company, notice: 'Company was successfully created.' }
+      
+	  if success = @company.save
+	  
+		#@staff_level = StaffLevel.new(params[:staff_level])
+        #@staff_level.save
         format.json { render json: @company, status: :created, location: @company }
+		#format.json { render json: @staff_level, status: :created, location: @staff_level }
+	
       else
+	  
         format.html { render action: "new" }
         format.json { render json: @company.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+      
+	  end #if/else
+	  
+    end #do
+	
+  end #create
 
   # PUT /companies/1
   # PUT /companies/1.json

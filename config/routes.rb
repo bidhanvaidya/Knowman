@@ -1,15 +1,19 @@
 Knowman::Application.routes.draw do
 
+  resources :offices
+
 	resources :dashboard
 	  
 	resources :people
 
 	resources :products
+	resources :offices
+	resources :staff_levels
 
 	resources :companies do
-	  resources :funding_rounds
-	  resources :staff_levels
+		resources :funding_rounds
 	end
+
 	
 
 	devise_for :users do

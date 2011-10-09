@@ -2,8 +2,13 @@
 
 /* ======= json functionality ======= */
 
-
 $(document).ready(function(){
+
+	/*jQuery.ajaxSetup({ 
+		'beforeSend': function(xhr) {
+			xhr.setRequestHeader("Accept", "text/javascript");
+		}
+	})*/
 
 
 	$('#__sub').live('click', function() {
@@ -24,10 +29,11 @@ $(document).ready(function(){
 		   var fnd	= [];
 		   var off	= [];
 		   
- 		   var company						= [];
-		   var offices						= ['{ offices:'						+ data.offices				+ '}'];
+		   
+		   //offices = {offices: { address1: "Hi There", address2: "should work" } };
+		   offices = data.offices;
+		   
 		   var products						= ['{ products:'					+ data.products				+ '}'];
-		   var staff_levels					= [     /* staff_levels is populated with an if clause below */		 ];
 		   var funding_rounds				= ['{ funding_rounds:'				+ data.funding_rounds		+ '}'];
 		   var people_employment_statuses	= ['{ people_employment_statuses:'	+ data.relationships		+ '}'];
 		   
@@ -36,14 +42,14 @@ $(document).ready(function(){
 				   if ( key == "name" ) {
 					 emp.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
 					 
-					 var name = jQuery.parseJSON(' company:{ "'+ key +'":{"'+ value +'"} ');
-					 company.push(name);
+					 company = { company: {	name: data.name } };
 					 
 				   }
 				   if ( key == "number_of_employees" ) {
 					 emp.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-					 staff_levels.push('{ staff_levels: {'+ key +': "'+ value +'"} }');
 					 
+					 staff_levels = { staff_level:{ number_of_employees: data.number_of_employees } };
+
 				   }
 				   
 			   });
@@ -73,8 +79,9 @@ $(document).ready(function(){
 			   });
 			   $.each(data.offices, function(i, obj) {
 				  $.each(obj, function(key, value) {
+					 
 					 off.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-					 //offices.push('{'+ key +': "'+ value +'"}');
+				  
 				  });
 			   });
 			   $.each(data.relationships, function(i, obj) {
@@ -102,27 +109,41 @@ $(document).ready(function(){
 			   $('<ul/>', { 'class': 'companies-rel',     html: rel.join('')	  }).appendTo('#people')	.prepend('<h3>Important People</h3>');
 			   $('<ul/>', { 'class': 'companies-off',	  html: off.join('')	  }).appendTo('#location')	.prepend('<h3>Office Locations</h3>');
 			   $('<ul/>', { 'class': 'companies-fnd',	  html: fnd.join('')	  }).appendTo('#funding')	.prepend('<h3>Funding Information</h3>');
-
-			console.log(company);
-			console.log(offices);
-			//console.log(products);
-			//console.log(staff_levels);
-			//console.log(funding_rounds);
-			//console.log(people_employment_statuses);
+			   
+			   console.log(company);
+			   console.log(staff_levels);
+			   console.log(offices);
 			
 				$(':[rel="test"]').live('click', function() {
-		
-					/*var test =	{ company: {	name: "Facebook",
-												company_type: "big",
-												company_field: "the webosphere" }
-								}*/
-										
-							
+					
 					$.post('/companies', company, function(data) {
 							
-						console.log(company);	   
-								   
+						console.log(data);
+						
 					});
+					$.post('/offices', offices, function(data) {
+							
+						console.log(data);
+						
+					});
+					$.post('/staff_levels', staff_levels, function(data) {
+							
+						console.log(data);
+						
+					});
+					/*$.get('/companies', function(data){
+					
+						//console.log(data.id)
+						company_path = data.id;
+						console.log(company_path);
+						
+						$.post('/companies/'+ company_path +'/staff_levels/'+ company_path +'/new', staff_levels, function(data) {
+						
+							console.log(data);
+					
+						});
+					
+					});*/
 					
 				});
 

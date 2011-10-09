@@ -19,16 +19,29 @@ class StaffLevelsController < ApplicationController
     @staff_level = @company.staff_levels.build
   end
 
+  # POST /companies
+  # POST /companies.json
+  #format.html { redirect_to @company, notice: 'Company was successfully created.' } (MOVED FROM FIRST IF CLAUSE)
   def create
-    @company = Company.find(params[:company_id])
+    
+	@staff_level = StaffLevel.new(params[:staff_level])
 
-    @staff_level = @company.staff_levels.build(params[:staff_level])
-    if @staff_level.save
-      redirect_to company_staff_level_url(@company, @staff_level)
-    else
-      render :action => "new"
-    end
-  end
+    respond_to do |format|
+      
+	  if success = @staff_level.save
+	  
+        format.json { render json: @staff_level, status: :created, location: @staff_level }
+	
+      else
+	  
+        format.html { render action: "new" }
+        format.json { render json: @company.errors, status: :unprocessable_entity }
+      
+	  end #if/else
+	  
+    end #do
+	
+  end #create
 
   def edit
     @company = Company.find(params[:company_id])
