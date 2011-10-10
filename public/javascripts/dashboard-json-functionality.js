@@ -32,9 +32,12 @@ $(document).ready(function(){
 		   
 		   offices = { office: data.offices };
 		   products = { product: data.products };
+		   console.log(products);
+		   
+		   people_employment_statuses = { employment_status: data.relationships };
+		   console.log(people_employment_statuses);
 		   
 		   funding_rounds = data.funding_rounds;
-		   people_employment_statuses = data.relationships;
 		   
 			   $.each(data, function(key, value) {
 				   
@@ -113,7 +116,8 @@ $(document).ready(function(){
 					var o = data.offices.length;
 					var p = data.products.length;
 					var f = funding_rounds.length;
-					var s = people_employment_statuses.length;
+					var s = people_employment_statuses.employment_status.length;
+					//console.log(people_employment_statuses.length);
 					
 					$.post('/companies', company, function(data) {
 							
@@ -166,16 +170,27 @@ $(document).ready(function(){
 					
 						$.post('/products', product, function(data) {
 								
-							console.log(data);
+							//console.log(data);
 							
 						});
 					
 					}
 					for ( i=0; i<s; i++ ) {
 					
-						$.post('/people_employment_statuses', people_employment_statuses, function(data) {
+						employment_status = {
+						
+							employment_status: {
+							
+								is_past: people_employment_statuses.employment_status[i].is_past,
+								title: people_employment_statuses.employment_status[i].title
+							
+							}
+						
+						};
+					
+						$.post('/people_employment_statuses', employment_status, function(data) {
 								
-							console.log(people_employment_statuses.person);
+							console.log(data);
 							
 						});
 					
