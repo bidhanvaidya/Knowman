@@ -94,6 +94,25 @@
 			</div><!-- /#accoridion-wrapper -->
 		</div><!--/.accordian -->
 	</div><!--/#view -->
+	<table>
+  <tr>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Field</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @companies.each do |company| %>
+  <tr>
+    <td><%= company.name %></td>
+    <td><%= link_to 'Show', company %></td>
+    <td><%= link_to 'Edit', edit_company_path(company) %></td>
+		<td><%= button_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
 </div><!-- /#display -->
 
 <!--######################  HIDDEN	########################-->

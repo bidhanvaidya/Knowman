@@ -32,10 +32,7 @@ $(document).ready(function(){
 		   
 		   offices = { office: data.offices };
 		   products = { product: data.products };
-		   console.log(products);
-		   
 		   people_employment_statuses = { employment_status: data.relationships };
-		   console.log(people_employment_statuses);
 		   
 		   funding_rounds = data.funding_rounds;
 		   
