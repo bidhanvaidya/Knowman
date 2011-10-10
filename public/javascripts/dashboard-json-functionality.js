@@ -30,8 +30,9 @@ $(document).ready(function(){
 		   var off	= [];
 		   
 		   
-		   offices_length = data.offices.length;
-		   products = data.products;
+		   offices = { office: data.offices };
+		   products = { product: data.products };
+		   
 		   funding_rounds = data.funding_rounds;
 		   people_employment_statuses = data.relationships;
 		   
@@ -77,32 +78,7 @@ $(document).ready(function(){
 			   });
 			   $.each(data.offices, function(i, obj) {
 				  $.each(obj, function(key, value) {
-					 
 					 off.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-					 
-					 
-					 console.log(offices_length);
-					 
-					 for ( i=0; i < offices_length; i++ ) {
-					 
-						 offices = { 
-						 
-							office: { 
-							
-								description: obj.description,
-								address1: obj.address1,
-								address2: obj.address2,
-								zip_code: obj.zip_code,
-								city: obj.city,
-								state_code: obj.state_code,
-								country_code: obj.country_code,
-								latitude: obj.latitude,
-								longitude: obj.longitude
-							
-							} 
-						 };
-						 
-					 }
 				  });
 			   });
 			   $.each(data.relationships, function(i, obj) {
@@ -131,49 +107,71 @@ $(document).ready(function(){
 			   $('<ul/>', { 'class': 'companies-off',	  html: off.join('')	  }).appendTo('#location')	.prepend('<h3>Office Locations</h3>');
 			   $('<ul/>', { 'class': 'companies-fnd',	  html: fnd.join('')	  }).appendTo('#funding')	.prepend('<h3>Funding Information</h3>');
 			   
-			   console.log(company);
-			   console.log(staff_levels);
-			   console.log(offices);
-			   console.log(products);
-			   console.log(people_employment_statuses);
-			   //console.log(funding_rounds);
 			
 				$(':[rel="test"]').live('click', function() {
 					
-					var o = offices_length;
-					var p = products.length;
+					var o = data.offices.length;
+					var p = data.products.length;
 					var f = funding_rounds.length;
 					var s = people_employment_statuses.length;
 					
 					$.post('/companies', company, function(data) {
 							
-						console.log(data);
+						//console.log(data);
 						
 					});
 					$.post('/staff_levels', staff_levels, function(data) {
 							
-						console.log(data);
+						//console.log(data);
 						
 					});
-					//for ( i=0; i<o; i++ ) {
+					for ( i=0; i<o; i++ ) {
+						
+						office = { 
+						 
+							office: { 
+							
+								description: offices.office[i].description,
+								address1: offices.office[i].address1,
+								address2: offices.office[i].address2,
+								zip_code: offices.office[i].zip_code,
+								city: offices.office[i].city,
+								state_code: offices.office[i].state_code,
+								country_code: offices.office[i].country_code,
+								latitude: offices.office[i].latitude,
+								longitude: offices.office[i].longitude
+							
+							} 
+						 };
 					
-						$.post('/offices', offices, function(data) {
+						$.post('/offices', office, function(data) {
 								
-							console.log(data);
+							//console.log(data);
 							
 						});
 					
-					//}
+					}
 					for ( i=0; i<p; i++ ) {
 					
-						$.post('/products', products, function(data) {
+						product = {
+						
+							product: {
+							
+								name: products.product[i].name,
+								permalink: products.product[i].permalink
+							
+							}
+						
+						};
+					
+						$.post('/products', product, function(data) {
 								
 							console.log(data);
 							
 						});
 					
 					}
-					/*for ( i=0; i<p; i++ ) {
+					for ( i=0; i<s; i++ ) {
 					
 						$.post('/people_employment_statuses', people_employment_statuses, function(data) {
 								
