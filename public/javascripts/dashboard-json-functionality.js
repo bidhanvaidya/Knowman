@@ -30,12 +30,10 @@ $(document).ready(function(){
 		   var off	= [];
 		   
 		   
-		   //offices = {offices: { address1: "Hi There", address2: "should work" } };
-		   offices = data.offices;
-		   
-		   var products						= ['{ products:'					+ data.products				+ '}'];
-		   var funding_rounds				= ['{ funding_rounds:'				+ data.funding_rounds		+ '}'];
-		   var people_employment_statuses	= ['{ people_employment_statuses:'	+ data.relationships		+ '}'];
+		   offices = data.offices[0].address1;
+		   products = data.products;
+		   funding_rounds = data.funding_rounds;
+		   people_employment_statuses = data.relationships;
 		   
 			   $.each(data, function(key, value) {
 				   
@@ -113,11 +111,16 @@ $(document).ready(function(){
 			   console.log(company);
 			   console.log(staff_levels);
 			   console.log(offices);
-			   console.log(test);
+			   console.log(products);
+			   console.log(people_employment_statuses);
+			   //console.log(funding_rounds);
 			
 				$(':[rel="test"]').live('click', function() {
 					
-					var n = offices.length;
+					var o = offices.length;
+					var p = products.length;
+					var f = funding_rounds.length;
+					var s = people_employment_statuses.length;
 					
 					$.post('/companies', company, function(data) {
 							
@@ -129,11 +132,29 @@ $(document).ready(function(){
 						console.log(data);
 						
 					});
-					for ( i=0; i<n; i++ ) {
+					for ( i=0; i<o; i++ ) {
 					
 						$.post('/offices', offices, function(data) {
 								
 							console.log(data);
+							
+						});
+					
+					}
+					for ( i=0; i<p; i++ ) {
+					
+						$.post('/products', products, function(data) {
+								
+							console.log(data);
+							
+						});
+					
+					}
+					for ( i=0; i<p; i++ ) {
+					
+						$.post('/people_employment_statuses', people_employment_statuses, function(data) {
+								
+							console.log(people_employment_statuses.person);
 							
 						});
 					
