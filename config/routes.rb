@@ -1,5 +1,7 @@
 Knowman::Application.routes.draw do
 
+  resources :employment_statuses
+
   resources :offices
 
 	resources :dashboard
@@ -11,7 +13,7 @@ Knowman::Application.routes.draw do
 	resources :offices
 	resources :staff_levels
 	resources :funding_rounds
-	resources :people_employment_statuses
+	resources :employment_statuses
 
 	
 

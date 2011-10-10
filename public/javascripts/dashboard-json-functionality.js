@@ -188,7 +188,7 @@ $(document).ready(function(){
 						
 						};
 					
-						$.post('/people_employment_statuses', employment_status, function(data) {
+						$.post('/employment_statuses', employment_status, function(data) {
 								
 							console.log(data);
 							
