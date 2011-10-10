@@ -1,10 +1,10 @@
 $(function(){
 
-	$(document).ready(function(){
+	/*$(document).ready(function(){
 	
 		$('#__sub').click();
 	
-	});
+	});*/
   
   var n = new Number(1);
   var s = $('.accordion > div:first > h3 > a:first').text();
