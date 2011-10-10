@@ -4,11 +4,11 @@
 
 $(document).ready(function(){
 
-	/*jQuery.ajaxSetup({ 
-		'beforeSend': function(xhr) {
-			xhr.setRequestHeader("Accept", "text/javascript");
-		}
-	})*/
+	//jQuery(document).ajaxError(function(event, request, settings){
+	
+	//	alert("Error");
+	
+	//});
 
 
 	$('#__sub').live('click', function() {
@@ -30,7 +30,7 @@ $(document).ready(function(){
 		   var off	= [];
 		   
 		   
-		   offices = data.offices[0].address1;
+		   offices_length = data.offices.length;
 		   products = data.products;
 		   funding_rounds = data.funding_rounds;
 		   people_employment_statuses = data.relationships;
@@ -79,7 +79,30 @@ $(document).ready(function(){
 				  $.each(obj, function(key, value) {
 					 
 					 off.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
-				  
+					 
+					 
+					 console.log(offices_length);
+					 
+					 for ( i=0; i < offices_length; i++ ) {
+					 
+						 offices = { 
+						 
+							office: { 
+							
+								description: obj.description,
+								address1: obj.address1,
+								address2: obj.address2,
+								zip_code: obj.zip_code,
+								city: obj.city,
+								state_code: obj.state_code,
+								country_code: obj.country_code,
+								latitude: obj.latitude,
+								longitude: obj.longitude
+							
+							} 
+						 };
+						 
+					 }
 				  });
 			   });
 			   $.each(data.relationships, function(i, obj) {
@@ -117,7 +140,7 @@ $(document).ready(function(){
 			
 				$(':[rel="test"]').live('click', function() {
 					
-					var o = offices.length;
+					var o = offices_length;
 					var p = products.length;
 					var f = funding_rounds.length;
 					var s = people_employment_statuses.length;
@@ -132,7 +155,7 @@ $(document).ready(function(){
 						console.log(data);
 						
 					});
-					for ( i=0; i<o; i++ ) {
+					//for ( i=0; i<o; i++ ) {
 					
 						$.post('/offices', offices, function(data) {
 								
@@ -140,7 +163,7 @@ $(document).ready(function(){
 							
 						});
 					
-					}
+					//}
 					for ( i=0; i<p; i++ ) {
 					
 						$.post('/products', products, function(data) {
@@ -150,7 +173,7 @@ $(document).ready(function(){
 						});
 					
 					}
-					for ( i=0; i<p; i++ ) {
+					/*for ( i=0; i<p; i++ ) {
 					
 						$.post('/people_employment_statuses', people_employment_statuses, function(data) {
 								
