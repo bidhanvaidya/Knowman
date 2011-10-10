@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010100605) do
+ActiveRecord::Schema.define(:version => 20111010112837) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -80,10 +80,14 @@ ActiveRecord::Schema.define(:version => 20111010100605) do
   end
 
   create_table "people", :force => true do |t|
-    t.string   "name"
+    t.string   "first_name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "last_name"
+    t.string   "permalink"
   end
+
+  add_index "people", ["first_name", "permalink"], :name => "index_people_on_first_name_and_permalink"
 
   create_table "products", :force => true do |t|
     t.string   "name"

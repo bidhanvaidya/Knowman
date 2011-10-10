@@ -117,7 +117,6 @@ $(document).ready(function(){
 					var p = data.products.length;
 					var f = funding_rounds.length;
 					var s = people_employment_statuses.employment_status.length;
-					//console.log(people_employment_statuses.length);
 					
 					$.post('/companies', company, function(data) {
 							
@@ -187,10 +186,26 @@ $(document).ready(function(){
 							}
 						
 						};
+						person = {
+						
+							person: {
+							
+								first_name: people_employment_statuses.employment_status[i].person.first_name,
+								last_name:	people_employment_statuses.employment_status[i].person.last_name,
+								permalink:	people_employment_statuses.employment_status[i].person.permalink
+							
+							}
+						
+						};
 					
 						$.post('/employment_statuses', employment_status, function(data) {
 								
-							console.log(data);
+							//console.log(data);
+							
+						});
+						$.post('/people', person, function(data) {
+								
+							//console.log(data);
 							
 						});
 					
