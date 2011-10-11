@@ -2,8 +2,8 @@ $(function(){
 
 //interface functionality
 $(function() {
-  
-  $('#actions > *, #accordion-wrapper:first').hide();
+  //#accordion-wrapper:first
+  $('#actions > *').hide();
   
   
   $('.accordion-sub-menu').live('click', function() {

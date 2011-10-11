@@ -220,10 +220,9 @@ $(document).ready(function(){
 						});
 					
 					});*/
-					$.get('/companies', function(data){
-					
-						$('#accordion-wrapper:last > #company-1:last').after('<h3 class="ui-accordion-header"><a href="#">'+data.name+'</a></h3><div id="company-1"><p>This is some data</p></div>');
-						//console.log(data.name);
+					$.get('/companies', function(data) {
+						
+						$('#accordion-wrapper').append('<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><a>'+data.name+'</a></h3><div id="company-1" class="ui-tabs ui-widget ui-widget-content ui-corner-all ui-accordion-content ui-helper-reset ui-corner-bottom"><p>Here we have some new data on '+data.name+'</div></div>');
 					
 					});
 					

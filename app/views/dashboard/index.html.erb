@@ -91,8 +91,6 @@
 					<div id="location"></div>
 					<div id="products"></div>
 				</div><!-- /#company-1 -->
-			</div><!-- /#accoridion-wrapper -->
-			<div id="accordion-wrapper">	
 				<% @companies.each do |company| %>
 				<h3>
 				<a href="#"><%= company.name %></a>
@@ -103,10 +101,21 @@
 					<button rel="products">products</button>
 				</h3>
 				<div id="company-1">
-					<p>Here are all those neat details about the company!</p>
+					<ul class="hidden">
+						<li><a href="#staff"></a></li>
+						<li><a href="#people"></a></li>
+						<li><a href="#funding"></a></li>
+						<li><a href="#location"></a></li>
+						<li><a href="#products"></a></li>
+					</ul>
+					<div id="staff"></div>
+					<div id="people"></div>
+					<div id="funding"></div>
+					<div id="location"></div>
+					<div id="products"></div>
 				</div>
 				<% end %>
-			</div>
+			</div><!-- /#accoridion-wrapper -->
 		</div><!--/.accordian -->
 	</div><!--/#view -->
 </div><!-- /#display -->
