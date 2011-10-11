@@ -92,27 +92,23 @@
 					<div id="products"></div>
 				</div><!-- /#company-1 -->
 			</div><!-- /#accoridion-wrapper -->
+			<div id="accordion-wrapper">	
+				<% @companies.each do |company| %>
+				<h3>
+				<a href="#"><%= company.name %></a>
+					<button rel="staff">staff</button>
+					<button rel="people">people</button>
+					<button rel="funding">funding</button>
+					<button rel="location">location</button>
+					<button rel="products">products</button>
+				</h3>
+				<div id="company-1">
+					<p>Here are all those neat details about the company!</p>
+				</div>
+				<% end %>
+			</div>
 		</div><!--/.accordian -->
 	</div><!--/#view -->
-	<table>
-  <tr>
-    <th>Name</th>
-    <th>Type</th>
-    <th>Field</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
-<% @companies.each do |company| %>
-  <tr>
-    <td><%= company.name %></td>
-    <td><%= link_to 'Show', company %></td>
-    <td><%= link_to 'Edit', edit_company_path(company) %></td>
-		<td><%= button_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete %></td>
-  </tr>
-<% end %>
-</table>
 </div><!-- /#display -->
 
 <!--######################  HIDDEN	########################-->

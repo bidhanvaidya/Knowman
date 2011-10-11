@@ -14,9 +14,9 @@ $(function(){
   
   for (i=0;i<n;i++) {
   
-  var clone = $('.accordion > div:first').clone();
+  //var clone = $('.accordion > div:first').clone();
   
-  $(clone).appendTo('.accordion');
+  //$(clone).appendTo('.accordion');
   
   }
   //console.log(n);

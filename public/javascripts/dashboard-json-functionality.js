@@ -13,7 +13,7 @@ $(document).ready(function(){
 
 	$('#__sub').live('click', function() {
 
-	$('#company-1').show();
+	$('#accordion-wrapper:first, #company-1').show();
 
 	var s = $('#search').val().toLowerCase();
 	var t = new Array();
@@ -220,6 +220,12 @@ $(document).ready(function(){
 						});
 					
 					});*/
+					$.get('/companies', function(data){
+					
+						$('#accordion-wrapper:last > #company-1:last').after('<h3 class="ui-accordion-header"><a href="#">'+data.name+'</a></h3><div id="company-1"><p>This is some data</p></div>');
+						//console.log(data.name);
+					
+					});
 					
 				});
 

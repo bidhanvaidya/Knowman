@@ -3,7 +3,8 @@ $(function(){
 //interface functionality
 $(function() {
   
-  $('#actions > *').hide();
+  $('#actions > *, #accordion-wrapper:first').hide();
+  
   
   $('.accordion-sub-menu').live('click', function() {
   
