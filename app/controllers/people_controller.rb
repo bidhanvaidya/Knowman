@@ -2,10 +2,10 @@ class PeopleController < ApplicationController
   # GET /people
   # GET /people.json
   def index
-    @people = Person.all
+    @people = Person.last
 
     respond_to do |format|
-      format.html # index.html.erb
+      #format.html # index.html.erb
       format.json { render json: @people }
     end
   end

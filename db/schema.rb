@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010112837) do
+ActiveRecord::Schema.define(:version => 20111011112234) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -38,6 +38,8 @@ ActiveRecord::Schema.define(:version => 20111010112837) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "company_id"
+    t.integer  "person_id"
   end
 
   create_table "folders", :force => true do |t|
@@ -77,6 +79,7 @@ ActiveRecord::Schema.define(:version => 20111010112837) do
     t.decimal  "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "company_id"
   end
 
   create_table "people", :force => true do |t|
@@ -94,10 +97,10 @@ ActiveRecord::Schema.define(:version => 20111010112837) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "permalink"
+    t.integer  "company_id"
   end
 
   create_table "staff_levels", :force => true do |t|
-    t.datetime "date_of_record"
     t.integer  "number_of_employees"
     t.integer  "company_id"
     t.datetime "created_at"

@@ -9,6 +9,14 @@ $(document).ready(function(){
 	//	alert("Error");
 	
 	//});
+	
+	$.get('/companies', function(company_id_last){
+					
+		company_id = company_id_last.id + 1;
+						
+	});
+	
+	person_id = [];
 
 
 	$('#__sub').live('click', function() {
@@ -29,7 +37,6 @@ $(document).ready(function(){
 		   var fnd	= [];
 		   var off	= [];
 		   
-		   
 		   offices = { office: data.offices };
 		   products = { product: data.products };
 		   people_employment_statuses = { employment_status: data.relationships };
@@ -47,7 +54,16 @@ $(document).ready(function(){
 				   if ( key == "number_of_employees" ) {
 					 emp.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
 					 
-					 staff_levels = { staff_level:{ number_of_employees: data.number_of_employees } };
+					 staff_levels = { 
+					 
+						staff_level: {
+						
+							number_of_employees: data.number_of_employees,
+							company_id: company_id
+						
+						}
+					 };
+					 console.log(staff_levels);
 
 				   }
 				   
@@ -115,15 +131,21 @@ $(document).ready(function(){
 					var f = funding_rounds.length;
 					var s = people_employment_statuses.employment_status.length;
 					
+					$.get('/people', function(data){
+						
+							console.log(data.id);
+						
+						});
+					
 					$.post('/companies', company, function(data) {
 							
 						//console.log(data);
 						
 					});
-					$.post('/staff_levels', staff_levels, function(data) {
-							
-						//console.log(data);
+					$.post('/companies/'+ company_id +'/staff_levels/', staff_levels, function(data) {
 						
+						console.log(data);
+					
 					});
 					for ( i=0; i<o; i++ ) {
 						
@@ -139,7 +161,8 @@ $(document).ready(function(){
 								state_code: offices.office[i].state_code,
 								country_code: offices.office[i].country_code,
 								latitude: offices.office[i].latitude,
-								longitude: offices.office[i].longitude
+								longitude: offices.office[i].longitude,
+								company_id: company_id
 							
 							} 
 						 };
@@ -158,7 +181,8 @@ $(document).ready(function(){
 							product: {
 							
 								name: products.product[i].name,
-								permalink: products.product[i].permalink
+								permalink: products.product[i].permalink,
+								company_id: company_id
 							
 							}
 						
@@ -173,16 +197,12 @@ $(document).ready(function(){
 					}
 					for ( i=0; i<s; i++ ) {
 					
-						employment_status = {
+						$.get('/people', function(data){
 						
-							employment_status: {
-							
-								is_past: people_employment_statuses.employment_status[i].is_past,
-								title: people_employment_statuses.employment_status[i].title
-							
-							}
+							console.log(data.id);
 						
-						};
+						});
+						
 						person = {
 						
 							person: {
@@ -190,6 +210,18 @@ $(document).ready(function(){
 								first_name: people_employment_statuses.employment_status[i].person.first_name,
 								last_name:	people_employment_statuses.employment_status[i].person.last_name,
 								permalink:	people_employment_statuses.employment_status[i].person.permalink
+							
+							}
+						
+						};
+						employment_status = {
+						
+							employment_status: {
+							
+								is_past: people_employment_statuses.employment_status[i].is_past,
+								title: people_employment_statuses.employment_status[i].title,
+								//person_id:,
+								company_id: company_id
 							
 							}
 						
@@ -207,19 +239,6 @@ $(document).ready(function(){
 						});
 					
 					}
-					/*$.get('/companies', function(data){
-					
-						//console.log(data.id)
-						company_path = data.id;
-						console.log(company_path);
-						
-						$.post('/companies/'+ company_path +'/staff_levels/'+ company_path +'/new', staff_levels, function(data) {
-						
-							console.log(data);
-					
-						});
-					
-					});*/
 					$.get('/companies', function(data) {
 						
 						$('#accordion-wrapper').append('<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><a>'+data.name+'</a></h3><div id="company-1" class="ui-tabs ui-widget ui-widget-content ui-corner-all ui-accordion-content ui-helper-reset ui-corner-bottom"><p>Here we have some new data on '+data.name+'</div></div>');
