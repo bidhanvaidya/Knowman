@@ -1,0 +1,33 @@
+
+ <%= form_for([@folder, @topic, @attachment], :html => { :multipart => true }, :remote => true) do |f| %>
+  <% if @attachment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@attachment.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @attachment.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+ 
+  <%= f.file_field :document %>
+
+
+	
+
+	<div class="actions" style="z-index:1000">
+		<%= f.submit "Create Folder and Topic" %>
+               
+		
+		
+	</div>
+
+
+
+   
+
+<% end %>
+
+<%= link_to 'Back', folders_path %>

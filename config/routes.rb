@@ -22,6 +22,7 @@ Knowman::Application.routes.draw do
 			resources :topics do 
 				get "all"
 			resources :updates
+			resources :attachments
 			end
 	end
 	match '/userupdate', :to => 'updates#userupdate'

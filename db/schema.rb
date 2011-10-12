@@ -11,11 +11,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011112234) do
+ActiveRecord::Schema.define(:version => 20111011234743) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
     t.integer  "person_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "attachments", :force => true do |t|
+    t.string   "document_file_name"
+    t.string   "document_content_type"
+    t.integer  "document_file_size"
+    t.datetime "document_updated_at"
+    t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
