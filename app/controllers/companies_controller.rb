@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       #format.html # index.html.erb
-      format.json { render json: @companies }
+      format.json { render json: @companies.id }
     end
   end
 
@@ -39,30 +39,27 @@ class CompaniesController < ApplicationController
 
   # POST /companies
   # POST /companies.json
-  #format.html { redirect_to @company, notice: 'Company was successfully created.' } (MOVED FROM FIRST IF CLAUSE)
   def create
     
-	@company = Company.new(params[:company])
+    c = params[:company]
+    @company = Company.find_or_create_by_permalink(c[:permalink], :name => c[:name])
 
     respond_to do |format|
       
 	  if success = @company.save
 	  
-		#@staff_level = StaffLevel.new(params[:staff_level])
-        #@staff_level.save
-        format.json { render json: @company, status: :created, location: @company }
-		#format.json { render json: @staff_level, status: :created, location: @staff_level }
+	    format.json { render json: @company, status: :created, location: @company }
 	
-      else
+	  else
 	  
-        format.html { render action: "new" }
-        format.json { render json: @company.errors, status: :unprocessable_entity }
+	    format.html { render action: "new" }
+	    format.json { render json: @company.errors, status: :unprocessable_entity }
       
-	  end #if/else
+	  end
 	  
-    end #do
+    end
 	
-  end #create
+  end
 
   # PUT /companies/1
   # PUT /companies/1.json

@@ -10,15 +10,6 @@ $(document).ready(function(){
 	
 	//});
 	
-	$.get('/companies', function(company_id_last){
-					
-		company_id = company_id_last.id + 1;
-						
-	});
-	
-	person_id = [];
-
-
 	$('#__sub').live('click', function() {
 
 	$('#accordion-wrapper:first, #company-1').show();
@@ -48,7 +39,17 @@ $(document).ready(function(){
 				   if ( key == "name" ) {
 					 emp.push('<li id="' + key + '"><b>' + key + ':</b><span>' + value + '</span></li>');
 					 
-					 company = { company: {	name: data.name } };
+					 company = { 
+						
+								company: {	
+						
+										name: data.name,
+						 				permalink: data.permalink
+										
+										} 
+								
+								};
+								console.log(company);
 					 
 				   }
 				   if ( key == "number_of_employees" ) {
@@ -59,7 +60,7 @@ $(document).ready(function(){
 						staff_level: {
 						
 							number_of_employees: data.number_of_employees,
-							company_id: company_id
+							company_permalink: data.permalink
 						
 						}
 					 };
@@ -131,20 +132,14 @@ $(document).ready(function(){
 					var f = funding_rounds.length;
 					var s = people_employment_statuses.employment_status.length;
 					
-					$.get('/people', function(data){
-						
-							console.log(data.id);
-						
-						});
-					
 					$.post('/companies', company, function(data) {
 							
 						//console.log(data);
 						
 					});
-					$.post('/companies/'+ company_id +'/staff_levels/', staff_levels, function(data) {
+					$.post('/staff_levels', staff_levels, function(data) {
 						
-						console.log(data);
+						//console.log(data);
 					
 					});
 					for ( i=0; i<o; i++ ) {
@@ -162,10 +157,12 @@ $(document).ready(function(){
 								country_code: offices.office[i].country_code,
 								latitude: offices.office[i].latitude,
 								longitude: offices.office[i].longitude,
-								company_id: company_id
+								company_permalink: company.company.permalink
 							
 							} 
+							
 						 };
+						console.log(office);
 					
 						$.post('/offices', office, function(data) {
 								
@@ -182,7 +179,7 @@ $(document).ready(function(){
 							
 								name: products.product[i].name,
 								permalink: products.product[i].permalink,
-								company_id: company_id
+								company_permalink: company.company.permalink
 							
 							}
 						
@@ -197,12 +194,6 @@ $(document).ready(function(){
 					}
 					for ( i=0; i<s; i++ ) {
 					
-						$.get('/people', function(data){
-						
-							console.log(data.id);
-						
-						});
-						
 						person = {
 						
 							person: {
@@ -220,19 +211,20 @@ $(document).ready(function(){
 							
 								is_past: people_employment_statuses.employment_status[i].is_past,
 								title: people_employment_statuses.employment_status[i].title,
-								//person_id:,
-								company_id: company_id
+								company_permalink: company.company.permalink,
+								person_permalink: people_employment_statuses.employment_status[i].person.permalink
 							
 							}
 						
 						};
+						console.log(person);
 					
-						$.post('/employment_statuses', employment_status, function(data) {
+						$.post('/people', person, function(data) {
 								
 							//console.log(data);
 							
 						});
-						$.post('/people', person, function(data) {
+						$.post('/employment_statuses', employment_status, function(data) {
 								
 							//console.log(data);
 							

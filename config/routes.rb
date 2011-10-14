@@ -1,18 +1,29 @@
 Knowman::Application.routes.draw do
 	
-	resources :employment_statuses
-	resources :offices
+	
+	resources :images
 	resources :dashboard
+	
+	# Companies
 	resources :companies do
-		resources :staff_levels
+		resources :funding_rounds
 	end
 	
-	resources :people
+	# Staff Levels
+	resources :staff_levels
+	
+	# Products
 	resources :products
+	
+	# Offices
 	resources :offices
-	resources :funding_rounds
+	
+	# People
+	resources :people
+	
+	# Employment Statuses
 	resources :employment_statuses
-
+	
 	devise_for :users do
 		get "sign_out", :to => "devise/sessions#destroy"
 	end

@@ -10,13 +10,13 @@ class OfficesController < ApplicationController
 	end
 	# POST /offices
 	def create
-		@office = Office.new(params[:office])
+		@office = Office.find_or_create_by_company_permalink_and_latitude_and_longitude(params[:office])
 
 	   respond_to do |format|
 		 
 		 if @office.save
 		   
-		   format.json { render json: @office, status: :created, location: @office }
+		   format.json { render json: @office }
 		 
 		 else
 		   format.html { render action: "new" }

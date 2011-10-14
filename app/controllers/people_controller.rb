@@ -40,8 +40,9 @@ class PeopleController < ApplicationController
   # POST /people
   # POST /people.json
   def create
-    @person = Person.new(params[:person])
-
+  
+	@person = Person.find_or_create_by_permalink(params[:person][:permalink], :first_name => params[:person][:first_name], :last_name => params[:person][:last_name])
+	
     respond_to do |format|
       if @person.save
         #format.html { redirect_to @person, notice: 'Person was successfully created.' }
