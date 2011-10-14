@@ -1,7 +1,11 @@
+<script>
+$(function(){
+$("#notification_next_notification").datepicker();
+  });</script>
 <%= form_for([@folder, @topic, @notification],  :remote => true ) do |f| %>
 
-	<div class="field", id ="date" >
-	<%= f.label :set_Next_notification %><br />
+	<div class="date", id ="date" >
+	<%= f.label :set_next_notification %><br />
 	<%= f.text_field :next_notification %>
 	</div>
  

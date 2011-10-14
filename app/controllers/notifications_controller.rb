@@ -14,7 +14,8 @@ class NotificationsController < ApplicationController
 		@user =  current_user
 		
 		@folder = Folder.find_by_id(params[:folder_id])
-		@notification = @folder.notifications.new(params[:notification])
+		@topic = @folder.topics.find_by_id(params[:topic_id])
+		@notification = @topic.notifications.new(params[:notification])
     respond_to do |format|
       if @notification.save
 				format.html{ redirect_to folder_topics_path(@folder)}

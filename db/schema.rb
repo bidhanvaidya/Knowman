@@ -11,11 +11,8 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20111012012319) do
-=======
 ActiveRecord::Schema.define(:version => 20111014121125) do
->>>>>>> 874bc9da784752a6b1bf0979a50191832f08cc00
+
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
