@@ -18,7 +18,7 @@ group :assets do
   gem 'uglifier'
 end
 
-
+gem 'paperclip'
 gem 'jquery-rails'
 
 # Use unicorn as the web server
