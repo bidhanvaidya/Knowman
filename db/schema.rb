@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20111012012319) do
+=======
+ActiveRecord::Schema.define(:version => 20111014121125) do
+>>>>>>> 874bc9da784752a6b1bf0979a50191832f08cc00
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -34,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20111012012319) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "permalink"
   end
 
   create_table "deployments", :force => true do |t|
@@ -48,8 +53,8 @@ ActiveRecord::Schema.define(:version => 20111012012319) do
     t.string   "title"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "company_id"
-    t.integer  "person_id"
+    t.string   "company_permalink"
+    t.string   "person_permalink"
   end
 
   create_table "folders", :force => true do |t|
@@ -89,7 +94,7 @@ ActiveRecord::Schema.define(:version => 20111012012319) do
     t.decimal  "longitude"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "company_id"
+    t.string   "company_permalink"
   end
 
   create_table "people", :force => true do |t|
@@ -107,17 +112,15 @@ ActiveRecord::Schema.define(:version => 20111012012319) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "permalink"
-    t.integer  "company_id"
+    t.string   "company_permalink"
   end
 
   create_table "staff_levels", :force => true do |t|
     t.integer  "number_of_employees"
-    t.integer  "company_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "company_permalink"
   end
-
-  add_index "staff_levels", ["company_id"], :name => "index_stlevels_on_company_id"
 
   create_table "topics", :force => true do |t|
     t.string   "title"

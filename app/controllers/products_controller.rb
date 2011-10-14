@@ -40,11 +40,11 @@ class ProductsController < ApplicationController
   # POST /products
   # POST /products.json
   def create
-    @product = Product.new(params[:product])
+    @product = Product.find_or_create_by_permalink(params[:product])
 
     respond_to do |format|
       if @product.save
-        format.html { redirect_to @product, notice: 'product was successfully created.' }
+        #format.html { redirect_to @product, notice: 'product was successfully created.' }
         format.json { render json: @product, status: :created, location: @product }
       else
         format.html { render action: "new" }

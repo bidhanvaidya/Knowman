@@ -24,17 +24,17 @@ class StaffLevelsController < ApplicationController
   #format.html { redirect_to @company, notice: 'Company was successfully created.' } (MOVED FROM FIRST IF CLAUSE)
   def create
     
-	@staff_level = StaffLevel.new(params[:staff_level])
+	@staff_level = StaffLevel.find_or_create_by_company_permalink(params[:staff_level])
 
     respond_to do |format|
       
 	  if success = @staff_level.save
 	  
-        format.json { render json: @staff_level, status: :created, location: @staff_level }
+        format.json { render json: @staff_level }
 	
       else
 	  
-        format.html { render action: "new" }
+        #format.html { render action: "new" }
         format.json { render json: @company.errors, status: :unprocessable_entity }
       
 	  end #if/else
