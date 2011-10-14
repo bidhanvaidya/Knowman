@@ -18,7 +18,7 @@
 	
 
 	<div class="actions" style="z-index:1000">
-		<%= f.submit "Create Folder and Topic" %>
+		<%= f.submit "Save Attachment" %>
                
 		
 		
@@ -30,4 +30,4 @@
 
 <% end %>
 
-<%= link_to 'Back', folders_path %>
+<%= link_to 'See All', folder_topic_attachments_path(@folder,@topic) %>

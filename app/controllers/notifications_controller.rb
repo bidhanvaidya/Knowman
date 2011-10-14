@@ -2,7 +2,8 @@ class NotificationsController < ApplicationController
 	def new
 
 		@folder = Folder.find_by_id(params[:folder_id])
-		@notification = @folder.notifications.new
+		@topic = @folder.topics.find(params[:topic_id])
+		@notification = @topic.notifications.new
 		respond_to do |format|
 			format.js
 			format.html

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011234743) do
+ActiveRecord::Schema.define(:version => 20111012012319) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -72,7 +72,7 @@ ActiveRecord::Schema.define(:version => 20111011234743) do
 
   create_table "notifications", :force => true do |t|
     t.datetime "next_notification"
-    t.integer  "folder_id"
+    t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

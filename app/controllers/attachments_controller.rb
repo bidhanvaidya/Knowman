@@ -27,8 +27,8 @@ class AttachmentsController < ApplicationController
 		@attachment = @topic.attachments.new( params[:attachment] )
 		   respond_to do |format|
       if @attachment.save
-        format.html { redirect_to folder_topic_attachments_path, notice: 'attachment was successfully created.' }
-        format.json { render json: attachments_path, status: :created, location: @attachment }
+        format.html { redirect_to edit_folder_topic_path(@topic.folder,@topic), notice: 'attachment was successfully created.' }
+        format.js 
       else
         format.html { render action: "new" }
         format.json { render json: @attachment.errors, status: :unprocessable_entity }

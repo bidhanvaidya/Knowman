@@ -18,10 +18,11 @@ Knowman::Application.routes.draw do
 	end
   
 	resources :folders do
-			resources :notifications
+			
 			resources :topics do 
 				get "all"
 			resources :updates
+			resources :notifications
 			resources :attachments
 			end
 	end

@@ -18,6 +18,7 @@ class TopicsController < ApplicationController
 
 	def new
 			@topic = @folder.topics.new
+			
 			respond_to do |format|
 				format.html # new.html.erb
 				format.json { render json: @topic }
@@ -27,7 +28,9 @@ class TopicsController < ApplicationController
 	def edit
 		@topic = @folder.topics.find(params[:id])
 		@created_by=@topic.get_owner(@topic.id)
-
+		@attachment = @topic.attachments.new
+		@attachments = @topic.attachments.all
+		@notification = @topic.notifications.new
 	end
 
 	def create
@@ -35,12 +38,14 @@ class TopicsController < ApplicationController
 		@topic = @folder.topics.new(params[:topic])
 		@topic.user = @user
 		@topic.version="latest"
+		
 		respond_to do |format|
 			if @topic.save
 				Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Created", :progress_status => @topic.progress)
 				format.html { redirect_to edit_folder_topic_path(@topic.folder,@topic), notice: 'Topic was successfully created.' }
 				format.json { render json: @topic, status: :created, location: @topic }
 			format.js
+			
 			else
 				format.html { render action: "new" }
 				format.json { render json: @topic.errors, status: :unprocessable_entity }
@@ -57,8 +62,8 @@ class TopicsController < ApplicationController
 						@newtopic.version="latest"
 					
 						@newtopic.topic_id=@topic.get_latest(@topic.id)
-						@new = Topic.find(@topic.get_latest(@topic.id))
-						@new.update_attributes(:version => "old")
+						@new = Topic.find(@topic.get_latest(@topic.id)) # get the latest version
+						@new.update_attributes(:version => "old")  # CHANGE THE VERSION  TO OLD IN THE LATEST ONE
 						respond_to do |format|
 							if @newtopic.update_attributes(params[:topic])
 									Update.create(:topic_id => @topic.get_latest(@topic.id), :user_id => current_user.id, :type_of_update => "Updated", :progress_status => @new.progress)        

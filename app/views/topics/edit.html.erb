@@ -20,42 +20,55 @@
 			});
 
 	</script>
-<table style="margin-top:25px">
+	<table style="margin-top:25px">
 
-	<tr>
-		<td align= "left"><%= link_to 'Exit', folder_topics_path(@folder) %></td>
-		<td align = "right"><h3><%= @topic.title%></h3></td>
-		<td align= "left"><%= link_to "Updates", folder_topic_updates_path(@folder,@topic) %></td>
-		<td align ="left">Created By  <%= @created_by.firstName.slice(0) + " " +@created_by.lastName %>		</td>					
-		<td align = "right">Updated by <%=@topic.user.firstName%></td>
-		<td align = "right"><a href="#" id="text" >SEE history</a></td>
-
-				
-</tr>
-</table>
-<table >
-	<tr>
-			<td  align = "center">
-					<div id = "edit" >
-					<%= render 'form_edit' %>
-					</div>
-			</td>
-			<td width = 20% valign = "top">
-			
-			<div id= "effect">
-				<% x= @topic%>
-				<table>
-				<% until x.topic_id.nil? do %>
-
-					<tr><td>
-					<td><%= link_to x.created_at, edit_folder_topic_path(x.folder, x) %> by<br>
-					<%= x.user.firstName + " " + x.user.lastName %></td>
-					</tr>
-				<%x=x.topic%>
-				<% end%>
+		<tr>
+			<td align= "left"><%= link_to 'Exit', folder_topics_path(@folder) %></td>
+			<td align = "right"><h3><%= @topic.title%></h3></td>
+			<td align= "left"><%= link_to "Updates", folder_topic_updates_path(@folder,@topic) %></td>
+			<td align ="left">Created By  <%= @created_by.firstName.slice(0) + " " +@created_by.lastName %>		</td>					
+			<td align = "right">Updated by <%=@topic.user.firstName%></td>
+			<td align = "right"><a href="#" id="text" >SEE history</a></td>
+		</tr>
+	</table>
+	<table >
+		<td valign = 'top'>
+			<table>
+				<tr><%= render :file => 'notifications/new' %></tr>
+				<tr> <%= render :file => 'attachments/new' %></tr>
+				<% @attachments.each do |attachment| %>
+				<tr>
+					<td><a href= /folders/<%=@folder.id%>/topics/<%= @topic.id%>/attachments/<%= attachment.id %> ><%= attachment.document_file_name %></a>  </td>
+				</tr>
+				<% end %>
 			</table>
-			</div>
-			
 		</td>
-	</tr>
-</table>
+		<td  align = "center">
+						<div id = "edit" >
+							<%= render 'form_edit' %>
+						</div>
+				</td>
+				<td width = 20% valign = "top">
+					<div id= "effect">
+					<% x= @topic%>
+					<table>
+						<% until x.topic_id.nil? do %>
+						<tr>
+								<td><%= link_to x.created_at, edit_folder_topic_path(x.folder, x) %> by<br>
+										<%= x.user.firstName + " " + x.user.lastName %>
+								</td>
+							</tr>
+						<%x=x.topic%>
+						<% end%>
+					</table>
+					<table>
+						<tr> 
+
+						</tr>						
+						<tr>
+						</tr>
+					</table>
+				</div>
+			</td>
+		</tr>
+	</table>
