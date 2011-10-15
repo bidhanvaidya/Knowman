@@ -1,11 +1,5 @@
 class StaffLevelsController < ApplicationController
 
-  def index
-    @company = Company.find(params[:company_id])
-
-    @staff_levels = @company.staff_levels
-  end
-
   def show
     @company = Company.find(params[:company_id])
 
@@ -21,7 +15,6 @@ class StaffLevelsController < ApplicationController
 
   # POST /companies
   # POST /companies.json
-  #format.html { redirect_to @company, notice: 'Company was successfully created.' } (MOVED FROM FIRST IF CLAUSE)
   def create
     
 	@staff_level = StaffLevel.find_or_create_by_company_permalink(params[:staff_level])

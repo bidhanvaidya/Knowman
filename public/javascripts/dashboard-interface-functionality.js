@@ -109,6 +109,10 @@ $('li > span').live('click', function(){
 							});
 $('#company-1 > div').append('<div class="chart-holder right" /><div class="accordion-sub-menu" />');
 
+$(function(){
+//	
+});
+
 
   
 });

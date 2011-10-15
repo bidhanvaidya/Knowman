@@ -11,7 +11,11 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
+<<<<<<< HEAD
 ActiveRecord::Schema.define(:version => 20111015010439) do
+=======
+ActiveRecord::Schema.define(:version => 20111015011228) do
+>>>>>>> 492a47025de11746ef48ca0d7eb1c3f21dd19853
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -43,6 +47,8 @@ ActiveRecord::Schema.define(:version => 20111015010439) do
     t.datetime "updated_at"
     t.string   "permalink"
   end
+
+  add_index "companies", ["name", "permalink"], :name => "index_companies_on_name_and_permalink", :unique => true
 
   create_table "deployments", :force => true do |t|
     t.datetime "created_at"
@@ -100,6 +106,8 @@ ActiveRecord::Schema.define(:version => 20111015010439) do
     t.string   "company_permalink"
   end
 
+  add_index "offices", ["company_permalink", "latitude", "longitude"], :name => "index_offices_on_company_permalink_and_latitude_and_longitude", :unique => true
+
   create_table "people", :force => true do |t|
     t.string   "first_name"
     t.datetime "created_at"
@@ -108,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20111015010439) do
     t.string   "permalink"
   end
 
+  add_index "people", ["first_name", "last_name", "permalink"], :name => "index_people_on_first_name_and_last_name_and_permalink", :unique => true
   add_index "people", ["first_name", "permalink"], :name => "index_people_on_first_name_and_permalink"
 
   create_table "products", :force => true do |t|
@@ -118,12 +127,16 @@ ActiveRecord::Schema.define(:version => 20111015010439) do
     t.string   "company_permalink"
   end
 
+  add_index "products", ["permalink", "company_permalink"], :name => "index_products_on_permalink_and_company_permalink", :unique => true
+
   create_table "staff_levels", :force => true do |t|
     t.integer  "number_of_employees"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "company_permalink"
   end
+
+  add_index "staff_levels", ["number_of_employees", "created_at"], :name => "index_staff_levels_on_number_of_employees_and_created_at", :unique => true
 
   create_table "topics", :force => true do |t|
     t.string   "title"

@@ -92,28 +92,54 @@
 					<div id="products"></div>
 				</div><!-- /#company-1 -->
 				<% @companies.each do |company| %>
-				<h3>
-				<a href="#"><%= company.name %></a>
-					<button rel="staff">staff</button>
-					<button rel="people">people</button>
-					<button rel="funding">funding</button>
-					<button rel="location">location</button>
-					<button rel="products">products</button>
-				</h3>
-				<div id="company-1">
-					<ul class="hidden">
-						<li><a href="#staff"></a></li>
-						<li><a href="#people"></a></li>
-						<li><a href="#funding"></a></li>
-						<li><a href="#location"></a></li>
-						<li><a href="#products"></a></li>
-					</ul>
-					<div id="staff"></div>
-					<div id="people"></div>
-					<div id="funding"></div>
-					<div id="location"></div>
-					<div id="products"></div>
-				</div>
+					<h3>
+						<a href="#"><%= company.name %></a>
+						<button rel="staff">staff</button>
+						<button rel="people">people</button>
+						<button rel="funding">funding</button>
+						<button rel="location">location</button>
+						<button rel="products">products</button>
+					</h3>
+					<div id="company-1">
+						<ul class="hidden">
+							<li><a href="#staff"></a></li>
+							<li><a href="#people"></a></li>
+							<li><a href="#funding"></a></li>
+							<li><a href="#location"></a></li>
+							<li><a href="#products"></a></li>
+						</ul>
+						<div id="staff">
+							<p>
+								<% @test.each do |test| %>
+									<span>Staff Levels</span><%= test.number_of_employees %><br />
+								<% end %>
+							</p>
+						</div><!-- /#staff -->
+						<div id="people">
+							<p>
+								<% @people.each do |people| %>
+									<span>People</span><%= people %><br />
+								<% end %>
+							</p>
+						</div>
+						<div id="funding">
+							<p>Funding Information</p><br />
+						</div>
+						<div id="location">
+							<p>
+								<% @offices.each do |offices| %>
+									<span>Offices</span><%= offices %><br />
+								<% end %>
+							</p>
+						</div>
+						<div id="products">
+							<p>
+								<% @products.each do |products| %>
+									<span>Products</span><%= products %><br />
+								<% end %>
+							</p>
+						</div>
+					</div>
 				<% end %>
 			</div><!-- /#accoridion-wrapper -->
 		</div><!--/.accordian -->
