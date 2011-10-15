@@ -37,7 +37,8 @@ belongs_to :folder
   belongs_to :user
 	has_many :updates
 	include Topics
-	has_many :attachments
+	has_many :attaches
+has_many :attachments, :through => :attaches 
 belongs_to :topic
 	has_many :notifications
 end

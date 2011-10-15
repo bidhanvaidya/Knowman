@@ -34,11 +34,12 @@
 	<table >
 		<td valign = 'top'>
 			<table>
-				<tr><%= render :file => 'notifications/new' %></tr>
+				<tr><%= image_tag("rails.png") %><%= render :file => 'notifications/new' %></tr>
 				<tr> <%= render :file => 'attachments/new' %></tr>
 				<% @attachments.each do |attachment| %>
 				<tr>
 					<td><a href= /folders/<%=@folder.id%>/topics/<%= @topic.id%>/attachments/<%= attachment.id %> ><%= attachment.document_file_name %></a>  </td>
+					
 				</tr>
 				<% end %>
 			</table>
