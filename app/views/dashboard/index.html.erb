@@ -110,15 +110,35 @@
 						</ul>
 						<div id="staff">
 							<p>
-								<% @staff_levels.each do |staff_levels| %>
-									<span>Staff Levels</span><%= staff_levels.number_of_employees %>
+								<% @test.each do |test| %>
+									<span>Staff Levels</span><%= test.number_of_employees %><br />
 								<% end %>
 							</p>
 						</div><!-- /#staff -->
-						<div id="people"></div>
-						<div id="funding"></div>
-						<div id="location"></div>
-						<div id="products"></div>
+						<div id="people">
+							<p>
+								<% @people.each do |people| %>
+									<span>People</span><%= people %><br />
+								<% end %>
+							</p>
+						</div>
+						<div id="funding">
+							<p>Funding Information</p><br />
+						</div>
+						<div id="location">
+							<p>
+								<% @offices.each do |offices| %>
+									<span>Offices</span><%= offices %><br />
+								<% end %>
+							</p>
+						</div>
+						<div id="products">
+							<p>
+								<% @products.each do |products| %>
+									<span>Products</span><%= products %><br />
+								<% end %>
+							</p>
+						</div>
 					</div>
 				<% end %>
 			</div><!-- /#accoridion-wrapper -->
