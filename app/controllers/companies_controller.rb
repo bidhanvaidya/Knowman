@@ -6,7 +6,7 @@ class CompaniesController < ApplicationController
 
     respond_to do |format|
       #format.html # index.html.erb
-      format.json { render json: @companies.id }
+      format.json { render json: @companies }
     end
   end
 

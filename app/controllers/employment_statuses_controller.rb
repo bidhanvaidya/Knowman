@@ -16,10 +16,7 @@ class EmploymentStatusesController < ApplicationController
 		
 		@employment_status = EmploymentStatus.find_or_create_by_title_and_company_permalink_and_person_permalink(params[:employment_status])
 		
-		#@productproperty = ProductProperty.find_or_create_by_product_id_and_property_id_and_value(:product_id => product.id, :property_id => property.id, :value => d[descname])
-    
-
-	   respond_to do |format|
+		 respond_to do |format|
 		 
 		 if @employment_status.save
 		   
