@@ -3,42 +3,28 @@ class DashboardController < ApplicationController
 	#before_filter :authenticate_user!
 	def index
 
-		@companies = Company.all
-		@staff_levels = StaffLevel.all
 		@people = Person.all
 		@offices = Office.all
 		@products = Product.all
+		@companies = Company.all
+		@staff_levels = StaffLevel.all
+		@employment_statuses = EmploymentStatus.all
 
 		respond_to do |format|
-		  
+		
   	  format.html # index.html.erb
-		  
-		    format.json  { 
-		  
-		        render :json => 
-
-  		      { 
-
-  		        :companies => @companies[2][:permalink],
-  		        :staff_level => @staff_levels[2][:number_of_employees]
-
-  		      }
-
-  		  }
-		    
-		  #  render :json => 
-		    
-		  #    {
-		    
-		  #      :companies => @companies, 
-      #      :staff_levels => @test,
-      #      :people => @people,
-      #      :offices => @offices,
-      #      :products => @products,
-                        
-      #    }
-                
-      #}
+  	  
+  		format.json { 
+  		  
+  		  render json: {
+  		
+  		    :person => @people.last,
+  		    :employment_statuses => @employment_statuses.last
+  		  
+  		  }  
+  		  
+  		}
+       
       
 		end # do
 		

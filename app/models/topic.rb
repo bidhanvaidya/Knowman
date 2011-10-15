@@ -38,7 +38,7 @@ belongs_to :folder
 	has_many :updates
 	include Topics
 	has_many :attachments
-belongs_to :topic
+  belongs_to :topic
 	has_many :notifications
 end
 

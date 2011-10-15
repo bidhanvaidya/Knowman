@@ -94,51 +94,22 @@
 				<% @companies.each do |company| %>
 					<h3>
 						<a href="#"><%= company.name %></a>
-						<button rel="staff">staff</button>
-						<button rel="people">people</button>
-						<button rel="funding">funding</button>
-						<button rel="location">location</button>
-						<button rel="products">products</button>
+						<button rel="staff-<%= company.permalink %>">staff</button>
+						<button rel="people-<%= company.permalink %>">people</button>
+						<button rel="funding-<%= company.permalink %>">funding</button>
+						<button rel="location-<%= company.permalink %>">location</button>
+						<button rel="products-<%= company.permalink %>">products</button>
 					</h3>
-					<div id="company-1">
+					<div id="company-<%= company.permalink %>">
 						<ul class="hidden">
-							<li><a href="#staff"></a></li>
-							<li><a href="#people"></a></li>
-							<li><a href="#funding"></a></li>
-							<li><a href="#location"></a></li>
-							<li><a href="#products"></a></li>
+							<li><a href="#staff-<%= company.permalink %>"></a></li>
+							<li><a href="#people-<%= company.permalink %>"></a></li>
+							<li><a href="#funding-<%= company.permalink %>"></a></li>
+							<li><a href="#location-<%= company.permalink %>"></a></li>
+							<li><a href="#products-<%= company.permalink %>"></a></li>
 						</ul>
-						<div id="staff">
-							<p>
-								<% @test.each do |test| %>
-									<span>Staff Levels</span><%= test.number_of_employees %><br />
-								<% end %>
-							</p>
-						</div><!-- /#staff -->
-						<div id="people">
-							<p>
-								<% @people.each do |people| %>
-									<span>People</span><%= people %><br />
-								<% end %>
-							</p>
-						</div>
-						<div id="funding">
-							<p>Funding Information</p><br />
-						</div>
-						<div id="location">
-							<p>
-								<% @offices.each do |offices| %>
-									<span>Offices</span><%= offices %><br />
-								<% end %>
-							</p>
-						</div>
-						<div id="products">
-							<p>
-								<% @products.each do |products| %>
-									<span>Products</span><%= products %><br />
-								<% end %>
-							</p>
-						</div>
+						<div id="staff-<%= company.permalink %>"></div>
+						<div id="people-<%= company.permalink %>"></div>
 					</div>
 				<% end %>
 			</div><!-- /#accoridion-wrapper -->
@@ -151,7 +122,20 @@
 <span id="hidden-interface-elements" class="hidden">
 	<input type="hidden" id="info" name="info" />
 	<input class="button" type="button" id="__sub" value="" />
-	
+	<div class="staff-levels">
+		<% @staff_levels.each do |staff_levels| %>
+			<p class="<%= staff_levels.company_permalink %>">
+			<span>Staff Levels</span><%= staff_levels[:number_of_employees] %> -- as of <%= staff_levels[:updated_at] %>
+			</p>
+		<% end %>
+	</div><!-- /.staff-levels -->
+	<div class="people">
+		<% @people.each do |people| %>
+			<p class="<%= people %>">
+				<%= people[:first_name] %> -- <% people[:title] %>
+			</p>
+		<% end %>
+	</div>
 </span>
 
 </div><!-- /#screen-resolution-helper -->
