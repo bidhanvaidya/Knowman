@@ -3,6 +3,6 @@
 <tr>	
 		<td><a href= /folders/<%=@folder.id%>/topics/<%= @topic.id%>/attachments/<%= attachment.id %> ><%= attachment.document_file_name %></a>  </td>
 		<td><%= image_tag attachment.document.url(:thumb) %></td>
-		<td><%= button_to 'Destroy', folder_topic_attachment_path(attachment.topic.folder,attachment.topic, attachment), :confirm => 'Are you sure?', :method => :delete %></td></tr>
+		<td><%= button_to 'Destroy', folder_topic_attachment_path(@folder,@topic,attachment), :confirm => 'Are you sure?', :method => :delete %></td></tr>
 <% end %>
 </table>

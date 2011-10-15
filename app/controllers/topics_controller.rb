@@ -60,7 +60,10 @@ class TopicsController < ApplicationController
 						@newtopic=@folder.topics.create(params[:topic])
 						@newtopic.user=current_user
 						@newtopic.version="latest"
-					
+					@attachments=@topic.attachments.all
+								@attachments.each do |attachment|
+								Attach.create(:topic_id => @newtopic.id, :attachment_id => attachment.id)
+								end
 						@newtopic.topic_id=@topic.get_latest(@topic.id)
 						@new = Topic.find(@topic.get_latest(@topic.id)) # get the latest version
 						@new.update_attributes(:version => "old")  # CHANGE THE VERSION  TO OLD IN THE LATEST ONE
@@ -81,8 +84,14 @@ class TopicsController < ApplicationController
 						@newtopic.user=current_user
 						@newtopic.version="latest"
 						@topic.version="old"
+						@attachments=@topic.attachments.all
+								@attachments.each do |attachment|
+								Attach.create(:topic_id => @newtopic.id, :attachment_id => attachment.id)
+								end
 						respond_to do |format|
 							if @newtopic.update_attributes(params[:topic])
+								
+						
 									@topic.save
 									Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Updated", :progress_status => @topic.progress)        
 									format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully updated.' }

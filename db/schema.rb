@@ -20,6 +20,13 @@ ActiveRecord::Schema.define(:version => 20111015112216) do
     t.datetime "updated_at"
   end
 
+  create_table "attaches", :force => true do |t|
+    t.integer  "topic_id"
+    t.integer  "attachment_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "attachments", :force => true do |t|
     t.string   "document_file_name"
     t.string   "document_content_type"
