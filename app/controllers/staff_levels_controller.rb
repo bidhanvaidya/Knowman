@@ -17,7 +17,7 @@ class StaffLevelsController < ApplicationController
   # POST /companies.json
   def create
     
-	@staff_level = StaffLevel.find_or_create_by_company_permalink(params[:staff_level])
+	@staff_level = StaffLevel.find_or_create_by_company_permalink_and_created_at_and_number_of_employees(params[:staff_level])
 
     respond_to do |format|
       

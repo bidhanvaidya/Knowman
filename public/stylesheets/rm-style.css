@@ -12,8 +12,6 @@
 
 }
 
-
-
 .left   {float:left;}
 .right  {float:right;}
 .hidden {display:none;}
@@ -31,7 +29,6 @@
 	position:relative;
 	bottom:-240px;
 	left:35px;
-	background-image:url('../images/ui-icons_222222_256x240.png');
 
 }
 
@@ -50,7 +47,6 @@
 	border:1px solid black;
 	position:relative;
 	top:20px;
-	background-image:url('../images/chart.png');
 	background-repeat:no-repeat;
 }
 .companies-sub-menu {
@@ -109,7 +105,7 @@
     position:relative;
 	border:none;
 }
-.companies-prd, .companies-rels, .companies-off, .companies-fnd,
+.companies-prd, .companies-rel, .companies-off, .companies-fnd,
 .people-relationships, .people-investments, .people-overview {
 	height:auto;
 	max-height:215px;

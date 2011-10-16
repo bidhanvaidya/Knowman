@@ -6,16 +6,55 @@ $(function() {
   $('#actions > *, #accordion-wrapper > h3:first, #accordion-wrapper > div:first').hide();
   
   
-  $('.accordion-sub-menu').live('click', function() {
+  $('.accordion-sub-menu > a').live('click', function(e) {
   
-								var src = $(this).parent().attr('id');
+								var src = $(this).parent().parent().attr('id');
+								var tmp = $(this).parent().parent().parent().attr('id');
+								
+								t = new Array();
+								t = tmp.split('-');
+								
+								s = new Array();
+								s = src.split('-');
+								
+								//console.log(t[1]);
+								//console.log(s[0]);
 								
 								$('#actions').children().hide();
-								$('#actions').children('.'+src+'').show();
-								
+								$('#actions').children(':[class$="'+s[0]+'"]').show();
+								e.preventDefault();
+							
   });
-  
-  
+	$('button[rel="new-staff-level"]').live('click', function(e){
+
+		var company_permalink = "twitter";		
+		var number_of_employees = $('input[name="new_staff_level"]').val();
+
+		//console.log(company);
+
+		new_staff_level = { 
+			
+			staff_level: {	
+			
+					number_of_employees: number_of_employees,
+					company_permalink: company_permalink
+							
+			} 
+					
+		};
+		//console.log(new_staff_level);
+
+		$.post('/staff_levels', new_staff_level, function(data){
+
+
+
+		});
+		e.preventDefault();
+
+	});
+	
+
+		
   $('#choice-tabs, div[id^="company-"]').tabs();
   $('#choice-tabs').removeClass('ui-corner-all');
   
@@ -107,11 +146,6 @@ $('li > span').live('click', function(){
 							//$('#actions').hide();
 							
 							});
-$('#company-1 > div').append('<div class="chart-holder right" /><div class="accordion-sub-menu" />');
-
-$(function(){
-//	
-});
 
 
   

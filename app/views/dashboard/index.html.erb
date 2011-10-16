@@ -9,8 +9,7 @@
 		<a href="#" class="tabs-ppl" title="People">People</a><br />
 		<a href="#" class="tabs-cmp" title="Companies">Companies</a><br />
 		<a href="#" class="tabs-org" title="Organisations">Organisations</a>
-		<input class="button" type="button" rel="people_sub" id="people_sub" value="t" />
-		<input class="button" type="button" rel="test" id="" value="t" />
+		<input class="button" type="button" rel="test" id="" value="S" />
 	</div><!--/#styled-choice-links -->
 </div><!-- /#toolbar -->
 <div id="dash">
@@ -31,10 +30,10 @@
 	</div><!--/#input -->
 	<div id="actions">
 		<span class="staff">
-		<p>Staff Based Context Menu</p>
-		<span>New Staff level</span>
-		<select></select>
-		<input type="text" />
+		<p>Staff Based Context Menu</p><br />
+		<span>New Staff level</span><br />
+		<input name="new_staff_level" type="text" /><br />
+		<button rel="new-staff-level">S</button>
 		</span>
 		<span class="people">
 		<p>Person Based Context Menu</p>
@@ -85,7 +84,14 @@
 						<li><a href="#offices"></a></li>
 						<li><a href="#products"></a></li>
 					</ul>
-					<div id="staff"></div>
+					<div id="staff">
+						<div class="chart-holder right"></div>
+						<div class="accordion-sub-menu">
+							<a href="/showchart" class="button right">C</a>
+							<a href="/edit" class="button right">E</a>
+							<a href="#" rel="new-staff-level" class="button right">N</a>
+						</div>
+					</div>
 					<div id="people"></div>
 					<div id="funding"></div>
 					<div id="offices"></div>
@@ -108,11 +114,30 @@
 							<li><a href="#offices-<%= company.permalink %>"></a></li>
 							<li><a href="#products-<%= company.permalink %>"></a></li>
 						</ul>
-						<div id="staff-<%= company.permalink %>"></div>
-						<div id="people-<%= company.permalink %>"></div>
-						<div id="funding-<%= company.permalink %>"></div>
-						<div id="offices-<%= company.permalink %>"></div>
-						<div id="products-<%= company.permalink %>"></div>
+						<div id="staff-<%= company.permalink %>">
+							<div class="chart-holder right"></div>
+							<div class="accordion-sub-menu">
+								<a href="/showchart" class="button right">C</a>
+								<a href="/edit" class="button right">E</a>
+								<a href="#" rel="new-staff-level" class="button right">N</a>
+							</div>	
+						</div>
+						<div id="people-<%= company.permalink %>">
+							<div class="chart-holder right"></div>
+							<div class="accordion-sub-menu"></div>	
+						</div>
+						<div id="funding-<%= company.permalink %>">
+							<div class="chart-holder right"></div>
+							<div class="accordion-sub-menu"></div>	
+						</div>
+						<div id="offices-<%= company.permalink %>">
+							<div class="chart-holder right"></div>
+							<div class="accordion-sub-menu"></div>	
+						</div>
+						<div id="products-<%= company.permalink %>">
+							<div class="chart-holder right"></div>
+							<div class="accordion-sub-menu"></div>	
+						</div>
 					</div>
 				<% end %>
 			</div><!-- /#accoridion-wrapper -->
@@ -128,7 +153,7 @@
 	<div class="staff-levels">
 		<% @staff_levels.each do |staff_levels| %>
 			<p class="<%= staff_levels.company_permalink %>">
-			<span>Staff Levels</span><%= staff_levels[:number_of_employees] %> -- as of <%= staff_levels[:updated_at] %>
+			<span>Staff Levels:</span>  <%= staff_levels[:number_of_employees] %> -- as of <%= staff_levels[:updated_at] %>
 			</p>
 		<% end %>
 	</div><!-- /.staff-levels -->

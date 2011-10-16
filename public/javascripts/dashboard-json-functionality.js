@@ -12,7 +12,7 @@ $(document).ready(function(){
 	
 	$('#__sub').live('click', function() {
 
-	$('#accordion-wrapper:first, #company-1').show();
+	$('#accordion-wrapper:first, #company-1, #accordion-wrapper > h3:first').show();
 
 	var s = $('#search').val().toLowerCase();
 	var t = new Array();
@@ -63,6 +63,7 @@ $(document).ready(function(){
 							company_permalink: data.permalink
 						
 						}
+						
 					 };
 					 //console.log(staff_levels);
 
@@ -121,7 +122,7 @@ $(document).ready(function(){
 			   $('<ul/>', { 'class': 'companies-emp',     html: emp.join('')	  }).appendTo('#staff')		.prepend('<h3>Staff Levels</h3>');
 			   $('<ul/>', { 'class': 'companies-prd',	  html: prd.join('')	  }).appendTo('#products')	.prepend('<h3>Products</h3>');
 			   $('<ul/>', { 'class': 'companies-rel',     html: rel.join('')	  }).appendTo('#people')	.prepend('<h3>Important People</h3>');
-			   $('<ul/>', { 'class': 'companies-off',	  html: off.join('')	  }).appendTo('#location')	.prepend('<h3>Office Locations</h3>');
+			   $('<ul/>', { 'class': 'companies-off',	  html: off.join('')	  }).appendTo('#offices')	.prepend('<h3>Office Locations</h3>');
 			   $('<ul/>', { 'class': 'companies-fnd',	  html: fnd.join('')	  }).appendTo('#funding')	.prepend('<h3>Funding Information</h3>');
 			   
 			
@@ -238,7 +239,7 @@ $(document).ready(function(){
 					});
 					$.getScript('/dashboard.json', function(data){
 
-						console.log(data);
+						//console.log(data);
 
 					});
 					
@@ -321,4 +322,5 @@ $(document).ready(function(){
 	     });
 	$('div[id^="company-"]').show();
 	});
+	
 });
