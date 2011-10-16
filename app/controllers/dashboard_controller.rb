@@ -18,8 +18,8 @@ class DashboardController < ApplicationController
   		  
   		  render json: {
   		
-  		    :person => @people.last,
-  		    :employment_statuses => @employment_statuses.last
+  		    :person => @people,
+  		    :employment_statuses => @employment_statuses
   		  
   		  }  
   		  
