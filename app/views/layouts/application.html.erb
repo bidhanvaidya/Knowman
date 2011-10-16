@@ -11,17 +11,17 @@
 		<div id="main"> 
 		<div id="header"> 
 			<div id="mainmenu">
-				<div id="mainmenu-button-holder">
-					<a href="/folders" title="research">Research</a>
-					<a href="/dashboard" title="information">Information</a>
-					<a href="/companies" title="charts">Charts</a>
-				</div>
-			</div><!-- /#mainmenu -->
-		<% if user_signed_in? %>
-		<span style="position:relative; top:-15px;">Welcome<%=link_to current_user.firstName  +  current_user.lastName, edit_user_registration_path%></span> 
-		<%end %>
+					<div id="menus">
+						<% if user_signed_in? %>
+						<span style="position:relative; top:-15px;">Welcome <%=link_to current_user.firstName  +  current_user.lastName, edit_user_registration_path%></span> 
+						<%end %>
+						<a href="/folders" class="menu research" title="research"></a>
+						<a href="/dashboard" class="menu information" title="information"></a>
+						<a href="/companies" class="menu company" title="charts"></a>
+					</div>
+				</div><!-- /#mainmenu -->
 		</div> 
-		
+		<br></br>
 		<div id="content">   
 		<%= yield %>  
 		</div><!-- close div content -->  
