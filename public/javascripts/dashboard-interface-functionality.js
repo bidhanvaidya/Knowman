@@ -9,7 +9,7 @@ $(function() {
   $('.accordion-sub-menu > a').live('click', function(e) {
   
 								var src = $(this).parent().parent().attr('id');
-								var tmp = $(this).parent().parent().parent().attr('id');
+								tmp = $(this).parent().parent().parent().attr('id');
 								
 								t = new Array();
 								t = tmp.split('-');
@@ -27,10 +27,10 @@ $(function() {
   });
 	$('button[rel="new-staff-level"]').live('click', function(e){
 
-		var company_permalink = "twitter";		
+		var company_permalink = s[1];		
 		var number_of_employees = $('input[name="new_staff_level"]').val();
 
-		//console.log(company);
+		console.log(company_permalink);
 
 		new_staff_level = { 
 			
@@ -42,7 +42,7 @@ $(function() {
 			} 
 					
 		};
-		//console.log(new_staff_level);
+		console.log(new_staff_level);
 
 		$.post('/staff_levels', new_staff_level, function(data){
 
