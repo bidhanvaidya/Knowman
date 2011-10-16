@@ -1,4 +1,6 @@
 $(function(){
+	
+$(function() {$( ".datepicker" ).datepicker({dateFormat: "yy-mm-dd"});});
 
 //interface functionality
 $(function() {
@@ -29,21 +31,21 @@ $(function() {
 
 		var company_permalink = s[1];		
 		var number_of_employees = $('input[name="new_staff_level"]').val();
-
-		console.log(company_permalink);
+		var date = $('input[name="staff-date"]').val();
 
 		new_staff_level = { 
 			
 			staff_level: {	
 			
 					number_of_employees: number_of_employees,
-					company_permalink: company_permalink
+					company_permalink: company_permalink,
+					date_of_record: date
 							
 			} 
 					
 		};
 		console.log(new_staff_level);
-
+		
 		$.post('/staff_levels', new_staff_level, function(data){
 
 
@@ -146,7 +148,5 @@ $('li > span').live('click', function(){
 							//$('#actions').hide();
 							
 							});
-
-
   
 });

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111015112216) do
+ActiveRecord::Schema.define(:version => 20111016221522) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(:version => 20111015112216) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "company_permalink"
+    t.datetime "date_of_record"
   end
 
   add_index "staff_levels", ["number_of_employees", "created_at"], :name => "index_staff_levels_on_number_of_employees_and_created_at", :unique => true
