@@ -11,11 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(:version => 20111015010439) do
-=======
-ActiveRecord::Schema.define(:version => 20111015011228) do
->>>>>>> 492a47025de11746ef48ca0d7eb1c3f21dd19853
+ActiveRecord::Schema.define(:version => 20111015112216) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -58,12 +54,10 @@ ActiveRecord::Schema.define(:version => 20111015011228) do
   end
 
   create_table "employment_statuses", :force => true do |t|
-    t.string   "is_past"
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "company_permalink"
-    t.string   "person_permalink"
+    t.boolean "is_past"
+    t.string  "title"
+    t.string  "company_permalink"
+    t.string  "person_permalink"
   end
 
   create_table "folders", :force => true do |t|

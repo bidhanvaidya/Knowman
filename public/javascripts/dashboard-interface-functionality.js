@@ -16,7 +16,7 @@ $(function() {
   });
   
   
-  $('#choice-tabs, #company-1').tabs();
+  $('#choice-tabs, div[id^="company-"]').tabs();
   $('#choice-tabs').removeClass('ui-corner-all');
   
   $('#toolbar > div > a > span').click(function(e){

@@ -49,7 +49,7 @@ $(document).ready(function(){
 										} 
 								
 								};
-								console.log(company);
+								//console.log(company);
 					 
 				   }
 				   if ( key == "number_of_employees" ) {
@@ -64,7 +64,7 @@ $(document).ready(function(){
 						
 						}
 					 };
-					 console.log(staff_levels);
+					 //console.log(staff_levels);
 
 				   }
 				   
@@ -162,7 +162,7 @@ $(document).ready(function(){
 							} 
 							
 						 };
-						console.log(office);
+						//console.log(office);
 					
 						$.post('/offices', office, function(data) {
 								
@@ -217,7 +217,7 @@ $(document).ready(function(){
 							}
 						
 						};
-						console.log(person);
+						//console.log(person);
 					
 						$.post('/people', person, function(data) {
 								
@@ -233,8 +233,13 @@ $(document).ready(function(){
 					}
 					$.get('/companies', function(data) {
 						
-						$('#accordion-wrapper').append('<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><a>'+data.name+'</a></h3><div id="company-1" class="ui-tabs ui-widget ui-widget-content ui-corner-all ui-accordion-content ui-helper-reset ui-corner-bottom"><p>Here we have some new data on '+data.name+'</div></div>');
+					$('#accordion-wrapper').append('<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><a>'+data.name+'</a></h3><div id="company-1" class="ui-tabs ui-widget ui-widget-content ui-corner-all ui-accordion-content ui-helper-reset ui-corner-bottom"><p>Here we have some new data on '+data.name+'</div></div>');
 					
+					});
+					$.getScript('/dashboard.json', function(data){
+
+						console.log(data);
+
 					});
 					
 				});
@@ -314,6 +319,6 @@ $(document).ready(function(){
 			$('<ul />', { 'class': 'people-investments', html: investments.join('')	 }).appendTo('#people').prepend('<h3>Investments</h3>');
 			$('<ul />', { 'class': 'people-relationships', html: relationships.join('') }).appendTo('#funding').prepend('<h3>Relationships</h3>');
 	     });
-	$('#company-1').show();
+	$('div[id^="company-"]').show();
 	});
 });
