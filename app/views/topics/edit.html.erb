@@ -44,23 +44,41 @@
 				<% end %>
 			</table>
 		</td>
-		<td  align = "center">
+		<td  align = "center" valign = "top">
 						<div id = "edit" >
 							<%= render 'form_edit' %>
 						</div>
 				</td>
 				<td width = 20% valign = "top">
 					<div id= "effect">
-					<% x= @topic%>
+					<% x= Topic.find(@topic.get_latest(@topic.id))%>
 					<table>
-						<% until x.topic_id.nil? do %>
+						<% if x.topic_id.nil? %>
 						<tr>
-								<td><%= link_to x.created_at, edit_folder_topic_path(x.folder, x) %> by<br>
+								<td bgcolor = "silver"><%= link_to x.created_at, edit_folder_topic_path(x.folder, x) %> by<br>
 										<%= x.user.firstName + " " + x.user.lastName %>
 								</td>
 							</tr>
-						<%x=x.topic%>
+						<% end %>
+						<% until x.topic_id.nil? do %>
+							<% if x.id == @topic.id %>
+									<tr bgcolor = "silver">
+												<td ><%= link_to x.created_at, edit_folder_topic_path(x.folder, x) %> by<br>
+													<%= x.user.firstName + " " + x.user.lastName %>
+											</td>
+										</tr>
+									<% x=x.topic %>
+									<% else %>
+									<tr>
+												<td ><%= link_to x.created_at, edit_folder_topic_path(x.folder, x) %> by<br>
+													<%= x.user.firstName + " " + x.user.lastName %>
+											</td>
+									</tr>
+									<%x=x.topic%>
+							<% end %>
 						<% end%>
+					
+						
 					</table>
 					<table>
 						<tr> 

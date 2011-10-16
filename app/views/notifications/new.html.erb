@@ -1,6 +1,6 @@
 <script>
 $(function(){
-$("#notification_next_notification").datepicker();
+$("#notification_next_notification").datepicker({ dateFormat: 'dd-mm-yy' });
   });</script>
 <%= form_for([@folder, @topic, @notification],  :remote => true ) do |f| %>
 

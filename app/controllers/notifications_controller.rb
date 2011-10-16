@@ -3,7 +3,7 @@ class NotificationsController < ApplicationController
 
 		@folder = Folder.find_by_id(params[:folder_id])
 		@topic = @folder.topics.find(params[:topic_id])
-		@notification = @topic.notifications.new
+		@original_topic = @topic.get_original_topic(@topic.id)
 		respond_to do |format|
 			format.js
 			format.html

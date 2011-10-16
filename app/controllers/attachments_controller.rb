@@ -39,7 +39,7 @@ class AttachmentsController < ApplicationController
 	end
 	def show
 		@topic= Topic.find(params[:topic_id])
-	@attachment= Attach.attachments.find(params[:id])
+	@attachment= @topic.attachments.find(params[:id])
 	 send_file @attachment.document.path, :filename => @attachment.document_file_name, :content_type => @attachment.document_content_type
 	end
 

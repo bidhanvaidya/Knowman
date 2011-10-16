@@ -1,6 +1,7 @@
+
 <table >
 <tr>
-<td align= "right">
+<td align= "right", valign = "top">
 <%= javascript_include_tag :ckeditor %>
 <%= form_for([@folder, @folder.topics.find(@topic)], :remote => true) do |f| %>
 		<% if @topic.errors.any? %>
@@ -29,13 +30,12 @@
 <td valign = "top" align = "right">
 <table>
 <tr>
-<div id="progress">
 <b><%= f.label :progress %></b><br>
 <%= f.text_field :progress, :size => 5%></div>
-</div>
+
 <tr>
 <tr><br>
-<%= link_to 'Add Attachment', new_folder_topic_attachment_path(@folder,@topic,@attachment) %>
+
 </tr>
 </table>
 </td>

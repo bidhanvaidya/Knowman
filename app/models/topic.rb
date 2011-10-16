@@ -27,10 +27,21 @@ module Topics
 			x= Topic.find_by_id(id)
 			while x.version == "old" do
 				x= Topic.find_by_topic_id(x.id)	
-			
 			end		
-	x.id
-end
+			x.id
+		end
+		def get_original_topic(id)
+		x= Topic.find_by_id(id)
+					if x.topic_id.nil?				# checking if the passed topic is the first!!
+					x
+				else		# if not find the older version
+				
+			 		until x.topic.topic_id.nil? do # until the oldest version is found
+						x=x.topic 		
+					end
+				x # passes created date
+				end
+		end
   end
 class Topic < ActiveRecord::Base
 belongs_to :folder
@@ -41,6 +52,7 @@ belongs_to :folder
 has_many :attachments, :through => :attaches 
 belongs_to :topic
 	has_many :notifications
+	
 end
 
 
