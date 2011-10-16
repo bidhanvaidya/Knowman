@@ -44,13 +44,7 @@ $(function() {
 			} 
 					
 		};
-		console.log(new_staff_level);
-		
-		$.post('/staff_levels', new_staff_level, function(data){
-
-
-
-		});
+		$.post('/staff_levels', new_staff_level, function(data){});
 		e.preventDefault();
 
 	});
