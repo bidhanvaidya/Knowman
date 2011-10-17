@@ -3,22 +3,48 @@
 		$( "#draggable" ).draggable();
 	});
 	</script>
-<h1>Research Areas</h1>
+	
+<h1 align ="center"">Research</h1>
+
+<table border><td>
 <table width= "40">
+<tr><div id = "draggable">
+<%= render :file => 'researches/new.html.erb' %>
+<br />
+</div></tr>
   <tr>
-    <th>Title</th>
+    <th>Title <%= will_paginate @researches %></th>
    
   </tr>
+  
+								
 
 <% @researches.each do |research| %>
   <tr>
     <td><%= link_to research.title, research_folders_path(research) %></td>
   </tr>
 <% end %>
+</table></td><td valign ="top">
+<table >
+<th>
+Documents that needs more work on it 
+</th><% @topics.each do |topic|%>
+<tr ><td><%= topic.title %> </td>
+<td><%= topic.progress %></td>
+</tr>
+<%end%>
+</table>
+</td>
+<td valign = "top" align = "right"><table border align ="right"><tr >
+Documnets that need review </br></tr>
+<% @notifications.each do |notify| %>
+<tr >
+<td align = "right" ><%= notify.topic.title %></td>
+<td width = "100"><%= notify.next_notification %></td>
+</tr>
+<%end %>
+</table>
+</td>
 </table>
 <br>
-<div id = "draggable">
-<%= render :file => 'researches/new.html.erb' %>
-<br />
-</div>
-<%= link_to 'New Research', new_research_path %>
+

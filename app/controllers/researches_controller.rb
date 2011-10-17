@@ -2,8 +2,10 @@ class ResearchesController < ApplicationController
   # GET /researches
   # GET /researches.json
   def index
-    @researches = Research.all
+    @researches = Research.paginate(:page => params[:page], :per_page => 10)
 		@research = Research.new
+		@notifications = Notification.paginate(:page => params[:page], :per_page => 10)
+		@topics= Topic.paginate(:page => params[:page], :per_page => 10, :order => :progress).where(:version => 'latest')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @researches }
