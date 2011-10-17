@@ -1,71 +1,31 @@
 class FundingRoundsController < ApplicationController
-    # GET /companiew/1/funding_rounds
     def index
-      @company = Company.find(params[:company_id])
 
-       # Access all items for that order
-       @funding_rounds = @company.funding_rounds
-     end
+  	@funding_rounds = FundingRound.all
 
-     # GET /companiew/1/funding_rounds/2
-     def show
-       @company = Company.find(params[:company_id])
+  	respond_to do |format|
+  	    #format.html # index.html.erb
+  	    format.json { render json: @employment_status }
+  	  end
+    end
 
-       @funding_round = @company.funding_rounds.find(params[:id])
-     end
+    # POST /funding_round
+    # POST /funding_round.json
+    def create
 
-     # GET /companiew/1/funding_rounds/new
-     def new
-       @company = Company.find(params[:company_id])
+  		@funding_round = FundingRound.find_or_create_by_company_permalink_and_round_code(params[:funding_round])
 
+  		 respond_to do |format|
 
-       # Associate an fund object with company 1
-       @funding_round = @company.funding_rounds.build
-     end
+  		 if @funding_round.save
 
-     # POST /companies/1/funding_rounds
-     def create
-       @company = Company.find(params[:company_id])
+  		   format.json { render json: @funding_round }
 
-       @funding_round = @company.funding_rounds.build(params[:funding_round])
-       if @funding_round.save
-         # Save the fund successfully
-         redirect_to company_funding_round_url(@company, @funding_round)
-       else
-         render :action => "new"
-       end
-     end
+  		 else
+  		   format.html { render action: "new" }
+  		   format.json { render json: @funding_round.errors, status: :unprocessable_entity }
+  		 end
 
-     # GET /companiew/1/funding_rounds/2/edit
-     def edit
-       @company = Company.find(params[:company_id])
-
-       @funding_round = @company.funding_rounds.find(params[:id])
-     end
-
-     # PUT /companies/1/funding_rounds/2
-     def update
-       @company = Company.find(params[:company_id])
-       @funding_round = FundingRound.find(params[:id])
-       if @funding_round.update_attributes(params[:funding_round])
-         # Save the item successfully
-         redirect_to company_fund_url(@company, @funding_round)
-       else
-         render :action => "edit"
-       end
-     end
-
-     # DELETE /companies/1/funding_rounds/2
-     def destroy
-       @company = Company.find(params[:company_id])
-       @funding_round = FundingRound.find(params[:id])
-       @funding_round.destroy
-
-       respond_to do |format|
-         format.html { redirect_to company_funding_rounds_path(@company) }
-         format.xml  { head :ok }
-       end
-     end
-
-
-  end
+  	   end
+  	end
+end

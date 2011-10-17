@@ -5,9 +5,10 @@ Knowman::Application.routes.draw do
 	resources :dashboard
 	
 	# Companies
-	resources :companies do
-		resources :funding_rounds
-	end
+	resources :companies
+	
+	# Funding Rounds
+	resources :funding_rounds
 	
 	# Staff Levels
 	resources :staff_levels

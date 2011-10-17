@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111016221522) do
+ActiveRecord::Schema.define(:version => 20111017000526) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -69,14 +69,18 @@ ActiveRecord::Schema.define(:version => 20111016221522) do
   end
 
   create_table "funding_rounds", :force => true do |t|
-    t.datetime "date_of_record"
-    t.integer  "money"
-    t.integer  "company_id"
+    t.integer  "funded_year"
+    t.integer  "funded_month"
+    t.integer  "raised_amount"
+    t.string   "raised_currency_code"
+    t.string   "round_code"
+    t.string   "source_description"
+    t.string   "source_url"
+    t.string   "company_permalink"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "funded_day"
   end
-
-  add_index "funding_rounds", ["company_id"], :name => "index_funds_on_company_id"
 
   create_table "notifications", :force => true do |t|
     t.datetime "next_notification"

@@ -31,8 +31,10 @@ $(document).ready(function(){
 		   offices = { office: data.offices };
 		   products = { product: data.products };
 		   people_employment_statuses = { employment_status: data.relationships };
-		   
-		   funding_rounds = data.funding_rounds;
+		   funding_rounds = { funding_round: data.funding_rounds };
+		
+			console.log(funding_rounds);
+			people
 		   
 			   $.each(data, function(key, value) {
 				   
@@ -130,7 +132,7 @@ $(document).ready(function(){
 					
 					var o = data.offices.length;
 					var p = data.products.length;
-					var f = funding_rounds.length;
+					var f = data.funding_rounds.length;
 					var s = people_employment_statuses.employment_status.length;
 					
 					$.post('/companies', company, function(data) {
@@ -232,16 +234,37 @@ $(document).ready(function(){
 						});
 					
 					}
-					$.get('/companies', function(data) {
+					for ( i=0; i<f; i++ ) {
+						
+						funding_round = {
+							
+							funding_round: {
+								
+								funded_year: funding_rounds.funding_round[i].funded_year,
+								funded_month: funding_rounds.funding_round[i].funded_month,
+								funded_day: funding_rounds.funding_round[i].funded_day,
+								raised_amount: funding_rounds.funding_round[i].raised_amount,
+								raised_currency_code: funding_rounds.funding_round[i].raised_currency_code,
+								round_code: funding_rounds.funding_round[i].round_code,
+								source_description: funding_rounds.funding_round[i].source_description,
+								source_url: funding_rounds.funding_round[i].source_url,
+								company_permalink: company.company.permalink
+								
+							}
+							
+						};
+						$.post('/funding_rounds', funding_round, function(data) {
+								
+							console.log(data);
+							
+						});
+						
+					}
+					/*$.get('/companies', function(data) {
 						
 					$('#accordion-wrapper').append('<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><a>'+data.name+'</a></h3><div id="company-1" class="ui-tabs ui-widget ui-widget-content ui-corner-all ui-accordion-content ui-helper-reset ui-corner-bottom"><p>Here we have some new data on '+data.name+'</div></div>');
 					
-					});
-					$.getScript('/dashboard.json', function(data){
-
-						//console.log(data);
-
-					});
+					});*/
 					
 				});
 
