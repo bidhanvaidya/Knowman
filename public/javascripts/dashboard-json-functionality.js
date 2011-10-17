@@ -34,7 +34,6 @@ $(document).ready(function(){
 		   funding_rounds = { funding_round: data.funding_rounds };
 		
 			console.log(funding_rounds);
-			people
 		   
 			   $.each(data, function(key, value) {
 				   
