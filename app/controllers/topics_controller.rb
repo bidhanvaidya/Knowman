@@ -1,13 +1,12 @@
 class TopicsController < ApplicationController
 
 	before_filter :authenticate_user!
-	before_filter :load_folder
+	before_filter :load_research_folder
 
 	# GET /topics
 	# GET /topics.json
 	def index
 			@topics = @folder.topics.paginate(:page => params[:page], :per_page => 10).find_all_by_version('latest')
-			@notifications= @folder.notifications
 			@user = current_user
 		
 			respond_to do |format|
@@ -42,7 +41,7 @@ class TopicsController < ApplicationController
 		respond_to do |format|
 			if @topic.save
 				Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Created", :progress_status => @topic.progress)
-				format.html { redirect_to edit_folder_topic_path(@topic.folder,@topic), notice: 'Topic was successfully created.' }
+				format.html { redirect_to edit_research_folder_topic_path(@topic.folder.research, @topic.folder,@topic), notice: 'Topic was successfully created.' }
 				format.json { render json: @topic, status: :created, location: @topic }
 			format.js
 			
@@ -55,53 +54,30 @@ class TopicsController < ApplicationController
 	end
 
 	def update
-					@topic = @folder.topics.find(params[:id])
-					if @topic.version="old"
-						@newtopic=@folder.topics.create(params[:topic])
-						@newtopic.user=current_user
-						@newtopic.version="latest"
-					@attachments=@topic.attachments.all
-								@attachments.each do |attachment|
-								Attach.create(:topic_id => @newtopic.id, :attachment_id => attachment.id)
-								end
-						@newtopic.topic_id=@topic.get_latest(@topic.id)
-						@new = Topic.find(@topic.get_latest(@topic.id)) # get the latest version
-						@new.update_attributes(:version => "old")  # CHANGE THE VERSION  TO OLD IN THE LATEST ONE
-						respond_to do |format|
-							if @newtopic.update_attributes(params[:topic])
-									Update.create(:topic_id => @topic.get_latest(@topic.id), :user_id => current_user.id, :type_of_update => "Updated", :progress_status => @new.progress)        
-									format.html { redirect_to edit_folder_topic_path(@newtopic.folder, @newtopic), notice: 'Topic was successfully updated.' }
-									format.json { head :ok }
-							else
-									format.html { render action: "edit" }
-									format.json { render json: @topic.errors, status: :unprocessable_entity }
-							end
-						end
-					
-					else
-						@newtopic=@folder.topics.create(params[:topic])
-						@newtopic.topic_id=@topic.id
-						@newtopic.user=current_user
-						@newtopic.version="latest"
-						@topic.version="old"
-						@attachments=@topic.attachments.all
-								@attachments.each do |attachment|
-								Attach.create(:topic_id => @newtopic.id, :attachment_id => attachment.id)
-								end
-						respond_to do |format|
-							if @newtopic.update_attributes(params[:topic])
-								
-						
-									@topic.save
-									Update.create(:topic_id => @topic.id, :user_id => current_user.id, :type_of_update => "Updated", :progress_status => @topic.progress)        
-									format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully updated.' }
-									format.json { head :ok }
-							else
-									format.html { render action: "edit" }
-									format.json { render json: @topic.errors, status: :unprocessable_entity }
-							end
-						end
-					end
+		@topic = @folder.topics.find(params[:id])
+			@newtopic=@folder.topics.create(params[:topic])
+			@newtopic.user=current_user
+			@newtopic.version="latest"
+			@attachments=@topic.attachments.all
+				@attachments.each do |attachment|
+					Attach.create(:topic_id => @newtopic.id, :attachment_id => attachment.id)
+				end
+			@newtopic.topic_id=@topic.get_latest(@topic.id)
+			@new = Topic.find(@topic.get_latest(@topic.id)) # get the latest version
+			@new.update_attributes(:version => "old")  # CHANGE THE VERSION  TO OLD IN THE LATEST ONE
+			respond_to do |format|
+				if @newtopic.update_attributes(params[:topic])
+					Update.create(:topic_id => @topic.get_latest(@topic.id), :user_id => current_user.id,
+					:type_of_update => "Updated", :progress_status => @new.progress)        
+					format.html { redirect_to edit_research_folder_topic_path(@newtopic.folder.research, @newtopic.folder, @newtopic), 
+					notice: 'Topic was successfully updated.' }
+					format.json { head :ok }
+				else
+					format.html { render action: "edit" }
+					format.json { render json: @topic.errors, status: :unprocessable_entity }
+				end
+			end
+
 	
 	end
 
@@ -110,12 +86,11 @@ class TopicsController < ApplicationController
 		@topic = Topic.find(params[:id])
 		if @topic.user_id == current_user.id #only owners are allowed to delete the document
 			until @topic.topic_id.nil? do
-			@latest_topic=@topic
-			@topic=@topic.topic
-			@latest_topic.destroy
+				@latest_topic=@topic
+				@topic=@topic.topic
+				@latest_topic.destroy
 			end
 			@topic.destroy
-			
 			respond_to do |format|
 				format.html { redirect_to :back }
 				format.json { head :ok }
@@ -137,8 +112,10 @@ class TopicsController < ApplicationController
 	end
 
 	private
-		def load_folder
-			@folder = Folder.find_by_id(params[:folder_id])
+		def load_research_folder
+		
+			@research = Research.find_by_id(params[:research_id])
+			@folder = @research.folders.find_by_id(params[:folder_id])
 		end
 
 end

@@ -1,0 +1,24 @@
+<script>
+	$(function() {
+		$( "#draggable" ).draggable();
+	});
+	</script>
+<h1>Research Areas</h1>
+<table width= "40">
+  <tr>
+    <th>Title</th>
+   
+  </tr>
+
+<% @researches.each do |research| %>
+  <tr>
+    <td><%= link_to research.title, research_folders_path(research) %></td>
+  </tr>
+<% end %>
+</table>
+<br>
+<div id = "draggable">
+<%= render :file => 'researches/new.html.erb' %>
+<br />
+</div>
+<%= link_to 'New Research', new_research_path %>

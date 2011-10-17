@@ -1,6 +1,6 @@
 <%= javascript_include_tag :ckeditor %>
 <table>
-<%= form_for([@folder, @folder.topics.new], :remote => true ) do |f| %>
+<%= form_for([@research, @folder, @folder.topics.new], :remote => true ) do |f| %>
   <% if @topic.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@topic.errors.count, "error") %> prohibited this topic from being saved:</h2>

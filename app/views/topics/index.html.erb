@@ -48,7 +48,7 @@
 Total progress
 <div id="total"></div>
 
-	<h2> <%= @folder.title %></h2><%= link_to 'Add new', new_folder_topic_path, :remote =>true %>	
+	<h2> <%= @folder.title %></h2><%= link_to 'Add new', new_research_folder_topic_path, :remote =>true %>	
 	<% if @folder.topics.nil? %>
 		nothn to diplay
 	<% else%>
@@ -71,7 +71,7 @@ Total progress
 									
 								
 										<tr>
-											<td><%= link_to topic.title, edit_folder_topic_path(topic.folder, topic) %></td>
+											<td><%= link_to topic.title, edit_research_folder_topic_path(topic.folder.research,topic.folder, topic) %></td>
 											<td>
 													
 														<% @created_by=topic.get_owner(topic.id) %>
@@ -104,7 +104,7 @@ Total progress
 													}
 												});</script>
 											<td><div id="<%=topic.created_at.hash%>"></div></td>
-											<td><%= button_to 'Delete',folder_topic_path(topic.folder,topic), :confirm => 'Are you sure?', :method => :delete %></td>
+											<td><%= button_to 'Delete',research_folder_topic_path(topic.folder.research,topic.folder,topic), :confirm => 'Are you sure?', :method => :delete %></td>
 										</tr>
 								<% end %>
 						</table>
@@ -124,7 +124,7 @@ Total progress
 
 	<%end%>
 	
-	<%= link_to 'Back', folders_path %>
+	<%= link_to 'Back', research_folders_path %>
 
 
 

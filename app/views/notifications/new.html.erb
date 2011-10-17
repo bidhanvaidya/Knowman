@@ -2,7 +2,7 @@
 $(function(){
 $("#notification_next_notification").datepicker({ dateFormat: 'dd-mm-yy' });
   });</script>
-<%= form_for([@folder, @topic, @notification],  :remote => true ) do |f| %>
+<%= form_for([@research, @folder, @topic, @notification],  :remote => true ) do |f| %>
 
 	<div class="date", id ="date" >
 	<%= f.label :set_next_notification %><br />

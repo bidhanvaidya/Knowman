@@ -1,5 +1,5 @@
 
- <%= form_for([@folder, @topic, @attachment], :html => { :multipart => true }, :remote => true) do |f| %>
+ <%= form_for([@research, @folder, @topic, @attachment], :html => { :multipart => true }, :remote => true) do |f| %>
   <% if @attachment.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@attachment.errors.count, "error") %> prohibited this topic from being saved:</h2>
@@ -30,4 +30,4 @@
 
 <% end %>
 
-<%= link_to 'See All', folder_topic_attachments_path(@folder,@topic) %>
+<%= link_to 'See All', research_folder_topic_attachments_path(@research, @folder,@topic) %>

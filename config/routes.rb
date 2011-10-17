@@ -1,6 +1,10 @@
 Knowman::Application.routes.draw do
 	
 	
+
+
+  
+
 	resources :images
 	resources :dashboard
 	
@@ -28,15 +32,15 @@ Knowman::Application.routes.draw do
 	devise_for :users do
 		get "sign_out", :to => "devise/sessions#destroy"
 	end
-  
-	resources :folders do
-			
+  resources :researches do 
+		resources :folders do
 			resources :topics do 
-				get "all"
+					get "all"
 			resources :updates
-			resources :notifications
-			resources :attachments
+				resources :notifications
+				resources :attachments
 			end
+		end
 	end
 	match '/userupdate', :to => 'updates#userupdate'
 	root :to => 'dashboard#index'

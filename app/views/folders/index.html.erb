@@ -10,7 +10,7 @@
 
 <% @folders.each do |folder| %>
   <tr>
-    <td><%= link_to folder.title, folder_topics_path(folder) %></td>
+    <td><%= link_to folder.title, research_folder_topics_path(@research, folder) %></td>
 
     			</td><script>
 												<% if folder.topics.empty?%>
@@ -47,7 +47,7 @@
 
 <br />
 
-<h3><%= link_to 'New document', new_folder_path %></h3>
+<h3><%= link_to 'New document', new_research_folder_path %></h3>
 <br><p>
 <%= link_to 'logout', sign_out_path %> <span style="padding-left:20px"><%= link_to 'user history', userupdate_path %><span>
 <br>

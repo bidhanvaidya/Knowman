@@ -1,7 +1,8 @@
 class FoldersController < ApplicationController
 	before_filter :authenticate_user!
+	before_filter :load_research
 	def index
-		@folders = Folder.all
+		@folders = @research.folders
 
 		respond_to do |format|
 			format.html # index.html.erb
@@ -10,7 +11,7 @@ class FoldersController < ApplicationController
 	end
 
 	def show
-		@folder = Folder.find (params[:id])
+		@folder = @research.folders.find (params[:id])
 
 		respond_to do |format|
 			format.html # show.html.erb
@@ -19,7 +20,7 @@ class FoldersController < ApplicationController
 
 
 	def new
-		@folder = Folder.new
+		@folder = @research.folders.new
 
 		respond_to do |format|
 			format.html # new.html.erb
@@ -28,11 +29,11 @@ class FoldersController < ApplicationController
 	end
 
 	def create
-		@folder = Folder.new(params[:folder])
+		@folder = @research.folders.new(params[:folder])
 
 		respond_to do |format|
 			if @folder.save
-				format.html { redirect_to folder_topics_path(@folder), notice: 'Topic was successfully created.' }
+				format.html { redirect_to research_folder_topics_path(@research, @folder), notice: 'Topic was successfully created.' }
 				format.json { render json: @folder, status: :created, location: @folder }
 			else
 				format.html { render action: "new" }
@@ -41,7 +42,10 @@ class FoldersController < ApplicationController
 		end
 	end
 
-
+ private
+		def load_research
+			@research = Research.find_by_id(params[:research_id])
+		end
 
 end
 

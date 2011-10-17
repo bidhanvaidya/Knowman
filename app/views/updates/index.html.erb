@@ -1,4 +1,4 @@
-<table><tr><td align ="right"><b>Updates for <%= link_to @topic.title, edit_folder_topic_path(@topic.folder, @topic)  %> </td><td align = "right">
+<table><tr><td align ="right"><b>Updates for <%= link_to @topic.title, edit_research_folder_topic_path(@topic.folder.research, @topic.folder, @topic)  %> </td><td align = "right">
 Created By: <b><%= @created_by.firstName + " " +@created_by.lastName %></b> On <b><%=@topic.get_created_at(@topic.id) %></td></tr></table>
 
 <table ><br>
@@ -35,7 +35,7 @@ Created By: <b><%= @created_by.firstName + " " +@created_by.lastName %></b> On <
 															$("#<%=x.created_at.hash%> > div").css({ 'background': 'lightgreen' });
 													}
 												});</script>
-<td><%= link_to 'review', edit_folder_topic_path(x.folder, x)%></td>
+<td><%= link_to 'review', edit_research_folder_topic_path(x.folder.research, x.folder, x)%></td>
   </tr>
 <% until x.topic.topic_id.nil? do %>
 <%x=x.topic%>
@@ -63,7 +63,7 @@ Created By: <b><%= @created_by.firstName + " " +@created_by.lastName %></b> On <
 															$("#<%=x.created_at.hash%> > div").css({ 'background': 'lightgreen' });
 													}
 												});</script>
-<td><%= link_to 'review', edit_folder_topic_path(x.folder, x)%></td>
+<td><%= link_to 'review', edit_research_folder_topic_path(x.folder.research,x.folder, x)%></td>
   </tr>
 
 <% end %>
@@ -74,4 +74,4 @@ Created By: <b><%= @created_by.firstName + " " +@created_by.lastName %></b> On <
 
 <br />
 
-<%= link_to 'Back', edit_folder_topic_path(@topic.folder, @topic) %>	
+<%= link_to 'Back', edit_research_folder_topic_path(@topic.folder.research, @topic.folder, @topic) %>	

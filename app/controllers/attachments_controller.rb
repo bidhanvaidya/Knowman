@@ -1,6 +1,7 @@
 class AttachmentsController < ApplicationController
+  before_filter :load_research_folder
   def index
-  	@folder = Folder.find_by_id(params[:folder_id])
+  	
   	@topic= @folder.topics.find_by_id(params[:topic_id])
 		@attachments= @topic.attachments.all
     
@@ -11,7 +12,7 @@ class AttachmentsController < ApplicationController
     end
   end
 	def new
-			@folder = Folder.find_by_id(params[:folder_id])
+			
 			@topic= @folder.topics.find(params[:topic_id])
 		@attachment = @topic.attachments.new
 
@@ -23,13 +24,13 @@ class AttachmentsController < ApplicationController
 
 	def create
 			
-			@folder = Folder.find_by_id(params[:folder_id])
+			
 			@topic= @folder.topics.find(params[:topic_id])
 		@attachment = Attachment.new( params[:attachment] )
 		   respond_to do |format|
       if @attachment.save	
       	@attachment.attaches.create(:topic_id => @topic.id)
-        format.html { redirect_to edit_folder_topic_path(@topic.folder,@topic), notice: 'attachment was successfully created.' }
+        format.html { redirect_to edit_research_folder_topic_path(@topic.folder.research, @topic.folder, @topic), notice: 'attachment was successfully created.' }
         format.js 
       else
         format.html { render action: "new" }
@@ -53,10 +54,15 @@ class AttachmentsController < ApplicationController
     @attachment.destroy
 
     respond_to do |format|
-      format.html { redirect_to edit_folder_topic_path(@topic.folder, @topic) }
+      format.html { redirect_to edit_research_folder_topic_path(@topic.folder.research, @topic.folder, @topic) }
       format.json { head :ok }
     end
   end
-
+private
+		def load_research_folder
+		
+			@research = Research.find_by_id(params[:research_id])
+			@folder = @research.folders.find_by_id(params[:folder_id])
+		end
 	
 end

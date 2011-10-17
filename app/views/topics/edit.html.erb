@@ -18,14 +18,14 @@
 
 					$( "#effect" ).hide();
 			});
+			
 
 	</script>
 	<table style="margin-top:25px">
-
 		<tr>
-			<td align= "left"><%= link_to 'Exit', folder_topics_path(@folder) %></td>
+			<td align= "left"><%= link_to 'Exit', research_folder_topics_path(@research, @folder) %></td>
 			<td align = "right"><h3><%= @topic.title%></h3></td>
-			<td align= "left"><%= link_to "Updates", folder_topic_updates_path(@folder,@topic) %></td>
+			<td align= "left"><%= link_to "Updates", research_folder_topic_updates_path(@research, @folder, @topic) %></td>
 			<td align ="left">Created By  <%= @created_by.firstName.slice(0) + " " +@created_by.lastName %>		</td>					
 			<td align = "right">Updated by <%=@topic.user.firstName%></td>
 			<td align = "right"><a href="#" id="text" >SEE history</a></td>
@@ -38,7 +38,7 @@
 				<tr> <%= render :file => 'attachments/new' %></tr>
 				<% @attachments.each do |attachment| %>
 				<tr>
-					<td><a href= /folders/<%=@folder.id%>/topics/<%= @topic.id%>/attachments/<%= attachment.id %> ><%= attachment.document_file_name %></a>  </td>
+					<td><a href= /researches/<%= @research.id %>/folders/<%=@folder.id%>/topics/<%= @topic.id%>/attachments/<%= attachment.id %> ><%= attachment.document_file_name %></a>  </td>
 					
 				</tr>
 				<% end %>
@@ -55,7 +55,7 @@
 					<table>
 						<% if x.topic_id.nil? %>
 						<tr>
-								<td bgcolor = "silver"><%= link_to x.created_at, edit_folder_topic_path(x.folder, x) %> by<br>
+								<td bgcolor = "silver"><%= link_to x.created_at, edit_research_folder_topic_path(x.folder.research, x.folder, x) %> by<br>
 										<%= x.user.firstName + " " + x.user.lastName %>
 								</td>
 							</tr>
@@ -63,14 +63,14 @@
 						<% until x.topic_id.nil? do %>
 							<% if x.id == @topic.id %>
 									<tr bgcolor = "silver">
-												<td ><%= link_to x.created_at, edit_folder_topic_path(x.folder, x) %> by<br>
+												<td ><%= link_to x.created_at, edit_research_folder_topic_path(x.folder.research, x.folder, x) %> by<br>
 													<%= x.user.firstName + " " + x.user.lastName %>
 											</td>
 										</tr>
 									<% x=x.topic %>
 									<% else %>
 									<tr>
-												<td ><%= link_to x.created_at, edit_folder_topic_path(x.folder, x) %> by<br>
+												<td ><%= link_to x.created_at, edit_research_folder_topic_path(x.folder.research, x.folder, x) %> by<br>
 													<%= x.user.firstName + " " + x.user.lastName %>
 											</td>
 									</tr>
