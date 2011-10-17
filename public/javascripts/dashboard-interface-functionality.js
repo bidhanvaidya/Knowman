@@ -18,10 +18,7 @@ $(function() {
 								
 								s = new Array();
 								s = src.split('-');
-								
-								//console.log(t[1]);
-								//console.log(s[0]);
-								
+									
 								$('#actions').children().hide();
 								$('#actions').children(':[class$="'+s[0]+'"]').show();
 								e.preventDefault();
@@ -45,6 +42,47 @@ $(function() {
 					
 		};
 		$.post('/staff_levels', new_staff_level, function(data){});
+		e.preventDefault();
+
+	});
+	$('button[rel="new-office-location"]').live('click', function(e){
+
+		var company_permalink 	= s[1];		
+		var description 		= $('input[name="description"]').val();
+		var address1 			= $('input[name="address1"]').val();
+		var address2 			= $('input[name="address2"]').val();
+		var zip_code 			= $('input[name="zip-code"]').val();
+		var state_code 			= $('input[name="state-code"]').val();
+		var city_code 			= $('input[name="city-code"]').val();
+		var country_code 		= $('input[name="country-code"]').val();
+		
+		console.log(company_permalink);
+		console.log(description);
+		console.log(address1);
+		console.log(address2);
+		console.log(zip_code);
+		console.log(state_code);
+		console.log(city_code);
+		console.log(country_code);
+		
+		new_office = { 
+			
+			office: {	
+			
+				company_permalink: company_permalink,
+				description: description,
+				address1: address1,
+				address2: address2,
+				zip_code: zip_code,
+				state_code: state_code,
+				city_code: city_code,
+				country_code: country_code
+							
+			} 
+					
+		};
+		console.log(office);
+		//$.post('/offices', new_office, function(data){});
 		e.preventDefault();
 
 	});

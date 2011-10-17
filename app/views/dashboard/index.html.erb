@@ -91,7 +91,7 @@
 		</div><!--/#choice-tabs -->
 	</div><!--/#input -->
 	<div id="actions">
-		<div id="#staff-context-menu" class="staff">
+		<div id="staff-context-menu" class="staff">
 			<h4>Enter your top secret information here!</h4><br />
 			<span>New Staff level: <input name="new_staff_level" type="text" /></span>
 			<span>Date: <input type="text" class="datepicker" name="staff-date" /></span>
@@ -109,12 +109,17 @@
 		<input type="text" />
 		<select></select>
 		</span>
-		<span class="offices">
-		<p>offices Based Context Menu</p>
-		<span>New offices</span>
-		<input type="text" />
-		<select></select>
-		</span>
+		<div id="office-context-menu" class="offices">
+		<h4>Enter a new office location:</h4>
+		<span>Description: <input name="description" type="text" /></span>
+		<span>Address 1: <input name="address1" type="text" /></span>
+		<span>Address 2: <input name="address2" type="text" /></span>
+		<span>Zip code: <input name="zip-code" type="text" /></span>
+		<span>City: <input name="city-code" type="text" /></span>
+		<span>State code: <input name="state-code" type="text" /></span><br />
+		<span>Country code: <input name="country-code" type="text" /></span><br />
+		<button rel="new-office-location">S</button>
+		</div>
 		<span class="products">
 		<p>Product Based Context Menu</p>
 		<span>New Product</span>
@@ -195,11 +200,19 @@
 						</div>
 						<div id="offices-<%= company.permalink %>">
 							<div class="chart-holder right"></div>
-							<div class="accordion-sub-menu"></div>	
+							<div class="accordion-sub-menu">
+								<a href="/showchart" class="button right">C</a>
+								<a href="/edit" class="button right">E</a>
+								<a href="#" rel="new-office-location" class="button right">N</a>
+							</div>
 						</div>
 						<div id="products-<%= company.permalink %>">
 							<div class="chart-holder right"></div>
-							<div class="accordion-sub-menu"></div>	
+							<div class="accordion-sub-menu">
+								<a href="/showchart" class="button right">C</a>
+								<a href="/edit" class="button right">E</a>
+								<a href="#" rel="new-product" class="button right">N</a>
+							</div>	
 						</div>
 					</div>
 				<% end %>
