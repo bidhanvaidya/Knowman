@@ -165,7 +165,7 @@
 						<a href="#"><%= company.name %></a>
 						<button rel="staff-<%= company.permalink %>">staff</button>
 						<button rel="people-<%= company.permalink %>">people</button>
-						<button rel="funding-<%= company.permalink %>">funding</button>
+						<button rel="funding-rounds-<%= company.permalink %>">funding</button>
 						<button rel="offices-<%= company.permalink %>">offices</button>
 						<button rel="products-<%= company.permalink %>">products</button>
 					</h3>
@@ -173,7 +173,7 @@
 						<ul class="hidden">
 							<li><a href="#staff-<%= company.permalink %>"></a></li>
 							<li><a href="#people-<%= company.permalink %>"></a></li>
-							<li><a href="#funding-<%= company.permalink %>"></a></li>
+							<li><a href="#funding-rounds-<%= company.permalink %>"></a></li>
 							<li><a href="#offices-<%= company.permalink %>"></a></li>
 							<li><a href="#products-<%= company.permalink %>"></a></li>
 						</ul>
@@ -189,7 +189,7 @@
 							<div class="chart-holder right"></div>
 							<div class="accordion-sub-menu"></div>	
 						</div>
-						<div id="funding-<%= company.permalink %>">
+						<div id="funding-rounds-<%= company.permalink %>">
 							<div class="chart-holder right"></div>
 							<div class="accordion-sub-menu"></div>	
 						</div>
@@ -239,6 +239,12 @@
 			<p class="<%= products.company_permalink %>">
 			<%= products[:name] %> -- <% products[:created_at] %>
 			</p>
+		<% end %>
+	</div>
+	<div class="funding_rounds">
+		<% @funding_rounds.each do |funding_rounds| %>
+		<p class="<%= funding_rounds.company_permalink %>">
+		<%= funding_rounds[:funded_year] %> -- <% funding_rounds[:raised_amount] %></p>
 		<% end %>
 	</div>
 </span>

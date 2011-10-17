@@ -5,7 +5,7 @@ $(function() {$( ".datepicker" ).datepicker({dateFormat: "yy-mm-dd"});});
 //interface functionality
 $(function() {
 
-  $('#actions > *, #accordion-wrapper > h3:first, #accordion-wrapper > div:first').hide();
+  $('#actions > *').hide();
   
   
   $('.accordion-sub-menu > a').live('click', function(e) {

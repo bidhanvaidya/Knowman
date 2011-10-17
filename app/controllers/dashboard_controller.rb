@@ -8,6 +8,7 @@ class DashboardController < ApplicationController
 		@products = Product.all
 		@companies = Company.all
 		@staff_levels = StaffLevel.all
+		@funding_rounds = FundingRound.all
 		@employment_statuses = EmploymentStatus.all
 
 		respond_to do |format|
