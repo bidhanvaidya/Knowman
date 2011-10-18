@@ -6,9 +6,9 @@
 	
 <h1 align ="center"">Research</h1>
 
-<table border><td>
-<table width= "40">
-<tr><div id = "draggable">
+<table ><td valign = "top">
+<table width= "40" >
+<tr ><div id = "draggable">
 <%= render :file => 'researches/new.html.erb' %>
 <br />
 </div></tr>
@@ -28,19 +28,42 @@
 <table >
 <th>
 Documents that needs more work on it 
+	
 </th><% @topics.each do |topic|%>
 <tr ><td><%= topic.title %> </td>
 <td><%= topic.progress %></td>
+<script>
+												$(function() {
+												$( "#<%=topic.created_at.hash%>" ).progressbar({
+													value: <%=topic.progress%>});
+														 var value = <%=topic.progress%>
+													if (value <20){
+															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'red' });}
+													
+												  else if (value <50){
+															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'orange' });}
+													else if (value <70){
+															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'lightblue' });}
+													else{
+															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'lightgreen' });
+													}
+												});</script>
+												<td><div id="<%=topic.created_at.hash%>"></div></td>
 </tr>
 <%end%>
 </table>
 </td>
-<td valign = "top" align = "right"><table border align ="right"><tr >
-Documnets that need review </br></tr>
+<td valign = "top" align = "right"><table align ="right"><tr >
+Documents that need review </br></tr>
 <% @notifications.each do |notify| %>
 <tr >
 <td align = "right" ><%= notify.topic.title %></td>
-<td width = "100"><%= notify.next_notification %></td>
+<% days_left = (notify.next_notification - Time.now)/(3600*24)  %>
+<td width = "100"><table ><tr><th valign = "top"><h1><%= days_left.to_i + 1  %></h1></th><th valign = "bottom"> <h6> days left</h6></td></tr></td></table>
 </tr>
 <%end %>
 </table>

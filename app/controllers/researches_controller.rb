@@ -4,8 +4,8 @@ class ResearchesController < ApplicationController
   def index
     @researches = Research.paginate(:page => params[:page], :per_page => 10)
 		@research = Research.new
-		@notifications = Notification.paginate(:page => params[:page], :per_page => 10)
-		@topics= Topic.paginate(:page => params[:page], :per_page => 10, :order => :progress).where(:version => 'latest')
+		@notifications = Notification.find(:all, :order => :next_notification).first(5)
+		@topics= Topic.find(:all, :order => :progress, :conditions => ["version = ?",'latest'], :limit => '8')
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @researches }
