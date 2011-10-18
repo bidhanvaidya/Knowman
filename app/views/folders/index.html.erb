@@ -1,8 +1,33 @@
 
+<script>
+	$(function() {
+		$( "#draggable" ).draggable();
+	});
+	$.fx.speeds._default = 1000;
+	$(function() {
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			show: "blind",
+			hide: "explode"
+		});
 
+		$( "#opener" ).click(function() {
+			$( "#dialog" ).dialog( "open" );
+			return false;
+		});
+	});
+
+	</script>
+	<table>
+	<tr ><div id = "dialog">
+<%= render :file => 'folders/new.html.erb' %>
+<br />
+</div></tr>
+</table>
 <table>
   <tr>
-    <th align = "left"><h2>Technology</h2></th>
+    <th align = "left"><table><tr><th align = "right"><h2>Technology</h2></th><th align = "left" valign = "bottom"><button id="opener">Create New</button></th></tr></table></th>
+
     <th>Progress</th>
     <th></th>
     <th></th>
@@ -47,7 +72,6 @@
 
 <br />
 
-<h3><%= link_to 'New document', new_research_folder_path %></h3>
 <br><p>
 <%= link_to 'logout', sign_out_path %> <span style="padding-left:20px"><%= link_to 'user history', userupdate_path %><span>
 <br>
