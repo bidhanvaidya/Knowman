@@ -1,6 +1,97 @@
 <!doctype html>
 <head>
+	
 	<script type="text/javascript">
+	$("#list").val() == "A"
+	  $(window).load(function(){
+	  var options = {
+	    chart: {
+	        renderTo: 'chart-button',
+	        defaultSeriesType: 'spline'
+	    },
+			title: {
+				text: 'Company History',
+				x: -20 //center
+			},
+			subtitle: {
+				text: 'Source: Local Database',
+				x: -20
+			},
+			xAxis: {
+				type: "datetime"
+			},
+			yAxis: {
+				title: {
+					text: 'Number'
+				},
+				plotLines: [{
+					value: 0,
+					width: 1,
+					color: '#808080'
+				}]
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'top',
+				x: -10,
+				y: 100,
+				borderWidth: 0
+			},
+			tooltip: {
+				formatter: function() {
+		                return '<b>'+ this.series.name +'</b><br/>'+
+					Highcharts.dateFormat("%B, %Y",	this.x) +': '+'</b><br/>'+ 'value: ' + this.y;
+				}
+			},
+	    series: []
+	};
+
+	$("#change").click(function(){
+		//display staff level data for Apple
+	if ($("#list").val() == "apple")
+	{
+	    options.series = [{name: 'first', data: [
+			<% StaffLevel.where(:company_permalink => "apple").each do |staff_level| %> 
+					[Date.UTC(<%=  staff_level.created_at.strftime("%Y,%m,%d") %>), <%= staff_level.number_of_employees %>],
+				<% end %>
+				]}]
+
+	}
+	//data for twitter
+	else if ($("#list").val() == "twitter")
+	{
+
+		options.series = [{name: 'twitter', pointInterval: <%= 1.month * 1000 %>, 			
+		pointStart: <%= 20.month.ago.to_i * 1000 %>,	
+		name: 'staff_level', data: [
+			<% StaffLevel.where(:company_permalink => "twitter").each do |staff_level| %> 
+				[Date.UTC(<%=  staff_level.created_at.strftime("%Y,%m,%d") %>), <%= staff_level.number_of_employees %>],
+			<% end %>
+			]}]
+	}
+	//data for microsoft
+	else
+	{
+	    options.series = [{name: 'microsoft', data: [
+				<% StaffLevel.where(:company_permalink => 'microsoft').each do |staff_level| %> 
+					[Date.UTC(<%=  staff_level.created_at.strftime("%Y,%m,%d") %>), <%= staff_level.number_of_employees %>],
+				<% end %>
+				]}]
+	}
+	var chart = new Highcharts.Chart(options);    
+	});
+
+	  });
+	  </script>
+	
+	
+	
+	
+	
+	
+	<script type="text/javascript">
+		//------------the original chart-----------------------//
 		var chart;
 		$(document).ready(function() {
 			chart = new Highcharts.Chart({
@@ -183,7 +274,8 @@
 							<li><a href="#products-<%= company.permalink %>"></a></li>
 						</ul>
 						<div id="staff-<%= company.permalink %>">
-							<div class="chart-holder right"></div>
+							<div id="empnum_chart" class="chart-holder right" style="width: 470px; height: 235px; margin: 0 auto">
+							</div>
 							<div class="accordion-sub-menu">
 								<a href="/showchart" class="button right">C</a>
 								<a href="/edit" class="button right">E</a>
@@ -264,5 +356,18 @@
 
 </div><!-- /#screen-resolution-helper -->
 
+
+
+
+
+
+<SELECT id="list">
+<OPTION VALUE="apple">Apple
+<OPTION VALUE="twitter">Twitter
+<OPTION VALUE="microsoft">Microsoft
+</SELECT>
+<button id="change">Refresh chart</button>
+
+<div id="chart-button" style="width: 700px; height: 400px;"></div>
 </body>
 </html>
