@@ -2,8 +2,8 @@ class FoldersController < ApplicationController
 	before_filter :authenticate_user!
 	before_filter :load_research
 	def index
-		@folders = @research.folders
-
+		@folders = @research.folders.all
+		@folder = @research.folders.new
 		respond_to do |format|
 			format.html # index.html.erb
 			format.json { render json: @folders }
@@ -33,7 +33,7 @@ class FoldersController < ApplicationController
 
 		respond_to do |format|
 			if @folder.save
-				format.html { redirect_to research_folder_topics_path(@research, @folder), notice: 'Topic was successfully created.' }
+				format.html { redirect_to research_folders_path(@research), notice: 'Topic was successfully created.' }
 				format.json { render json: @folder, status: :created, location: @folder }
 			else
 				format.html { render action: "new" }

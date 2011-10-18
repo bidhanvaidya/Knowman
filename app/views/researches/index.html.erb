@@ -2,19 +2,34 @@
 	$(function() {
 		$( "#draggable" ).draggable();
 	});
+	$.fx.speeds._default = 1000;
+	$(function() {
+		$( "#dialog" ).dialog({
+			autoOpen: false,
+			show: "blind",
+			hide: "explode"
+		});
+
+		$( "#opener" ).click(function() {
+			$( "#dialog" ).dialog( "open" );
+			return false;
+		});
+	});
+
 	</script>
 	
 <h1 align ="center"">Research</h1>
 
 <table ><td valign = "top">
 <table width= "40" >
-<tr ><div id = "draggable">
+<tr ><div id = "dialog">
 <%= render :file => 'researches/new.html.erb' %>
 <br />
 </div></tr>
   <tr>
     <th>Title <%= will_paginate @researches %></th>
    
+<button id="opener">Create New</button>
   </tr>
   
 								
@@ -61,9 +76,9 @@ Documents that needs more work on it
 Documents that need review </br></tr>
 <% @notifications.each do |notify| %>
 <tr >
-<td align = "right" ><%= notify.topic.title %></td>
+<th align = "right" ><%= notify.topic.title %></th>
 <% days_left = (notify.next_notification - Time.now)/(3600*24)  %>
-<td width = "100"><table ><tr><th valign = "top"><h1><%= days_left.to_i + 1  %></h1></th><th valign = "bottom"> <h6> days left</h6></td></tr></td></table>
+<th width = "100"><table ><tr><th valign = "top"><h1><%= days_left.to_i + 1  %></h1></th><th valign = "bottom"> <h6> days left</h6></td></tr></th></table>
 </tr>
 <%end %>
 </table>
