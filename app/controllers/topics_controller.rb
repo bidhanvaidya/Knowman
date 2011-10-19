@@ -30,6 +30,7 @@ class TopicsController < ApplicationController
 		@attachment = @topic.attachments.new
 		@attachments = @topic.attachments.all
 		@notification = @topic.notifications.new
+		@notifications = @topic.notifications.all
 	end
 
 	def create

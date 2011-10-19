@@ -3,7 +3,7 @@
 <table >
   <tr>
     <th>Topic</th>
-		<th>Header</th>
+		<th>Folder</th>
     <th>Type</th>
     <th>Date</th>
   </tr>
@@ -14,10 +14,10 @@
 <% @updates.each do |update| %>
 <% unless update.topic.nil? %>  
 <tr>
-    <td><%= update.topic.title %></td>
-    <td><%= update.topic.folder.title %></td>
-		<td><%= update.type_of_update %></td>
-		<td><%= update.created_at %></td>
+    <td align= "center"><%= update.topic.title %></td>
+    <td align= "center" ><%= update.topic.folder.title %></td>
+		<td align= "center"align= "center"><%= update.type_of_update %></td>
+		<td align= "center"><%= update.created_at %></td>
   </tr>
 <% else %>
 <%= update.id %>
@@ -33,4 +33,4 @@
 
 <br />
 
-<%= link_to 'Back', folders_path %>	
+<%= link_to 'Back', :back %>	
