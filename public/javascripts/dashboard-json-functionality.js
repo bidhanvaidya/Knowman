@@ -4,21 +4,30 @@
 
 $(document).ready(function(){
 
-	//jQuery(document).ajaxError(function(event, request, settings){
-	
-	//	alert("Error");
-	
-	//});
-	
 	$('#__sub').live('click', function() {
-
-	$('#accordion-wrapper:first, #company-1, #accordion-wrapper > h3:first').show();
 
 	var s = $('#search').val().toLowerCase();
 	var t = new Array();
 		t = s.split(' ');
 	var j = t.join('-');
 	var u = "http://api.crunchbase.com/v/1/company/";
+	
+	$.jsonp({
+	      "url": '' + u + '' + j + '.js?callback=?',
+	      "data": {
+	          "alt": "json-in-script"
+	      },
+	      "success": function(data) {
+		
+	          $('#accordion-wrapper:first, #company-1, #accordion-wrapper > h3:first').show();
+	      
+		  },
+	      "error": function(data) {
+	          
+			$('#input-new-company-dialog').dialog('open');
+				
+	      }
+	    });
 
 		   $.getJSON('' + u + '' + j + '.js?callback=?', function(data) {
 		   
@@ -33,7 +42,7 @@ $(document).ready(function(){
 		   people_employment_statuses = { employment_status: data.relationships };
 		   funding_rounds = { funding_round: data.funding_rounds };
 		
-			console.log(funding_rounds);
+			//console.log(funding_rounds);
 		   
 			   $.each(data, function(key, value) {
 				   

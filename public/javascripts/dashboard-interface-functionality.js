@@ -1,6 +1,8 @@
 $(function(){
 	
 $(function() {$( ".datepicker" ).datepicker({dateFormat: "yy-mm-dd"});});
+$('#input-new-company-dialog').dialog({ autoOpen:false });
+
 
 //interface functionality
 $(function() {
