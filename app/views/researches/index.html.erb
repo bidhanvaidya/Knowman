@@ -16,73 +16,105 @@
 		});
 	});
 
-	</script>
+</script>
 	
 <h1 align ="center"">Research</h1>
 
-<table ><td valign = "top">
-<table width= "40" >
-<tr ><div id = "dialog">
-<%= render :file => 'researches/new.html.erb' %>
-<br />
-</div></tr>
-  <tr>
-    <th>Title <%= will_paginate @researches %></th>
-   
-<button id="opener">Create New</button>
-  </tr>
-  
-								
-
-<% @researches.each do |research| %>
-  <tr>
-    <td><%= link_to research.title, research_folders_path(research) %></td>
-  </tr>
-<% end %>
-</table></td><td valign ="top">
 <table >
-<th>
-Documents that needs more work on it 
+	<td valign = "top">
+		<table width= "40" >
+			<tr >
+				<div id = "dialog">
+					<%= render :file => 'researches/new.html.erb' %>
+						<br />
+				</div>
+			</tr>
+  		
+  		<tr>
+		  	<th>Title <%= will_paginate @researches %></th>
+		 		<button id="opener">Create New</button>
+  		</tr>
+  		
+  		<% @researches.each do |research| %>
+				<tr>
+				  <td><%= link_to research.title, research_folders_path(research) %></td>
+				</tr>
+			<% end %>
+		</table>
+	</td>
 	
-</th><% @topics.each do |topic|%>
-<tr ><td><%= topic.title %> </td>
-<td><%= topic.progress %></td>
-<script>
-												$(function() {
-												$( "#<%=topic.created_at.hash%>" ).progressbar({
-													value: <%=topic.progress%>});
-														 var value = <%=topic.progress%>
-													if (value <20){
-															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
-															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'red' });}
-													
-												  else if (value <50){
-															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
-															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'orange' });}
-													else if (value <70){
-															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
-															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'lightblue' });}
-													else{
-															$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
-															$("#<%=topic.created_at.hash%> > div").css({ 'background': 'lightgreen' });
-													}
-												});</script>
-												<td><div id="<%=topic.created_at.hash%>"></div></td>
-</tr>
-<%end%>
-</table>
-</td>
-<td valign = "top" align = "right"><table align ="right"><tr >
-Documents that need review </br></tr>
-<% @notifications.each do |notify| %>
-<tr >
-<th align = "right" ><%= notify.topic.title %></th>
-<% days_left = (notify.next_notification - Time.now)/(3600*24)  %>
-<th width = "100"><table ><tr><th valign = "top"><h1><%= days_left.to_i + 1  %></h1></th><th valign = "bottom"> <h6> days left</h6></td></tr></th></table>
-</tr>
-<%end %>
-</table>
-</td>
+	<td valign ="top">
+		<table >
+			<th>Documents that needs more work on it </th>
+			<% @topics.each do |topic|%>
+				
+				<% folder = Folder.find(topic.folder_id)%> 
+				<% research = Research.find(folder.research_id)%>
+				
+				<tr >
+					<td><%= link_to topic.title, edit_research_folder_topic_path(research, folder,topic)   %> </td>
+					<td><%= topic.progress %></td>
+						<script>
+							$(function() {
+							$( "#<%=topic.created_at.hash%>" ).progressbar({
+								value: <%=topic.progress%>});
+									 var value = <%=topic.progress%>
+								if (value <20){
+										$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+										$("#<%=topic.created_at.hash%> > div").css({ 'background': 'red' });}
+						
+								else if (value <50){
+										$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+										$("#<%=topic.created_at.hash%> > div").css({ 'background': 'orange' });}
+								else if (value <70){
+										$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+										$("#<%=topic.created_at.hash%> > div").css({ 'background': 'lightblue' });}
+								else{
+										$("#<%=topic.created_at.hash%>").css({ 'background': 'white' });
+										$("#<%=topic.created_at.hash%> > div").css({ 'background': 'lightgreen' });
+								}
+							});
+						</script>
+					<td>
+						<div id="<%=topic.created_at.hash%>"></div>
+					</td>
+				</tr>
+			<%end%>
+		</table>
+	</td>
+	<td valign = "top" align = "right">
+		<table align ="right">
+			<tr >
+				Documents that need review </br>
+			</tr>
+
+			<% @notifications.each do |notify| %>
+				<%	topic= Topic.find(notify.topic.id)%>
+				<% folder = Folder.find(topic.folder_id)%>
+				<% research = Research.find(folder.research_id)%>
+		
+				<tr >
+					<th align = "right" ><%= link_to notify.topic.title, edit_research_folder_topic_path(research, folder,topic) %></th>
+			
+					<% days_left = (notify.next_notification - Time.now)/(3600*24)  %>
+			
+					<th width = "100">
+						<table >
+							<tr>
+								<th valign = "top">
+									<h1><%= days_left.to_i + 1  %></h1>
+								</th>
+						
+								<th valign = "bottom">
+									<h6> days left</h6>
+								</th>
+							</tr>
+						</table>
+					</th>
+				</tr>
+			<%end %>
+		</table>
+	</td>
 </table>
 <br>
 

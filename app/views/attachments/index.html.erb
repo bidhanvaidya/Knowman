@@ -1,8 +1,14 @@
 <table>
+<h2> Attachments </h2>
+<%if @attachments.empty? %>
+<h5>You have no attachments for this document </h5>
+<%= link_to 'Go back', edit_research_folder_topic_path(@research, @folder, @topic)%>
+<% else %>
 <% @attachments.each do |attachment| %>
 <tr>	
 		<td><a href= /researches/<%= @research.id %>/folders/<%=@folder.id%>/topics/<%= @topic.id%>/attachments/<%= attachment.id %> ><%= attachment.document_file_name %></a>  </td>
 		<td><%= image_tag attachment.document.url(:thumb) %></td>
-		<td><%= button_to 'Destroy', folder_topic_attachment_path(@folder,@topic,attachment), :confirm => 'Are you sure?', :method => :delete %></td></tr>
+		<td><%= button_to 'Destroy', research_folder_topic_attachment_path(@research,@folder,@topic,attachment), :confirm => 'Are you sure?', :method => :delete %></td></tr>
+<% end %>
 <% end %>
 </table>

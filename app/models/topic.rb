@@ -42,6 +42,7 @@ module Topics
 				x # passes created date
 				end
 		end
+
   end
 class Topic < ActiveRecord::Base
 belongs_to :folder
@@ -54,7 +55,7 @@ belongs_to :folder
   has_many :attachments, :through => :attaches 
   belongs_to :topic
 	has_many :notifications
-	
+
 end
 
 

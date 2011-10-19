@@ -2,7 +2,22 @@
 $(function(){
 $("#notification_next_notification").datepicker({ dateFormat: 'dd-mm-yy' });
   });</script>
-<%= form_for([@research, @folder, @topic, @notification],  :remote => true ) do |f| %>
+
+		<td bgcolor = "#F1F1F1"> <b>Your Sheduled update</td></tr>
+						<% @notifications.each do |notify| %>	
+							<tr>
+								<th>
+									
+									<table>
+										<tr><td><%= notify.next_notification%></td>
+										<td><%= button_to 'Mark as Done', research_folder_topic_notification_path(@research,@folder,@topic, notify), :confirm => 'Are you sure?', :method => :delete %>
+										</td>
+										</tr>
+										</table>
+										</th></tr>
+						<% end %>	
+					</tr>
+<td><tr><%= form_for([@research, @folder, @topic, @notification],  :remote => true ) do |f| %>
 
 	<div class="date", id ="date" >
 	<%= f.label :set_next_notification %><br />
@@ -13,6 +28,7 @@ $("#notification_next_notification").datepicker({ dateFormat: 'dd-mm-yy' });
 		<%= f.submit 'Notify' %>
 	</div>
 
+<%end%></tr></td>
 
+	
 
-<%end%>

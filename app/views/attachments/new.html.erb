@@ -1,4 +1,18 @@
+<td bgcolor= "#F1F1F1"><b>Attachments</b></td></tr>
+				<%if @attachments.empty? %>
+<tr><td>You have no attachments for this document </td></tr>
 
+<% else %>
+				<% @attachments.each do |attachment| %>
+				
+				<tr>
+				
+
+					<td><a href= /researches/<%= @research.id %>/folders/<%=@folder.id%>/topics/<%= @topic.id%>/attachments/<%= attachment.id %> ><%= attachment.document_file_name %></a>  </td>
+					<% end %>
+				</tr>
+				
+				<% end %>
  <%= form_for([@research, @folder, @topic, @attachment], :html => { :multipart => true }, :remote => true) do |f| %>
   <% if @attachment.errors.any? %>
     <div id="error_explanation">
@@ -29,5 +43,6 @@
    
 
 <% end %>
+
 
 <%= link_to 'See All', research_folder_topic_attachments_path(@research, @folder,@topic) %>
