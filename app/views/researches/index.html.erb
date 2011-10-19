@@ -94,8 +94,20 @@
 				<% research = Research.find(folder.research_id)%>
 		
 				<tr >
-					<th align = "right" ><%= link_to notify.topic.title, edit_research_folder_topic_path(research, folder,topic) %></th>
 			
+				
+					<th align = "right" >	<th> 
+					<table><tr >
+					<%if notify.is_important?%>
+					
+						<td bgcolor = "red"> IMP</td>
+						<td align = "right"><%= link_to notify.topic.title, edit_research_folder_topic_path(research, folder,topic) %></td>
+						<%else%>
+										<td></td>
+						<td align = "right"><%= link_to notify.topic.title, edit_research_folder_topic_path(research, folder,topic) %></td>
+			<%end %></tr>
+			</table>
+			</th>
 					<% days_left = (notify.next_notification - Time.now)/(3600*24)  %>
 			
 					<th width = "100">
