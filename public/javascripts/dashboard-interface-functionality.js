@@ -90,12 +90,10 @@ $(function() {
 		company = { company: { name: company_name, permalink: company_name } };
 		staff_levels = { staff_level: { number_of_employees: number_of_employees, company_permalink: company_name } };
 		
-		$.post('/companies', company, function(data){
-			
-			alert(data);
-			
-		});
+		$.post('/companies', company, function(data){});
 		$.post('/staff_levels', staff_levels, function(data){});
+		$('#actions > #query-status').show().append('<p>'+ company_name +' details sre now stored in the database.</p>');
+		$('#input-new-company-dialog').dialog('close');
 	
 	});
 	
