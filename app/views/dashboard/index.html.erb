@@ -171,8 +171,22 @@
 		<div id="input-new-company-dialog">
 			<p>Sorry, we couldn't find any records matching your request.</p>
 			<p>Please fill in this form to add a new company record.</p>
-			<input type="text" name="new-company" />
-			<button rel="new-company"></button>
+			<form id="input-new-company-form">
+				<fieldset>
+					<legend>What is the company's name?</legend>
+					<input type="text" name="new-company" />
+				</fieldset>
+				<fieldset>
+					<legend>Enter any funding information here:</legend>
+					<input type="text" name="new-company-name" />
+				</fieldset>
+				<fieldset>
+					<legend>Enter staff levels here:</legend>
+					<input type="text" name="new-company-funding-rounds" />
+					<button id="input-new-company-form-button" rel=""></button>
+				</fieldset>
+			</form>
+			
 		</div>
 		<div id="choice-tabs">
 			<ul id="choice-list">

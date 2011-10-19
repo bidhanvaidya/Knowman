@@ -2,7 +2,7 @@ $(function(){
 	
 $(function() {$( ".datepicker" ).datepicker({dateFormat: "yy-mm-dd"});});
 $('#input-new-company-dialog').dialog({ autoOpen:false });
-
+$('#input-new-company-form').formToWizard({ submitButton:'input-new-company-form-button' });
 
 //interface functionality
 $(function() {
@@ -57,15 +57,6 @@ $(function() {
 		var state_code 			= $('input[name="state-code"]').val();
 		var city_code 			= $('input[name="city-code"]').val();
 		var country_code 		= $('input[name="country-code"]').val();
-		
-		console.log(company_permalink);
-		console.log(description);
-		console.log(address1);
-		console.log(address2);
-		console.log(zip_code);
-		console.log(state_code);
-		console.log(city_code);
-		console.log(country_code);
 		
 		new_office = { 
 			
