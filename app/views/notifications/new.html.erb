@@ -3,7 +3,7 @@ $(function(){
 $("#notification_next_notification").datepicker({ dateFormat: 'dd-mm-yy' });
   });</script>
 
-		<td bgcolor = "#F1F1F1"> <b>Your Sheduled update</td></tr>
+		<td bgcolor = "#F1F1F1"> <b>Your Scheduled update</td></tr>
 						<% @notifications.each do |notify| %>	
 							<tr>
 								<th>
@@ -20,10 +20,15 @@ $("#notification_next_notification").datepicker({ dateFormat: 'dd-mm-yy' });
 <td><tr><%= form_for([@research, @folder, @topic, @notification],  :remote => true ) do |f| %>
 
 	<div class="date", id ="date" >
-	<%= f.label :set_next_notification %><br />
-	<%= f.text_field :next_notification %>
-	</div>
- 
+	
+	
+	<%= f.label :set_next_notification, :size => 5%>
+	<%= f.text_field :next_notification%>
+
+ <%= f.label :flag_as_important %>
+ <%= f.check_box :is_important%>
+
+ </div>
 	<div class="actions">
 		<%= f.submit 'Notify' %>
 	</div>

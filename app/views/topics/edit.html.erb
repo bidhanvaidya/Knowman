@@ -48,28 +48,29 @@
 					<div id= "effect">
 					<% x= Topic.find(@topic.get_latest(@topic.id))%>
 					<table>
-						<% if x.topic_id.nil? %>
+					
 						<tr>
 								<td bgcolor = "silver"><%= link_to x.created_at, edit_research_folder_topic_path(x.folder.research, x.folder, x) %> by<br>
 										<%= x.user.firstName + " " + x.user.lastName %>
 								</td>
 							</tr>
-						<% end %>
+						
 						<% until x.topic_id.nil? do %>
+						<% x= x.topic%>
 							<% if x.id == @topic.id %>
 									<tr bgcolor = "silver">
 												<td ><%= link_to x.created_at, edit_research_folder_topic_path(x.folder.research, x.folder, x) %> by<br>
 													<%= x.user.firstName + " " + x.user.lastName %>
 											</td>
 										</tr>
-									<% x=x.topic %>
+									
 									<% else %>
 									<tr>
 												<td ><%= link_to x.created_at, edit_research_folder_topic_path(x.folder.research, x.folder, x) %> by<br>
 													<%= x.user.firstName + " " + x.user.lastName %>
 											</td>
 									</tr>
-									<%x=x.topic%>
+									
 							<% end %>
 						<% end%>
 					

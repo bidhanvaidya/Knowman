@@ -15,17 +15,17 @@
 						<% if user_signed_in? %>
 					
 						<span style="position:relative; top:-15px;">Welcome <%= link_to current_user.firstName  +  current_user.lastName, edit_user_registration_path%></span> 
-					
+					<span align = "right"><%= link_to 'logout', sign_out_path %> <span style="padding-left:20px"><%= link_to 'user history', userupdate_path %></span>
 						<%end %>
 						<a href="/researches" class="menu research" title="research"></a>
 						<a href="/dashboard" class="menu information" title="information"></a>
 						<a href="/companies" class="menu company" title="charts"></a>
-							<span align = "right"><%= link_to 'logout', sign_out_path %> <span style="padding-left:20px"><%= link_to 'user history', userupdate_path %></span>
+							
 					</div>
 					
 				</div><!-- /#mainmenu -->
 		</div> 
-		<br></br>
+		
 		<div id="content">   
 		<%= yield %>  
 		</div><!-- close div content -->  

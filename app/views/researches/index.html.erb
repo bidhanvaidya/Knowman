@@ -17,12 +17,12 @@
 	});
 
 </script>
-	
-<h1 align ="center"">Research</h1>
+	<br>
+<h1 align ="center" bgcolor = "#F1F1F1">Research</h1>
 
 <table >
 	<td valign = "top">
-		<table width= "40" >
+		<table bgcolor = "#FFCC66" >
 			<tr >
 				<div id = "dialog">
 					<%= render :file => 'researches/new.html.erb' %>
@@ -31,13 +31,13 @@
 			</tr>
   		
   		<tr>
-		  	<th>Title <%= will_paginate @researches %></th>
+		  	<th bgcolor = "#F1F1F1">Title <%= will_paginate @researches %></th>
 		 		<button id="opener">Create New</button>
   		</tr>
   		
   		<% @researches.each do |research| %>
 				<tr>
-				  <td><%= link_to research.title, research_folders_path(research) %></td>
+				  <td ><%= link_to research.title, research_folders_path(research) %></td>
 				</tr>
 			<% end %>
 		</table>
@@ -45,7 +45,7 @@
 	
 	<td valign ="top">
 		<table >
-			<th>Documents that needs more work on it </th>
+			<th bgcolor = "#F1F1F1">Documents that needs more work on it </th>
 			<% @topics.each do |topic|%>
 				
 				<% folder = Folder.find(topic.folder_id)%> 
@@ -82,10 +82,10 @@
 			<%end%>
 		</table>
 	</td>
-	<td valign = "top" align = "right">
-		<table align ="right">
-			<tr >
-				Documents that need review </br>
+	<td valign = "top" align = "right" bgcolor = "#F1F1F1">
+		<table align ="right"  bgcolor = "#FFF6F6">
+			<tr>
+				Documents that need review </br></th>
 			</tr>
 
 			<% @notifications.each do |notify| %>
@@ -94,12 +94,24 @@
 				<% research = Research.find(folder.research_id)%>
 		
 				<tr >
-					<th align = "right" ><%= link_to notify.topic.title, edit_research_folder_topic_path(research, folder,topic) %></th>
 			
+				
+					<th align = "right" >	<th> 
+					<table><tr >
+					<%if notify.is_important?%>
+					
+						<td bgcolor = "red"> IMP</td>
+						<td align = "right"><%= link_to notify.topic.title, edit_research_folder_topic_path(research, folder,topic) %></td>
+						<%else%>
+										<td></td>
+						<td align = "right"><%= link_to notify.topic.title, edit_research_folder_topic_path(research, folder,topic) %></td>
+			<%end %></tr>
+			</table>
+			</th>
 					<% days_left = (notify.next_notification - Time.now)/(3600*24)  %>
 			
 					<th width = "100">
-						<table >
+						<table bgcolor = "FFFFFF" >
 							<tr>
 								<th valign = "top">
 									<h1><%= days_left.to_i + 1  %></h1>

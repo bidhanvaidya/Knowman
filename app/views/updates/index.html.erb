@@ -37,8 +37,8 @@ Created By: <b><%= @created_by.firstName + " " +@created_by.lastName %></b> On <
 												});</script>
 <td><%= link_to 'review', edit_research_folder_topic_path(x.folder.research, x.folder, x)%></td>
   </tr>
-<% until x.topic.topic_id.nil? do %>
-<%x=x.topic%>
+<% until x.topic_id.nil? do %>
+	<% x=x.topic %>
   <tr>
 		<td><%= x.user.firstName + " " + x.user.lastName %>
 		<td><%= x.created_at %></td>
@@ -65,7 +65,6 @@ Created By: <b><%= @created_by.firstName + " " +@created_by.lastName %></b> On <
 												});</script>
 <td><%= link_to 'review', edit_research_folder_topic_path(x.folder.research,x.folder, x)%></td>
   </tr>
-
 <% end %>
 
 			
