@@ -18,11 +18,11 @@
 
 </script>
 	
-<h1 align ="center"">Research</h1>
+<h1 align ="center" bgcolor = "#F1F1F1">Research</h1>
 
 <table >
 	<td valign = "top">
-		<table width= "40" >
+		<table bgcolor = "#FFCC66" >
 			<tr >
 				<div id = "dialog">
 					<%= render :file => 'researches/new.html.erb' %>
@@ -31,13 +31,13 @@
 			</tr>
   		
   		<tr>
-		  	<th>Title <%= will_paginate @researches %></th>
+		  	<th bgcolor = "#F1F1F1">Title <%= will_paginate @researches %></th>
 		 		<button id="opener">Create New</button>
   		</tr>
   		
   		<% @researches.each do |research| %>
 				<tr>
-				  <td><%= link_to research.title, research_folders_path(research) %></td>
+				  <td ><%= link_to research.title, research_folders_path(research) %></td>
 				</tr>
 			<% end %>
 		</table>
@@ -45,7 +45,7 @@
 	
 	<td valign ="top">
 		<table >
-			<th>Documents that needs more work on it </th>
+			<th bgcolor = "#F1F1F1">Documents that needs more work on it </th>
 			<% @topics.each do |topic|%>
 				
 				<% folder = Folder.find(topic.folder_id)%> 
@@ -82,10 +82,10 @@
 			<%end%>
 		</table>
 	</td>
-	<td valign = "top" align = "right">
+	<td valign = "top" align = "right" bgcolor = "#F1F1F1">
 		<table align ="right">
-			<tr >
-				Documents that need review </br>
+			<tr>
+				Documents that need review </br></th>
 			</tr>
 
 			<% @notifications.each do |notify| %>

@@ -20,8 +20,8 @@ $("#notification_next_notification").datepicker({ dateFormat: 'dd-mm-yy' });
 <td><tr><%= form_for([@research, @folder, @topic, @notification],  :remote => true ) do |f| %>
 
 	<div class="date", id ="date" >
-	<%= f.label :set_next_notification %><br />
-	<%= f.text_field :next_notification %>
+	<%= f.label :set_next_notification, :size => 5%><br />
+	<%= f.text_field :next_notification%>
 	</div>
  
 	<div class="actions">
