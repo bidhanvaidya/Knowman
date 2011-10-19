@@ -1,9 +1,12 @@
 $(function(){
 	
 $(function() {$( ".datepicker" ).datepicker({dateFormat: "yy-mm-dd"});});
-$('#input-new-company-dialog').dialog({ autoOpen:false });
+$('#input-new-company-dialog').dialog({ 
+	autoOpen:false,
+	title:"New company",
+	width:500
+});
 $('#input-new-company-form').formToWizard({ submitButton:'input-new-company-form-button' });
-//jQuery("#input-new-company-form").validationEngine();
 
 //interface functionality
 $(function() {

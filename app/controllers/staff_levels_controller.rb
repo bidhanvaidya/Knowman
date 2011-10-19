@@ -1,5 +1,15 @@
 class StaffLevelsController < ApplicationController
+  
+  def index
+    s = params[:dashboard_sl_request]
+    @staff_level = StaffLevel.find_all_by_company_permalink(s[:company_permalink])
 
+    respond_to do |format|
+      #format.html # index.html.erb
+      format.json { render json: @staff_level }
+    end
+  end
+  
   def show
     @company = Company.find(params[:company_id])
 
@@ -13,8 +23,8 @@ class StaffLevelsController < ApplicationController
     @staff_level = @company.staff_levels.build
   end
 
-  # POST /companies
-  # POST /companies.json
+  # POST /staff_levels
+  # POST /staff_levels.json
   def create
     
 	@staff_level = StaffLevel.find_or_create_by_company_permalink_and_created_at_and_number_of_employees(params[:staff_level])

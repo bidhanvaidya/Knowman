@@ -42,6 +42,19 @@ $(document).ready(function(){
 		   people_employment_statuses = { employment_status: data.relationships };
 		   funding_rounds = { funding_round: data.funding_rounds };
 		
+			/*person = {
+				
+				person: {
+					
+					first_name: funding_rounds.funding_round[0].investments[0].person.first_name,
+					last_name: funding_rounds.funding_round[0].investments[0].person.last_name,
+					permalink: funding_rounds.funding_round[0].investments[0].person.permalink
+					
+				}
+				
+			};
+			console.log(person);*/
+			
 			//console.log(funding_rounds);
 		   
 			   $.each(data, function(key, value) {
@@ -89,7 +102,7 @@ $(document).ready(function(){
 							  /*if ( l == "person" ) {
 							  $.each(w, function(m, x) {
 								  console.log(m, x);
-								  funding.push('<li id="' + m + '"><b>' + m + ':</b><span>' + x + '</span></li>');	 
+								  fnd.push('<li id="' + m + '"><b>' + m + ':</b><span>' + x + '</span></li>');	 
 							  });
 							  }
 							  else {*/

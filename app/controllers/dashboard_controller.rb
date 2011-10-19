@@ -1,6 +1,6 @@
 class DashboardController < ApplicationController
 
-	#before_filter :authenticate_user!
+  before_filter :authenticate_user!
 	def index
 
 		@people = Person.all
@@ -29,6 +29,8 @@ class DashboardController < ApplicationController
       
 		end # do
 		
-	end # /post/index
+	end # /post/indexs
 
 end # class
+
+
