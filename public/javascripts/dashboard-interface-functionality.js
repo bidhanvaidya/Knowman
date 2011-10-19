@@ -1,6 +1,9 @@
 $(function(){
 	
 $(function() {$( ".datepicker" ).datepicker({dateFormat: "yy-mm-dd"});});
+$('#input-new-company-dialog').dialog({ autoOpen:false });
+$('#input-new-company-form').formToWizard({ submitButton:'input-new-company-form-button' });
+//jQuery("#input-new-company-form").validationEngine();
 
 //interface functionality
 $(function() {
@@ -56,15 +59,6 @@ $(function() {
 		var city_code 			= $('input[name="city-code"]').val();
 		var country_code 		= $('input[name="country-code"]').val();
 		
-		console.log(company_permalink);
-		console.log(description);
-		console.log(address1);
-		console.log(address2);
-		console.log(zip_code);
-		console.log(state_code);
-		console.log(city_code);
-		console.log(country_code);
-		
 		new_office = { 
 			
 			office: {	
@@ -85,6 +79,24 @@ $(function() {
 		//$.post('/offices', new_office, function(data){});
 		e.preventDefault();
 
+	});
+	$('button[rel=input-new-company-button]').live('click', function(e){
+	
+		var company_name		= $('input[name="new-company"]').val();
+		var number_of_employees = $('input[name="new-company-staff-level"]').val();
+		
+		e.preventDefault();
+		
+		company = { company: { name: company_name, permalink: company_name } };
+		staff_levels = { staff_level: { number_of_employees: number_of_employees, company_permalink: company_name } };
+		
+		$.post('/companies', company, function(data){
+			
+			alert(data);
+			
+		});
+		$.post('/staff_levels', staff_levels, function(data){});
+	
 	});
 	
 

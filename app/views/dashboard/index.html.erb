@@ -168,6 +168,27 @@
 <div id="dash">
 	<div id="input">
 		<input name="search" value="" id="search" type="text" />
+		<div id="input-new-company-dialog">
+			<p>Sorry, we couldn't find any records matching your request.</p>
+			<p>Please fill in this form to add a new company record.</p>
+			<form id="input-new-company-form">
+				<fieldset>
+					<legend>What is the company's name?</legend>
+					<input type="text" name="new-company" />
+				</fieldset>
+				<fieldset>
+					<legend>Enter staff levels here:</legend>
+					<input type="text" name="new-company-staff-level" />
+					<button id="input-new-company-form-button" rel="input-new-company-button">submit</button>
+				</fieldset>
+				<!--<fieldset>
+					<legend>Enter any funding information here:</legend>
+					<input type="text" name="new-company-name" />
+					<button id="input-new-company-form-button" rel=""></button>
+				</fieldset>-->
+			</form>
+			
+		</div>
 		<div id="choice-tabs">
 			<ul id="choice-list">
 				<li><a href="#tabs-ppl"></a></li>
