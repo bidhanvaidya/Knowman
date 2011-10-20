@@ -10,6 +10,39 @@
 	      renderTo: $(this).attr('id'),
 	    },
 	    series: attr.series,
+			title: {
+				text: 'Staff Numbers History',
+			},
+			subtitle: {
+				text: 'Source: Company Staff Number Table',
+			},
+			tooltip: {
+				formatter: function() {
+		                return '<b>'+ this.series.name +'</b><br/>'+
+					Highcharts.dateFormat("%B, %Y",	this.x) +': '+'</b><br/>'+ this.y +'Employees';
+				}
+			},
+			yAxis: {
+				title: {
+					text: 'Number of employee'
+				},
+				plotLines: [{
+					value: 0,
+					width: 1,
+					color: '#808080'
+				}]
+			},
+			legend: {
+				layout: 'vertical',
+				align: 'right',
+				verticalAlign: 'top',
+				x: -10,
+				y: 100,
+				borderWidth: 0
+			},
+			xAxis: {
+				type: "datetime"
+			}
 	  });
 
 	}
@@ -17,12 +50,16 @@
 	$(document).ready(function(){
 	 <% @companies.each do |company| %>
 	  $("#staff-chart-<%= company.permalink %>").renderChart({
-	      series: [{
+					series: [{
+					pointInterval: <%= 1.month * 1000 %>, 			
+					pointStart: <%= 20.month.ago.to_i * 1000 %>,
 	        type: 'spline',
-	        name: 'Random data1',
-	        data: [<% StaffLevel.where(:company_permalink => company.permalink).each do |staff_level| %> 
-	          [Date.UTC(<%=  staff_level.date_of_record.try(:strftime,("%Y,%m,%d")) %>), <%= staff_level.number_of_employees %>],
-	        <% end %>],
+	        name: 'Staff Level',
+	        data: [<% StaffLevel.where(:company_permalink => company.permalink).each do |staff_level|  %> 
+	
+						[Date.UTC(<%=  staff_level.date_of_record.try(:strftime,("%Y,%m,%d")) %>), <%= staff_level.number_of_employees %>],
+
+					<% end %>],
 	      }],
 	    });
 	  <% end %>

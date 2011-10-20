@@ -46,7 +46,7 @@ $(function() {
 		var company_permalink = s[1];		
 		var number_of_employees = $('input[name="new_staff_level"]').val();
 		var date = $('input[name="staff-date"]').val();
-
+		
 		new_staff_level = { 
 			
 			staff_level: {	
