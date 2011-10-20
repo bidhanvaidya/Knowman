@@ -55,7 +55,14 @@ belongs_to :folder
   has_many :attachments, :through => :attaches 
   belongs_to :topic
 	has_many :notifications
-
+def self.search(search)
+  if search
+  
+      where('content iLIKE ? OR title ilike ?', "%#{search}%", "%#{search}%" )
+  else
+    scoped
+  end
+end
 end
 
 
