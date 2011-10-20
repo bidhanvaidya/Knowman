@@ -1,6 +1,36 @@
 <!doctype html>
 <head>
-	
+
+	<script type="text/javascript">
+	var charts = new Array;
+	jQuery.fn.renderChart = function(attr) {
+	  i = charts.length;
+	  var chart = charts[i] = new Highcharts.Chart({
+	    chart: {
+	      renderTo: $(this).attr('id'),
+	    },
+	    series: attr.series,
+	  });
+
+	}
+
+	$(document).ready(function(){
+	 <% @companies.each do |company| %>
+	  $("#staffchart-<%= company.permalink %>").renderChart({
+	      series: [{
+	        type: 'spline',
+	        name: 'Random data1',
+	        data: [<% StaffLevel.where(:company_permalink => company.permalink).each do |staff_level| %> 
+	          [Date.UTC(<%=  staff_level.created_at.strftime("%Y,%m,%d") %>), <%= staff_level.number_of_employees %>],
+	        <% end %>],
+	      }],
+	    });
+	  <% end %>
+
+	});
+	</script>
+
+<!--
 <script type="text/javascript">
 	
 	$("#list").val() == "A"
@@ -85,11 +115,11 @@
 });
 </script>
 	
+-->	
 	
 	
 	
-	
-	
+<!--
 	<script type="text/javascript">
 		//------------the original chart-----------------------//
 		var chart;
@@ -152,6 +182,11 @@
 			});	
 		});
 	</script>
+-->	
+	
+	
+	
+	
 </head>
 <body>
 <div id="screen-resolution-helper">
@@ -315,7 +350,7 @@
 							<li><a href="#products-<%= company.permalink %>"></a></li>
 						</ul>
 						<div id="staff-<%= company.permalink %>">
-							<div id="staff-chart-<%= company.permalink %>" class="chart-holder right">
+							<div id="staffchart-<%= company.permalink %>" class="chart-holder right">
 							</div>
 							<div class="accordion-sub-menu">
 								<a href="/showchart" id="show-chart-<%= company.permalink %>" class="button right">C</a>
