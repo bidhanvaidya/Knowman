@@ -170,13 +170,18 @@
 		<input name="search" value="" id="search" type="text" />
 		<div id="input-new-company-dialog">
 			<form id="input-new-company-form">
+				<p class="add-field" style="cursor:pointer">++</p>
 				<fieldset>
 					<legend>What is the company's name?</legend>
 					<input type="text" name="new-company" />
 				</fieldset>
 				<fieldset>
-					<legend>Enter staff levels:</legend>
+					<legend>Enter staff level information:</legend>
 					<input type="text" name="new-company-staff-level" />
+					<span class="new-company-add-record">
+						<p>Enter a date for this record</p>
+						<input class="datepicker" type="text" />
+					</span>
 				</fieldset>
 				<fieldset>
 					<legend>Enter their products:</legend>

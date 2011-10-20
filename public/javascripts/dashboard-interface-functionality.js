@@ -13,6 +13,12 @@ $('#input-new-company-dialog').dialog({
 });
 $('#input-new-company-form').formToWizard({ submitButton:'input-new-company-form-button' });
 
+$('.add-field').live('click', function(){
+
+	var c = $(this).next(':visible').children().children('input').clone().insertBefore( $(this).next(':visible').children().children('p:first') );
+	
+});
+
 //interface functionality
 $(function() {
 

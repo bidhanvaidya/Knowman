@@ -2,7 +2,7 @@
 fieldset { border:none; width:98%;}
 legend { font-size:18px; margin:0px; padding:10px 0px; font-weight:bold;}
 label { display:block; margin:15px 0 5px;}
-fieldset > input[type=text], fieldset > input[type=password] { width:95%; padding:5px; border:solid 1px #000;}
+fieldset > input[type=text], fieldset > input[type=password], #new-company-add-record > input { width:95%; padding:5px; border:solid 1px #000;}
 .prev, .next, #input-new-company-form-button { background-color:lightgray; padding:5px 10px; color:#fff; text-decoration:none;}
 .prev:hover, .next:hover { background-color:#000; font-color:white; text-decoration:none;}
 .prev { float:left;}
