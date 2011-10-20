@@ -16,7 +16,7 @@
 
 	$(document).ready(function(){
 	 <% @companies.each do |company| %>
-	  $("#staffchart-<%= company.permalink %>").renderChart({
+	  $("#staff-chart-<%= company.permalink %>").renderChart({
 	      series: [{
 	        type: 'spline',
 	        name: 'Random data1',
@@ -29,163 +29,6 @@
 
 	});
 	</script>
-
-<!--
-<script type="text/javascript">
-	
-	$("#list").val() == "A"
-	  $(window).load(function(){
-	  var options = {
-	    chart: {
-	        renderTo: 'chart-button',
-	        defaultSeriesType: 'spline'
-	    },
-			title: {
-				text: 'Company History',
-				x: -20 //center
-			},
-			subtitle: {
-				text: 'Source: Local Database',
-				x: -20
-			},
-			xAxis: {
-				type: "datetime"
-			},
-			yAxis: {
-				title: {
-					text: 'Number'
-				},
-				plotLines: [{
-					value: 0,
-					width: 1,
-					color: '#808080'
-				}]
-			},
-			legend: {
-				layout: 'vertical',
-				align: 'right',
-				verticalAlign: 'top',
-				x: -10,
-				y: 100,
-				borderWidth: 0
-			},
-			tooltip: {
-				formatter: function() {
-		                return '<b>'+ this.series.name +'</b><br/>'+
-					Highcharts.dateFormat("%B, %Y",	this.x) +': '+'</b><br/>'+ 'value: ' + this.y;
-				}
-			},
-	    series: []
-	};
-
-	$('a[id^="show-chart"]').live('click', function(){
-	//display staff level data for Apple
-	
-		var a = $(this).attr('id');
-		var b = new Array();
-			b = a.split('-');
-	
-		dashboard_sl_request = { dashboard_sl_request: { company_permalink: b[2] } };
-		
-		$.get('/staff_levels', dashboard_sl_request, function(data){ 
-			
-		//alert(data);
-		console.log(data);
-	
-		options.series = [ { 
-			
-			name: 'first',
-			data: [ data.created_at, data.number_of_employees ]
-			
-		} ]
-			//<% StaffLevel.where(:company_permalink => "facebook").each do |staff_level| %> 
-			//	[Date.UTC(<%=  staff_level.created_at.strftime("%Y,%m,%d") %>), <%= staff_level.number_of_employees %>],
-			//<% end %>
-			//] 
-
-			
-			
-	
-		var chart = new Highcharts.Chart(options);  
-		  
-		});
-	
-	});
-
-});
-</script>
-	
--->	
-	
-	
-	
-<!--
-	<script type="text/javascript">
-		//------------the original chart-----------------------//
-		var chart;
-		$(document).ready(function() {
-			chart = new Highcharts.Chart({
-				chart: {
-					renderTo: 'empnum_chart',
-					defaultSeriesType: 'spline',
-					marginRight: 100,
-					marginBottom: 25
-				},
-				title: {
-					text: 'Company History',
-					x: -20 //center
-				},
-				subtitle: {
-					text: 'Source: Local Database',
-					x: -20
-				},
-				xAxis: {
-					type: "datetime"
-				},
-				yAxis: {
-					title: {
-						text: 'Number'
-					},
-					plotLines: [{
-						value: 0,
-						width: 1,
-						color: '#808080'
-					}]
-				},
-				legend: {
-					layout: 'vertical',
-					align: 'right',
-					verticalAlign: 'top',
-					x: -10,
-					y: 100,
-					borderWidth: 0
-				},
-				tooltip: {
-					formatter: function() {
-			                return '<b>'+ this.series.name +'</b><br/>'+
-						Highcharts.dateFormat("%B, %Y",	this.x) +': '+'</b><br/>'+ 'value: ' + this.y;
-					}
-				},
-				series: [	
-					{
-					pointInterval: <%= 1.month * 1000 %>, 			
-					pointStart: <%= 20.month.ago.to_i * 1000 %>,	
-					name: 'staff_level',
-					type: 'spline',
-					data: [
-						<% @staff_levels.each do |staff_level| %> 
-							[Date.UTC(<%=  staff_level.created_at.strftime("%Y,%m,%d") %>), <%= staff_level.number_of_employees %>],
-						<% end %>
-					]
-					}
-				]
-			});	
-		});
-	</script>
--->	
-	
-	
-	
 	
 </head>
 <body>
@@ -194,10 +37,9 @@
 
 <div id="toolbar">
 	<div id="styled-choice-links">
-		<a href="#" class="tabs-ppl" title="People">People</a><br />
-		<a href="#" class="tabs-cmp" title="Companies">Companies</a><br />
-		<a href="#" class="tabs-org" title="Organisations">Organisations</a>
-		<input class="button" type="button" rel="test" id="" value="S" />
+		<a href="#" id="company-button" class="tabs-ppl" title="People">C</a><br />
+		<a href="#" id="people-button" class="tabs-cmp" title="Companies">P</a><br />
+		<a href="#" id="commit" class="tabs-org" title="Commit">C</a>
 	</div><!--/#styled-choice-links -->
 </div><!-- /#toolbar -->
 <div id="dash">
@@ -249,10 +91,10 @@
 	</div><!--/#input -->
 	<div id="actions">
 		<div id="staff-context-menu" class="staff">
-			<h4>Enter your top secret information here!</h4><br />
+			<h4>New Staff Level</h4><br />
 			<span>New Staff level: <input name="new_staff_level" type="text" /></span>
 			<span>Date: <input type="text" class="datepicker" name="staff-date" /></span>
-			<button rel="new-staff-level">S</button>
+			<button rel="new-staff-level">submit</button>
 		</div>
 		<span class="people">
 		<p>Person Based Context Menu</p>
@@ -350,7 +192,7 @@
 							<li><a href="#products-<%= company.permalink %>"></a></li>
 						</ul>
 						<div id="staff-<%= company.permalink %>">
-							<div id="staffchart-<%= company.permalink %>" class="chart-holder right">
+							<div id="staff-chart-<%= company.permalink %>" class="chart-holder right">
 							</div>
 							<div class="accordion-sub-menu">
 								<a href="/showchart" id="show-chart-<%= company.permalink %>" class="button right">C</a>
@@ -431,19 +273,5 @@
 </span>
 
 </div><!-- /#screen-resolution-helper -->
-
-
-
-
-
-
-<SELECT id="list">
-<OPTION VALUE="apple">Apple
-<OPTION VALUE="twitter">Twitter
-<OPTION VALUE="microsoft">Microsoft
-</SELECT>
-<button id="change">Refresh chart</button>
-
-<div id="chart-button" style="width: 700px; height: 400px;"></div>
 </body>
 </html>

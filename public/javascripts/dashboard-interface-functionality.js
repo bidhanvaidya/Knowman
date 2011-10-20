@@ -118,8 +118,6 @@ $(function() {
   
   $('#toolbar > div > a > span').click(function(e){
 									   
-									   $('.active').removeClass('active'); // for usability
-									   
 									   e.preventDefault(); //prevent anchor behaviour
 									   var h = $(this).parent('a[class^="tabs-"]').attr('class'); //parse list of anchor's classes
 									   var i = new Array(); //create empty array
@@ -135,7 +133,6 @@ $(function() {
 									   $('#input-field').clone().appendTo('#'+ i[0] +'');
 									   
 									   }
-									   $(this).addClass('active');
 									   
 									   });
   $('#mainmenu-button-holder > button').click(function(){

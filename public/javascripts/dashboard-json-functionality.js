@@ -4,7 +4,7 @@
 
 $(document).ready(function(){
 
-	$('#__sub').live('click', function() {
+	$('#company-button').live('click', function() {
 
 	var s = $('#search').val().toLowerCase();
 	var t = new Array();
@@ -149,7 +149,7 @@ $(document).ready(function(){
 			   $('<ul/>', { 'class': 'companies-fnd',	  html: fnd.join('')	  }).appendTo('#funding')	.prepend('<h3>Funding Information</h3>');
 			   
 			
-				$(':[rel="test"]').live('click', function() {
+				$('#commit').live('click', function() {
 					
 					var o = data.offices.length;
 					var p = data.products.length;
@@ -211,7 +211,7 @@ $(document).ready(function(){
 					
 						$.post('/products', product, function(data) {
 								
-							$('<p class="test">New office created -- </p>').appendTo('#actions > #query-status');
+							$('<p class="test">New product created -- '+ data.name +' </p>').appendTo('#actions > #query-status');
 							
 						});
 					
@@ -243,12 +243,12 @@ $(document).ready(function(){
 						};
 						//console.log(person);
 					
-						$.post('/people', person, function(data){});
-						$.post('/employment_statuses', employment_status, function(data) {
-								
-							$('<p class="test">New person created -- </p>').appendTo('#actions > #query-status');
+						$.post('/people', person, function(data){
+							
+							$('<p class="test">New person created --'+ data.permalink +' </p>').appendTo('#actions > #query-status');
 							
 						});
+						$.post('/employment_statuses', employment_status, function(data) {});
 					
 					}
 					for ( i=0; i<f; i++ ) {
@@ -272,7 +272,7 @@ $(document).ready(function(){
 						};
 						$.post('/funding_rounds', funding_round, function(data) {
 								
-							$('<p class="test">New funding round created -- </p>').appendTo('#actions > #query-status');
+							$('<p class="test">New funding round created --'+data.company_permalink+' </p>').appendTo('#actions > #query-status');
 							
 						});
 						
@@ -289,7 +289,7 @@ $(document).ready(function(){
 
 	});
 
-	$(':[rel="people_sub"]').live('click', function(){
+	$('#people-button').live('click', function(){
 	
 	var s = $('#search').val().toLowerCase();
 	var t = new Array();
