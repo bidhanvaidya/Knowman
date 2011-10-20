@@ -78,7 +78,7 @@
 									<th>Created</th>
 									<th>Last Update</th>
 									<th>Progress</th>
-									<th></th>
+									<th></th><th>Next Scheduled update</th>
 
 								</tr>
 							
@@ -121,6 +121,31 @@
 												});</script>
 											<td><div id="<%=topic.created_at.hash%>"></div></td>
 											<td><%= button_to 'Delete',research_folder_topic_path(topic.folder.research,topic.folder,topic), :confirm => 'Are you sure?', :method => :delete %></td>
+										<% earliest_notification = topic.notifications.order(:next_notification).first %>
+											<%unless topic.notifications.empty?%>
+											<% days_left = (earliest_notification.next_notification - Time.now)/(3600*24)  %>
+			
+				<td>
+						<table bgcolor = "F1F1F1">
+						
+							<tr>
+							<%if earliest_notification.is_important?%>
+							<th bgcolor= "red"></th>
+							<%else%>
+							<th></th>
+							<%end%>
+								<th valign = "top" align = "right">
+									<h1><%= days_left.to_i + 1  %></h1>
+								</th>
+						
+								<th valign = "bottom" align = "left">
+									<h6> days left</h6>
+								</th>
+							</tr>
+						</table>
+					
+											
+										<% end%>
 										</tr>
 								<% end %>
 						</table>

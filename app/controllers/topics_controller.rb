@@ -8,7 +8,7 @@ class TopicsController < ApplicationController
 	def index
 			@topics = @folder.topics.search(params[:search]).paginate(:page => params[:page], :per_page => 10).find_all_by_version('latest')
 			@user = current_user
-		
+			@notifications= Notification.all
 			respond_to do |format|
 				format.html # index.html.erb
 				format.json { render json: @topics }
@@ -66,6 +66,10 @@ class TopicsController < ApplicationController
 			@newtopic.topic_id=@topic.get_latest(@topic.id)
 			@new = Topic.find(@topic.get_latest(@topic.id)) # get the latest version
 			@new.update_attributes(:version => "old")  # CHANGE THE VERSION  TO OLD IN THE LATEST ONE
+			@notifications = @new.notifications
+			@notifications.each do |notify|
+				notify.update_attributes(:topic_id => @newtopic.id)
+			end
 			respond_to do |format|
 				if @newtopic.update_attributes(params[:topic])
 					Update.create(:topic_id => @topic.get_latest(@topic.id), :user_id => current_user.id,

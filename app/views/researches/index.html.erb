@@ -19,7 +19,7 @@
 </script>
 	<br><table bgcolor = "#F1F1F1"><tr><td>
 <h1 align ="center" >Research</h1></td>
-<td><%= render 'shared/index'%></td></tr></table>
+<td align = "right"><%= render 'shared/index'%></td></tr></table>
 
 <table >
 	<td valign = "top">
@@ -46,17 +46,20 @@
 	
 	<td valign ="top">
 		<table >
-		<th>
+		<tr bgcolor = "#F1F1F1">
+		<th >
 		 
 			</th>
-			<th bgcolor = "#F1F1F1">Documents that needs more work on it </th>
+			<th >Documents that needs more work on it </th>
+			<th></th><th></th></tr>
 			<% @topics.each do |topic|%>
 				
 				<% folder = Folder.find(topic.folder_id)%> 
 				<% research = Research.find(folder.research_id)%>
 				
 				<tr >
-					<td><%= link_to topic.title, edit_research_folder_topic_path(research, folder,topic)   %> </td>
+					<td align = "right"><%= link_to topic.title, edit_research_folder_topic_path(research, folder,topic)%> << </td>
+					<td align = "left"> <%= link_to folder.title, research_folder_topics_path(research, folder)%><<  <%= link_to research.title, research_folders_path(research)%></td>
 					<td><%= topic.progress %></td>
 						<script>
 							$(function() {

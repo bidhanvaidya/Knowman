@@ -5,7 +5,7 @@ class ResearchesController < ApplicationController
   def index
     @researches = Research.paginate(:page => params[:page], :per_page => 10)
 		@research = Research.new
-		@notifications = Notification.find(:all, :order => :next_notification).first(5)
+		@notifications = Notification.find(:all, :order => :next_notification).first(9)
 		@topics= Topic.find(:all, :order => :progress, :conditions => ["version = ?",'latest'], :limit => '8')
     respond_to do |format|
       format.html # index.html.erb

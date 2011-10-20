@@ -36,6 +36,7 @@
 <% @folders.each do |folder| %>
   <tr>
     <td><%= link_to folder.title, research_folder_topics_path(@research, folder) %></td>
+    
 
     			</td><script>
 												<% if folder.topics.empty?%>
