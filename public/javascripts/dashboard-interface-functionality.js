@@ -204,5 +204,6 @@ $('li > span').live('click', function(){
 							//$('#actions').hide();
 							
 							});
-  
+							
+							
 });

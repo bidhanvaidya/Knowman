@@ -242,13 +242,22 @@
 		<span>Country code: <input name="country-code" type="text" /></span><br />
 		<button rel="new-office-location">S</button>
 		</div>
-		<span class="products">
-		<p>Product Based Context Menu</p>
-		<span>New Product</span>
-		<input type="text" />
-		<select></select>
-		</span>
-		<div id="query-status" class="ui-state-highlight"></div>
+		<div id="product-context-menu" class="products">
+			<h4>New Product</h4>
+			<span>Product Name:</span><input name="new_product" type="text" />
+			<span>Status:</span>
+				<select>
+					<option> - - - 			</option>
+					<option>Released		</option>
+					<option>In Development	</option>
+					<option>Beta - public	</option>
+					<option>Beta - private	</option>
+					<option>Aplha			</option>
+					<option>Rumour			</option>
+				</select>
+			<span>Date:</span><input type="text" class="datepicker" />
+		</div>
+		<div id="query-status" class="ui-state-highlight" style="overflow:scroll;"></div>
 	</div><!--/#actions -->
 </div><!--/#dash -->
 

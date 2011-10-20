@@ -58,7 +58,6 @@
 	height:97px;
 	width:100%;
 	border:none;
-	border-top:1px solid #D2D2D2;
 	background:none;
 }
 #choice-list {
@@ -77,22 +76,25 @@
 	z-index:2;
 	background:white;
 	width:92%;
-	height:125px;
+	height:120px;
 	border:1px solid #D2D2D2;
-	border-top:1px solid #D2D2D2;
+	border-top:8px solid #D2D2D2;
 }
 #input, #actions {
 	height:125px;
 	width:49.8%;
 }
-#search { width:100%; }
+#search { width:95%; margin:2%; }
 #screen-resolution-helper { height:500px; width:auto; position:relative; top:1px; margin: 1px;}
 
 #toolbar { 
-	height:125px; 
-	width:5%;
+	height:104px; 
+	width:auto;
 	float:left;
 	position:fixed;
+	top:80px;
+	padding-right:15px;
+	padding-top:15px;
 	z-index:1;
 	background-color:white;
 }
@@ -120,8 +122,13 @@
 	top:-33px;
 	left:24px;
 }
-.staff{ width:90%; height:80px;}
+.staff { width:90%; height:80px; }
+.products { width:90%; height:80px; }
 #top, #middle, #bottom {
 	height:400px
 	width:100%;
+}
+#query-status {
+	height:100px;
+	width:90%;
 }

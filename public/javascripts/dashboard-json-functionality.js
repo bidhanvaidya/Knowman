@@ -156,9 +156,13 @@ $(document).ready(function(){
 					var f = data.funding_rounds.length;
 					var s = people_employment_statuses.employment_status.length;
 					
+					$('#actions').children('hide');
+					
 					$.post('/companies', company, function(data) {
 							
-						//console.log(data);
+						$('#actions').children('hide');
+						$('#query-status').show();
+						$('<p class="test">New company created -- '+ data.name +'</p>').appendTo('#actions > #query-status');
 						
 					});
 					$.post('/staff_levels', staff_levels, function(data) {
@@ -169,7 +173,7 @@ $(document).ready(function(){
 					for ( i=0; i<o; i++ ) {
 						
 						office = { 
-						 
+							
 							office: { 
 							
 								description: offices.office[i].description,
@@ -186,14 +190,10 @@ $(document).ready(function(){
 							} 
 							
 						 };
-						//console.log(office);
-					
 						$.post('/offices', office, function(data) {
-								
-							//console.log(data);
-							
+							//$('#actions').children('hide');
+							//$('<p class="test">New office created -- '+data.description+'</p>').appendTo('#actions');
 						});
-					
 					}
 					for ( i=0; i<p; i++ ) {
 					
@@ -276,16 +276,16 @@ $(document).ready(function(){
 						};
 						$.post('/funding_rounds', funding_round, function(data) {
 								
-							console.log(data);
+							//console.log(data);
 							
 						});
 						
 					}
-					/*$.get('/companies', function(data) {
+					$.get('/companies', function(data) {
 						
 					$('#accordion-wrapper').append('<h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-corner-all"><a>'+data.name+'</a></h3><div id="company-1" class="ui-tabs ui-widget ui-widget-content ui-corner-all ui-accordion-content ui-helper-reset ui-corner-bottom"><p>Here we have some new data on '+data.name+'</div></div>');
 					
-					});*/
+					});
 					
 				});
 
