@@ -1,5 +1,4 @@
 <!doctype html>
-<head>
 
 	<script type="text/javascript">
 	var charts = new Array;
@@ -8,6 +7,8 @@
 	  var chart = charts[i] = new Highcharts.Chart({
 	    chart: {
 	      renderTo: $(this).attr('id'),
+				height: 235,
+				width: 700,
 	    },
 	    series: attr.series,
 			title: {
