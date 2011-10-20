@@ -5,7 +5,7 @@
 <%= render 'shared/index' %>
 
 </br>
-  <h4>Documents containing <%= params[:search] %></h4>
+  <h4>Documents containing "<%= params[:search] %>"</h4>
 <% @topics.each do |topic| %>
   
 				<% folder = Folder.find(topic.folder_id)%> 
@@ -13,7 +13,7 @@
 				
 				
 					<td><%= link_to topic.title, edit_research_folder_topic_path(research, folder,topic)   %> </td>
-		<td colspan="4" class="pad">last updated by Updated by <%= topic.user.firstName + " "%>at <%= topic.created_at %></td>	
+		<td colspan="4" class="pad">last updated by  <%= topic.user.firstName + " "%>at <%= topic.created_at %></td>	
 				
   </tr>
 <% end %>

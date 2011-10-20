@@ -1,3 +1,4 @@
+
 <script>
 	$(function() {
 		$( "#draggable" ).draggable();
@@ -15,6 +16,15 @@
 			return false;
 		});
 	});
+	
+	
+	$(function() {
+		$( "#research_area" ).accordion({
+			event: "mouseover"
+		});
+	});
+
+	
 
 </script>
 	<br><table bgcolor = "#F1F1F1"><tr><td>
@@ -30,22 +40,35 @@
 						<br />
 				</div>
 			</tr>
+			<tr><th bgcolor = "#F1F1F1">Title <%= will_paginate @researches %></th></tr>
   		
   		<tr>
-		  	<th bgcolor = "#F1F1F1">Title <%= will_paginate @researches %></th>
+		  	
 		 		<button id="opener">Create New</button>
   		</tr>
+  		</table>
   		
+  		<div id="research_area">
   		<% @researches.each do |research| %>
-				<tr>
-				  <td ><%= link_to research.title, research_folders_path(research) %></td>
-				</tr>
+	
+
+  		
+				
+				  <h5><a href="#"><%= link_to research.title, research_folders_path(research) %></a></h5>
+				  	<div>
+		<ul>
+		<% research.folders.each do |folder| %>
+	<li><%= link_to folder.title, research_folder_topics_path(research, folder) %></li>
+	<%end%>
+	</ul>
+	</div>
+				
 			<% end %>
-		</table>
+	
 	</td>
 	
 	<td valign ="top">
-		<table >
+		<table  size = 25%>
 		<tr bgcolor = "#F1F1F1">
 		<th >
 		 
