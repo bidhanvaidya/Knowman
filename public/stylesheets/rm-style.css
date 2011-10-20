@@ -84,7 +84,7 @@
 	height:125px;
 	width:49.8%;
 }
-#search { width:95%; margin:2%; }
+#input > #search { width:95%; margin:2%; }
 #screen-resolution-helper { height:500px; width:auto; position:relative; top:1px; margin: 1px;}
 
 #toolbar { 
