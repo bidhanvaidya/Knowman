@@ -6,7 +6,7 @@ class TopicsController < ApplicationController
 	# GET /topics
 	# GET /topics.json
 	def index
-			@topics = @folder.topics.paginate(:page => params[:page], :per_page => 10).find_all_by_version('latest')
+			@topics = @folder.topics.search(params[:search]).paginate(:page => params[:page], :per_page => 10).find_all_by_version('latest')
 			@user = current_user
 		
 			respond_to do |format|
