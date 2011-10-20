@@ -3,8 +3,13 @@ $(function(){
 $(function() {$( ".datepicker" ).datepicker({dateFormat: "yy-mm-dd"});});
 $('#input-new-company-dialog').dialog({ 
 	autoOpen:false,
-	title:"New company",
-	width:500
+	title:"Sorry, we couldn't find what you were looking for. Feel free to add a new record.",
+	width:400,
+	modal:true,
+	position:'top',
+	draggable:false,
+	closeOnEscape:true
+	
 });
 $('#input-new-company-form').formToWizard({ submitButton:'input-new-company-form-button' });
 

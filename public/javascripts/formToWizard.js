@@ -21,8 +21,8 @@
             $(this).append("<p id='step" + i + "commands'></p>");
 
             // 2
-            var name = $(this).find("legend").html();
-            $("#steps").append("<li id='stepDesc" + i + "'>Step " + (i + 1) + "<span>" + name + "</span></li>");
+            //var name = $(this).find("legend").html();
+            $("#steps").append("<li id='stepDesc" + i + "'>Step " + (i + 1) + "</li>");
 
             if (i == 0) {
                 createNextButton(i);

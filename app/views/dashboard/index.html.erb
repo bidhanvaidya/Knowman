@@ -169,23 +169,28 @@
 	<div id="input">
 		<input name="search" value="" id="search" type="text" />
 		<div id="input-new-company-dialog">
-			<p>Sorry, we couldn't find any records matching your request.</p>
-			<p>Please fill in this form to add a new company record.</p>
 			<form id="input-new-company-form">
 				<fieldset>
 					<legend>What is the company's name?</legend>
 					<input type="text" name="new-company" />
 				</fieldset>
 				<fieldset>
-					<legend>Enter staff levels here:</legend>
+					<legend>Enter staff levels:</legend>
 					<input type="text" name="new-company-staff-level" />
-					<button id="input-new-company-form-button" rel="input-new-company-button">submit</button>
 				</fieldset>
-				<!--<fieldset>
+				<fieldset>
+					<legend>Enter their products:</legend>
+					<input type="text" name="new-company-product" />
+				</fieldset>
+				<fieldset>
+					<legend>Enter persons of interest:</legend>
+					<input type="text" name="new-company-people" />
+				</fieldset>
+				<fieldset>
 					<legend>Enter any funding information here:</legend>
-					<input type="text" name="new-company-name" />
-					<button id="input-new-company-form-button" rel=""></button>
-				</fieldset>-->
+					<input type="text" name="new-company-funding-round" />
+					<p id="input-new-company-form-button" rel=""><a href="#">Submit +</a></p>
+				</fieldset>
 			</form>
 			
 		</div>
