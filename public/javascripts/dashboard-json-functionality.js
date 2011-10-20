@@ -191,8 +191,8 @@ $(document).ready(function(){
 							
 						 };
 						$.post('/offices', office, function(data) {
-							//$('#actions').children('hide');
-							//$('<p class="test">New office created -- '+data.description+'</p>').appendTo('#actions');
+							$('#actions').children('hide');
+							$('<p class="test">New office created -- '+data.description+'</p>').appendTo('#actions > #query-status');
 						});
 					}
 					for ( i=0; i<p; i++ ) {
@@ -211,7 +211,7 @@ $(document).ready(function(){
 					
 						$.post('/products', product, function(data) {
 								
-							//console.log(data);
+							$('<p class="test">New office created -- </p>').appendTo('#actions > #query-status');
 							
 						});
 					
@@ -243,14 +243,10 @@ $(document).ready(function(){
 						};
 						//console.log(person);
 					
-						$.post('/people', person, function(data) {
-								
-							//console.log(data);
-							
-						});
+						$.post('/people', person, function(data){});
 						$.post('/employment_statuses', employment_status, function(data) {
 								
-							//console.log(data);
+							$('<p class="test">New person created -- </p>').appendTo('#actions > #query-status');
 							
 						});
 					
@@ -276,7 +272,7 @@ $(document).ready(function(){
 						};
 						$.post('/funding_rounds', funding_round, function(data) {
 								
-							//console.log(data);
+							$('<p class="test">New funding round created -- </p>').appendTo('#actions > #query-status');
 							
 						});
 						
