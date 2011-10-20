@@ -21,15 +21,15 @@
 			});
 
 	</script>
-<script><% if @topics.empty?%>
+<script><% if @folder.topics.empty?%>
 				<%	total_topics = 1%>
 				<%	else%>
-				<%	total_topics = @topics.count%>
+				<%	total_topics = @folder.topics.count%>
 				<%end%>
 												$(function() {
 												$( "#total" ).progressbar({
-																value: <%=@topics.collect(&:progress).sum/total_topics%>});
-													 var value = <%=@topics.collect(&:progress).sum/total_topics%>
+																value: <%=@folder.topics.collect(&:progress).sum/total_topics%>});
+													 var value = <%=@folder.topics.collect(&:progress).sum/total_topics%>
 													if (value <20){
 															$("#total").css({ 'background': 'white' });
 															$("#total > div").css({ 'background': 'red' });}
@@ -45,16 +45,23 @@
 															$("#total > div").css({ 'background': 'lightgreen' });
 													}
 												});</script>
-Total progress
 
 
-	<h2> <%= @folder.title %></h2><%= link_to 'Add new', new_research_folder_topic_path, :remote =>true %>	
-	<div id="total" position = "right"></div>
-<%= form_tag research_folder_topics_path(@research, @folder, @topic), :method => 'get' do %>
+
+	<table>
+		<tr>
+			<th align = "right"><h2> <%= @folder.title %></h2></th><th align = "left"><%= link_to 'Add new', new_research_folder_topic_path, :remote =>true %></th>
+			<th align = "right"><%= form_tag research_folder_topics_path(@research, @folder, @topic), :method => 'get' do %>
   <p>
-    <%= text_field_tag :search, params[:search],  :size => 25%>
+    <%= text_field_tag :search, params[:search],  :size => '25'%>
     <%= submit_tag "Search", :name => nil %>
-  </p>
+  </p>	
+  </th>
+  </tr>
+  </table>
+  Total progress
+	<div id="total" position = "right"></div>
+
 <% end %>
 	<% if @folder.topics.nil? %>
 		nothn to diplay

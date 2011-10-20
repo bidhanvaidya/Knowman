@@ -20,7 +20,6 @@ end
 gem 'date_validator'
 gem 'paperclip'
 gem 'jquery-rails'
-gem 'thinking-sphinx', '2.0.5'
 # Use unicorn as the web server
 # gem 'unicorn'
 
