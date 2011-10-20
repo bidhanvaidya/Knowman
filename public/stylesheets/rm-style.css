@@ -131,4 +131,6 @@
 #query-status {
 	height:100px;
 	width:90%;
+	overflow:hidden;
+	overflow-y:scroll;
 }
