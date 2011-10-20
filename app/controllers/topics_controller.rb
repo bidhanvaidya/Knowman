@@ -104,13 +104,6 @@ class TopicsController < ApplicationController
 		end
 	end
 
-	def all
-		@topics=Topic.all
-		respond_to do |format|
-			format.html # all.html.erb
-			format.json { render json: @topics }
-		end
-	end
 
 	private
 		def load_research_folder

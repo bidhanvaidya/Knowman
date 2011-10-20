@@ -51,18 +51,20 @@
 	<table>
 		<tr>
 			<th align = "right"><h2> <%= @folder.title %></h2></th><th align = "left"><%= link_to 'Add new', new_research_folder_topic_path, :remote =>true %></th>
-			<th align = "right"><%= form_tag research_folder_topics_path(@research, @folder, @topic), :method => 'get' do %>
+			<th align = "right"><%= form_tag research_folder_topics_path(), :method => 'get' do %>
   <p>
     <%= text_field_tag :search, params[:search],  :size => '25'%>
     <%= submit_tag "Search", :name => nil %>
   </p>	
+  
+<% end %>
+  
   </th>
   </tr>
   </table>
   Total progress
 	<div id="total" position = "right"></div>
 
-<% end %>
 	<% if @folder.topics.nil? %>
 		nothn to diplay
 	<% else%>

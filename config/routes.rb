@@ -35,13 +35,16 @@ Knowman::Application.routes.draw do
   resources :researches do 
 		resources :folders do
 			resources :topics do 
-					get "all"
 			resources :updates
 				resources :notifications
 				resources :attachments
 			end
 		end
+		
 	end
+	resources :searches
+	
+	
 	match '/userupdate', :to => 'updates#userupdate'
 	root :to => 'dashboard#index'
 

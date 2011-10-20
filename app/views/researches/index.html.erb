@@ -17,8 +17,9 @@
 	});
 
 </script>
-	<br>
-<h1 align ="center" bgcolor = "#F1F1F1">Research</h1>
+	<br><table bgcolor = "#F1F1F1"><tr><td>
+<h1 align ="center" >Research</h1></td>
+<td><%= render 'shared/index'%></td></tr></table>
 
 <table >
 	<td valign = "top">
@@ -45,6 +46,9 @@
 	
 	<td valign ="top">
 		<table >
+		<th>
+		 
+			</th>
 			<th bgcolor = "#F1F1F1">Documents that needs more work on it </th>
 			<% @topics.each do |topic|%>
 				
@@ -85,7 +89,8 @@
 	<td valign = "top" align = "right" bgcolor = "#F1F1F1">
 		<table align ="right"  bgcolor = "#FFF6F6">
 			<tr>
-				Documents that need review </br></th>
+				Documents that need review </br>
+				
 			</tr>
 
 			<% @notifications.each do |notify| %>
@@ -99,6 +104,7 @@
 					<th align = "right" >	<th> 
 					<table><tr >
 					<%if notify.is_important?%>
+					
 					
 						<td bgcolor = "red"> IMP</td>
 						<td align = "right"><%= link_to notify.topic.title, edit_research_folder_topic_path(research, folder,topic) %></td>
