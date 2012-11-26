@@ -1,28 +1,6 @@
 
 <script>
-	$(function() {
-		$( "#draggable" ).draggable();
-	});
-	$.fx.speeds._default = 1000;
-	$(function() {
-		$( "#dialog" ).dialog({
-			autoOpen: false,
-			show: "blind",
-			hide: "explode"
-		});
 
-		$( "#opener" ).click(function() {
-			$( "#dialog" ).dialog( "open" );
-			return false;
-		});
-	});
-	
-	
-	$(function() {
-		$( "#research_area" ).accordion({
-			event: "mouseover"
-		});
-	});
 
 	
 
@@ -83,7 +61,7 @@
 				<tr >
 					<td align = "right"><%= link_to topic.title, edit_research_folder_topic_path(research, folder,topic)%> << </td>
 					<td align = "left"> <%= link_to folder.title, research_folder_topics_path(research, folder)%><<  <%= link_to research.title, research_folders_path(research)%></td>
-					<td><%= topic.progress %></td>
+					<td size = "400"><%= topic.progress %></td>
 						<script>
 							$(function() {
 							$( "#<%=topic.created_at.hash%>" ).progressbar({

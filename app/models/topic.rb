@@ -55,6 +55,9 @@ belongs_to :folder
   has_many :attachments, :through => :attaches 
   belongs_to :topic
 	has_many :notifications
+	
+has_many :checks
+has_many :user_stories, :through => :checks
 def self.search(search)
   if search
   

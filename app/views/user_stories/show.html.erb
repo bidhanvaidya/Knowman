@@ -1,0 +1,30 @@
+
+</div>
+
+<table>
+<tr> <td><%= @user_story.story %></td>
+<td>
+
+<%= form_tag check_user_story_path(@user_story), :method => :put do %>
+  <ul>
+<% @topics.each do |topic| %>
+    <li>
+    	<% if Check.find_by_topic_id_and_user_story_id(topic.id,@user_story.id).nil? %>
+      <%= check_box_tag "topic_ids[]", topic.id %>
+      <%= topic.title %>
+     
+      <% else %>
+      <%= check_box_tag "topic_ids[]", topic.id, true %>
+      <%= topic.title %>
+  		<% end%>  
+	    </li>
+  <% end %>
+  </ul>
+  <%= submit_tag "Mark as Complete" %>
+<% end %>
+
+
+
+</td>
+</tr>
+</table>

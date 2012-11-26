@@ -1,0 +1,32 @@
+<%= form_for([@user_story, @topic, @check], :remote => true) do |f| %>
+  <% if @check.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@check.errors.count, "error") %> prohibited this topic from being saved:</h2>
+
+      <ul>
+      <% @check.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+	<div id="edit" class="field">
+	<%= f.label :comment %><br />
+	<%= f.text_field :comment %>
+	</div>
+	
+
+	<div class="actions" style="z-index:1000">
+		<%= f.submit "Create Folder " %>
+               
+		
+	</div>
+
+
+ 
+
+
+    
+</div>
+
+<% end %>

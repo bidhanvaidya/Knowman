@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111019043948) do
+ActiveRecord::Schema.define(:version => 20111108122352) do
 
   create_table "assignments", :force => true do |t|
     t.integer  "project_id"
@@ -35,6 +35,15 @@ ActiveRecord::Schema.define(:version => 20111019043948) do
     t.integer  "topic_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "checks", :force => true do |t|
+    t.text     "comment"
+    t.integer  "topic_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_story_id"
+    t.boolean  "boolean"
   end
 
   create_table "companies", :force => true do |t|
@@ -162,6 +171,12 @@ ActiveRecord::Schema.define(:version => 20111019043948) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "progress_status"
+  end
+
+  create_table "user_stories", :force => true do |t|
+    t.text     "story"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", :force => true do |t|

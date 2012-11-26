@@ -1,0 +1,12 @@
+#!/usr/bin/env xdg-open
+
+[Desktop Entry]
+Version=1.0
+Name=bidhan.txt
+Comment=Open '/home/rails/knowman/bidhan.txt'
+Icon=text-plain
+Name[en_AU]=bidhan.txt
+Comment[en_AU]=Open '/home/rails/knowman/bidhan.txt'
+Icon[en_AU]=text-plain
+URL=file:///home/rails/knowman/bidhan.txt
+Type=Link
